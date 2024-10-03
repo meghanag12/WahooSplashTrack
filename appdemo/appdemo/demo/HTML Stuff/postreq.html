@@ -1,0 +1,16 @@
+<form method="POST" action="{% url 'insert_data' %}">
+    {% csrf_token %}
+    <label for="swim_id">Swim ID:</label>
+    <input type="number" id="swim_id" name="swim_id"><br>
+
+    <label for="front">Front:</label>
+    <input type="number" id="front" name="front"><br>
+
+    <label for="back">Back:</label>
+    <input type="number" id="back" name="back"><br>
+
+    <label for="react">React:</label>
+    <input type="number" id="react" name="react"><br>
+
+    <button type="submit">Submit</button>
+</form>
