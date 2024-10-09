@@ -32,8 +32,8 @@ def start_list(request):
            serializer.save()
            return Response(serializer.data, status = status.HTTP_201_CREATED)
            
-
-@api_view(['GET', 'POST', 'DELETE'])
+#note only use PUT when updating an existing record and PUT and DELETE follow same URL pattern 
+@api_view(['GET', 'POST', 'PUT', 'DELETE'])
 def swimmer_list(request, swimmer_id=None):
     if request.method == 'GET':
         swimmers = Swimmer.objects.all() 
@@ -45,6 +45,18 @@ def swimmer_list(request, swimmer_id=None):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    if request.method == 'PUT':
+        try:
+            swimmer = Swimmer.objects.get(swimmer_id=swimmer_id)
+        except Swimmer.DoesNotExist:
+            return Response({'error': 'Swimmer not found.'}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = SwimmerSerializer(swimmer, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     if request.method == 'DELETE':
