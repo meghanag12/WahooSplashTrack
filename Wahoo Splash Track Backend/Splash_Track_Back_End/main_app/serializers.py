@@ -7,7 +7,7 @@ class SwimmerSerializer(serializers.ModelSerializer):
         fields = ['swimmer_id', 'first_name', 'last_name', 'year', 'active']
 
 class StartSerializer(serializers.ModelSerializer):
-    swimmer = SwimmerSerializer()  # Nested SwimmerSerializer
+    swimmer = serializers.PrimaryKeyRelatedField(queryset=Swimmer.objects.all())  # Accepts swimmer_id instead of nested object
 
     class Meta:
         model = Start
