@@ -1,6 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
+from rest_framework import status
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_protect
+import json 
 
 
 from . models import Swimmer 
@@ -26,12 +30,25 @@ def swim_stats(request, swimmer_id):
     }
     return HttpResponse(template.render(context,request))
 
+@api_view(['GET'])
+def test_get(request):
+     if request.method == 'GET':
+            # Respond with a success message
+        return JsonResponse({'message': 'GET request successful'}, status=200)
+     else:
+        return JsonResponse({'error': 'Invalid request method'}, status=405)
+
+@csrf_protect
 @api_view(['POST'])
 def save_raw_data(request):
-    data = request.data.get('data') #extract 'data' from the POST request
-    if data:
-        RecordMagnitude.objects.create(data = data)
-        return Response({'message': 'Data saved successfully!'}, status = 201)
+    if request == 'POST':
+        data = json.loads(request.body)
+        print("Parsed JSON:", data)
+        mag_data = data.get('mag') #extract 'data' from the POST request
+        if data:
+            magnitude = RecordMagnitude(value = mag_data)
+            magnitude.save()
+            return Response({'message': 'Data saved successfully!'}, status = 201)
     return Response({'error': 'No data provided'}, status = 400)
 
 def graph_data(request, swimmer_id):
