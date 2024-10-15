@@ -29,7 +29,28 @@ def start_list(request):
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+@api_view(['GET', 'PUT', 'DELETE'])
+def start_detail(request, start_id):
+    try:
+        start = Start.objects.get(start_id=start_id)  # Assuming 'start_id' is the primary key
+    except Start.DoesNotExist:
+        return Response({'error': 'Start not found.'}, status=status.HTTP_404_NOT_FOUND)
 
+    if request.method == 'GET':
+        serializer = StartSerializer(start)
+        return Response(serializer.data)
+
+    if request.method == 'PUT':
+        serializer = StartSerializer(start, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    if request.method == 'DELETE':
+        start.delete()
+        return Response({'message': 'Start deleted successfully.'}, status=status.HTTP_204_NO_CONTENT)
+        
 @api_view(['GET', 'POST'])
 def swimmer_list(request):
     if request.method == 'GET':
