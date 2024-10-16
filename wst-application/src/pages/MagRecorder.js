@@ -6,7 +6,7 @@ import { getCsrfToken } from '../utils/csrf';
 import axios from 'axios' 
 
 function Magnitude() {
-    const [mag, setMag] = useState(1.0); //Initialize the magnitude value
+    const [mag, setMag] = useState(0.0); //Initialize the magnitude value
     
     return <h1 className = "magnitude">{mag}</h1>;
 }
@@ -72,13 +72,22 @@ export function MagRecorder() {
     //   };
       return (
         <>
+        <div className = "app-container">
             <h1>Magnitude Recorder</h1>
-            <Magnitude/>
-            {/* <button onClick = {handleClick}>Record Magnitude</button> */}
-            <ul>
-            {productsData.map(el => <li key={el.id}>{el.name}</li>)}
-            </ul>
-            <button onClick = {handleSendData}>create data</button>
+
+            <div className = "input-container">
+                <button className = "input-button">Enter Swimmer Name</button>
+            </div>
+
+            <div className = "magnitude-display">
+                <Magnitude/>
+            </div>
+
+            <div className = "record-container">
+                <button className = "record-button" onClick = {handleSendData}>Record</button>
+            </div>
+
+        </div>
         </>
     )
 }
