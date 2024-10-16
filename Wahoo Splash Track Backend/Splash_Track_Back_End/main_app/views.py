@@ -12,7 +12,6 @@ def say_hello(request):
 
 def insert_data(request):
     return HttpResponse('Returning all users')
-
 @csrf_protect
 @api_view(['GET', 'POST'])
 def start_list(request):
@@ -32,7 +31,7 @@ def start_list(request):
 @api_view(['GET', 'PUT', 'DELETE'])
 def start_detail(request, start_id):
     try:
-        start = Start.objects.get(start_id=start_id)  # Assuming 'start_id' is the primary key
+        start = Start.objects.get(start_id=start_id)
     except Start.DoesNotExist:
         return Response({'error': 'Start not found.'}, status=status.HTTP_404_NOT_FOUND)
 
@@ -50,7 +49,7 @@ def start_detail(request, start_id):
     if request.method == 'DELETE':
         start.delete()
         return Response({'message': 'Start deleted successfully.'}, status=status.HTTP_204_NO_CONTENT)
-        
+
 @api_view(['GET', 'POST'])
 def swimmer_list(request):
     if request.method == 'GET':
@@ -68,7 +67,7 @@ def swimmer_list(request):
 @api_view(['GET', 'PUT', 'DELETE'])
 def swimmer_detail(request, swimmer_id):
     try:
-        swimmer = Swimmer.objects.get(swimmer_id=swimmer_id)  # Changed 'id' to 'swimmer_id'
+        swimmer = Swimmer.objects.get(swimmer_id=swimmer_id) 
     except Swimmer.DoesNotExist:
         return Response({'error': 'Swimmer not found.'}, status=status.HTTP_404_NOT_FOUND)
 
