@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Swimmer, Start
+from ..models import Swimmer, Start
 
 class SwimmerSerializer(serializers.ModelSerializer):
     class Meta:

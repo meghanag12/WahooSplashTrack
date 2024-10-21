@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.views.decorators.csrf import csrf_protect
 from .models import Swimmer, Start  
-from .serializers import StartSerializer, SwimmerSerializer
+from .api.serializers import StartSerializer, SwimmerSerializer
 
 def say_hello(request):
    return HttpResponse("Hello World")
