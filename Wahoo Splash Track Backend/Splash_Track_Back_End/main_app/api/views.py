@@ -3,8 +3,11 @@
 #a JSON 
 
 from rest_framework.viewsets import ModelViewSet
-from ..models import Swimmer, Start
-from .serializers import SwimmerSerializer, StartSerializer
+from ..models import Swimmer, Start, MyRio
+from .serializers import SwimmerSerializer, StartSerializer, MyRioSerializer
+from django.http import JsonResponse
+import json
+
 
 from rest_framework.response import Response
 from rest_framework import status
@@ -48,4 +51,43 @@ class StartViewSet(ModelViewSet):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class MyRioViewSet(ModelViewSet):
+    queryset = Swimmer.objects.all()
+    serializer_class = MyRioSerializer
+
+    # def get_myrio_data(self, request):
+    #     try: 
+    #         #figure out what 
+    #         myrio_data = request.get("insert the api endpoint here").json() 
+    #         sensor_data = MyRio(
+    #               front_force = myrio_data['Front Force'], 
+    #               back_force = myrio_data['Back Force'],
+    #               total_force = myrio_data['Total Force'],
+    #         )
+    #         sensor_data.save()
+    #         return Response(sensor_data)
+    #     except request.RequestException as e: 
+    #           return Response({"error": "Unable to fetch data from myRIO"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+    # def create(self, request):
+    #     sensor_value = request.data.get('sensor_value')
+    #     front_force = request.data.get('front_force')
+    #     back_force = request.data.get('back_force')
+    #     if sensor_value is None:
+    #         return Response({"error": "sensor_value is required"}, status=status.HTTP_400_BAD_REQUEST)
+    #     if front_force is None:
+    #         return Response({"error": "front_force is required"}, status=status.HTTP_400_BAD_REQUEST)
+    #     if back_force is None:
+    #         return Response({"error": "back_force is required"}, status=status.HTTP_400_BAD_REQUEST)
+        
+    #     new_data = MyRio(
+    #         sensor_value=sensor_value,
+    #         front_force=front_force,
+    #         back_force=back_force,
+    #     )
+    #     new_data.save()
+    #     serializer = self.get_serializer(new_data)
+    #     return Response(serializer.data, status=status.HTTP_201_CREATED)
+        #return Response({"status": "Data saved successfully"}, status=status.HTTP_201_CREATED)
 

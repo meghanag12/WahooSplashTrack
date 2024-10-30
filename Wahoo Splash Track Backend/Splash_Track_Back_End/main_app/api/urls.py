@@ -1,6 +1,6 @@
 from django.urls import path 
 from rest_framework.routers import DefaultRouter
-from .views import SwimmerViewSet, StartViewSet
+from .views import SwimmerViewSet, StartViewSet, MyRioViewSet
 
 swimmer_router = DefaultRouter()
 #rsswimmer argument specifies the URL prefix for the routes handled by this viewset
@@ -9,3 +9,6 @@ swimmer_router.register(r'swimmer', SwimmerViewSet)
 
 start_router = DefaultRouter()
 start_router.register(r'start', StartViewSet)
+
+myRio_router = DefaultRouter()
+myRio_router.register(r'myrio', MyRioViewSet)

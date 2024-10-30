@@ -125,14 +125,11 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'swim_schema',     
         'USER': 'root',     
-        'PASSWORD': 'VoltageVoyagers*',      
+        'PASSWORD': 'root',      
         'HOST': 'localhost',       
-        'PORT': '3305',                   
-        'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
-        },
+        'PORT': '5432',                   
     }
 }
