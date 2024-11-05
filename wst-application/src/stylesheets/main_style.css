@@ -11,4 +11,86 @@ body {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
       monospace;
   }
+
+  form {
+
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+
+  }
+
+  .form_container {
+    display:flex; 
+    justify-content: center; 
+    align-items: center; 
+    min-height: 60vh;  
+  }
+
+  label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.radio-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+button {
+    display: block;
+    margin: 20px 0 0 auto;
+    padding: 10px 20px;
+    background-color: #D3D3D3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #D3D3D3;
+}
+
+button, .tab, a{
+    text-decoration: none; 
+    color: inherit; 
+
+}
+
+.navbar {
+    position: fixed; 
+    bottom: 0; 
+    left: 0; 
+    display: flex;             /* Enable flexbox */
+    justify-content: space-evenly;    /* Center the buttons horizontally */
+    align-items: center;  
+    background-color: white;
+    height: 120px;
+    width:100%;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.nav_button {
+    margin: 0 0.005px;
+
+}
   

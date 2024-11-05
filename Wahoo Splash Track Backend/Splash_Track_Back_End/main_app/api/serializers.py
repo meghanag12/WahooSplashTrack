@@ -4,7 +4,7 @@ from ..models import Swimmer, Start, MyRio
 class SwimmerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Swimmer
-        fields = ['full_name', 'year', 'active']
+        fields = ['swimmer_name', 'year', 'active']
 
 class StartSerializer(serializers.ModelSerializer):
     swimmer_id = serializers.PrimaryKeyRelatedField(queryset=Swimmer.objects.all())  # Accepts swimmer_id instead of nested object

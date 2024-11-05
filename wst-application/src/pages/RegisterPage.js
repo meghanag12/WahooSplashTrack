@@ -48,7 +48,8 @@ export function RegisterPage() {
 
     function MyForm() {
         return (
-            <form onSubmit = {handleSendData} className = "form-container">
+            <div className = "form_container">
+            <form onSubmit = {handleSendData}>
                 <div className = "form-group">
                     <label>Enter Swimmer's Name:
                         <input value = {values.swimmer_name} onChange = {handleInputChange} name = "swimmer_name" label = "swimmer_name"/>
@@ -70,6 +71,7 @@ export function RegisterPage() {
 
                 <button type = "submit">Submit</button>
             </form>
+            </div>
         );
     }
 
