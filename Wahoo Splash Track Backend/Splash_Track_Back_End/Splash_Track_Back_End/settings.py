@@ -132,8 +132,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'splashdb',     
         'USER': 'root',     
-        'PASSWORD': 'root',      
-        'HOST': 'localhost',       
+        'PASSWORD': 'rootroot',      
+        'HOST': 'splashdb.ctgy6eoks9ja.us-east-1.rds.amazonaws.com',       
         'PORT': '5432',                   
     }
 }
