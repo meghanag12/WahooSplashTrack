@@ -25,6 +25,7 @@ export function MagRecorder() {
     const endpoint_start = 'http://127.0.0.1:8000/api/start/'
     //endpoint for fetching data from table that holds data from myRIO
     const endpoint_myrio = 'http://127.0.0.1:8000/api/myrio/'
+    const enpoint_connect_myrio = 'wahoosplashtrack-3r5qpbb67ssaeq3zmqkktku1h994guse1a-s3alias'
     
     const fetchMagnitudeData = async() =>  {
         try {
