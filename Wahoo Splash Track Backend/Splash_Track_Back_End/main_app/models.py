@@ -9,7 +9,7 @@ class Swimmer(models.Model):
     active = models.BooleanField(default=True)
 
     def __str__(self):
-        return f'{self.first_name} {self.last_name}'
+        return f'{self.swimmer_name}'
 
 class Start(models.Model):
     swimmer_name = models.ForeignKey(Swimmer, on_delete=models.CASCADE, null = True)
