@@ -1,6 +1,6 @@
 # main_app/api/urls.py
 from rest_framework.routers import DefaultRouter
-from .views import SwimmerViewSet, StartViewSet, MyRioViewSet
+from main_app.api.views import SwimmerViewSet, StartViewSet, MyRioViewSet
 from django.urls import path, include
 
 # Create a single router instance
