@@ -51,6 +51,7 @@ button[type="submit"]:hover {
   background-color: #0056b3; 
 }
 
+/* Progress Tracker Styles */
 .progress-tracker {
   padding: 20px;
   text-align: center;
@@ -91,13 +92,27 @@ button[type="submit"]:hover {
   font-size: 18px;
   color: #333;
   border-bottom: 1px solid #ddd;
+  cursor: pointer; /* Make the cursor a pointer to indicate clickability */
+  transition: background-color 0.3s ease; /* Smooth transition for background change */
+  display: block; /* Ensures the item takes up the full width */
 }
 
 .swimmer-item:hover {
-  background-color: #f0f0f0;
+  background-color: #ddd; /* Darken the background when hovering */
+  border: none; /* Remove any border on hover */
 }
 
-/* Title Styling */
+.swimmer-link {
+  text-decoration: none; /* Remove underline from links */
+  display: block; /* Ensure the link occupies the full space of the item */
+  width: 100%;
+  height: 100%;
+}
+
+.swimmer-link:hover {
+  background-color: #f0f0f0; /* Light background change when hovering over the link */
+}
+
 h1 {
   text-align: center;
   font-size: 32px;
@@ -105,17 +120,17 @@ h1 {
   color: #2c3e50;
   font-weight: 700;
   width: fit-content;
-  position: relative; /* Needed for the ::after pseudo-element */
+  position: relative;
 }
 
 h1::after {
   content: "";
   display: block;
-  width: 100%; 
-  height: 4px; 
-  background-color: #3498db; 
-  margin: 10px auto 0; 
-  border-radius: 2px; 
+  width: 100%;
+  height: 4px;
+  background-color: #3498db;
+  margin: 10px auto 0;
+  border-radius: 2px;
 }
 
 /* Banner Styling */
@@ -147,3 +162,4 @@ h1::after {
 .tracker-container::-webkit-scrollbar-thumb:hover {
   background-color: #555;
 }
+
