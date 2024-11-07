@@ -1,82 +1,80 @@
-import { useEffect, useState } from 'react';
-import { getCsrfToken } from '../utils/csrf';
-import axios from 'axios' 
+import { useState } from 'react';
+import axios from 'axios';
 
-const initialValues = {
-    swimmer_name: "", 
-    year: "", 
-    active: ""
-};
 export function RegisterPage() {
-    const [values, setValues] = useState(initialValues); 
-    // const [swimmer_name, set_swimmer_name] = useState([''])
-    // const[start_id, set_start_id] = useState([''])
-    // const[date, set_date] = useState([''])
-    
+    const [swimmerName, setSwimmerName] = useState("");
+    const [year, setYear] = useState("");
+    const [active, setActive] = useState("");
 
-    //"new endpoint for EC2 instance connection"
-    const endpoint_swimmer = 'http://3.81.17.35:8000/api/swimmer/'
+    const endpoint_swimmer = 'http://3.81.17.35:8000/api/swimmer/';
 
-    const handleInputChange = (e) => {
-        const {name, value} = e.target;
-        setValues({
-            ...values, 
-            [name]: value, 
-        });
+    const handleInputChange = (setter) => (e) => {
+        setter(e.target.value);
     };
 
-    const postDataSwimmer = async() => {
-        const swimmer_name = values.swimmer_name
-        const year = values.year
-        const active = values.active
-
-        const body = {swimmer_name, year, active}
-        try{
-            const response = await axios.post(endpoint_swimmer, body)
-            console.log(response)
-            return response.data
+    const postDataSwimmer = async () => {
+        const body = { swimmer_name: swimmerName, year, active };
+        try {
+            const response = await axios.post(endpoint_swimmer, body);
+            console.log(response);
+            return response.data;
         } catch (error) {
             console.error('Error posting data:', error);
         }
-        
     };
 
-    const handleSendData = async(e) => {
-        e.preventDefault(); 
-        const newData = await postDataSwimmer()
-        //... add logic 
-        setValues(initialValues);
-    }
+    const handleSendData = async (e) => {
+        e.preventDefault();
+        await postDataSwimmer();
+        setSwimmerName("");
+        setYear("");
+        setActive("");
+    };
 
-    function MyForm() {
-        return (
-            <div className = "form_container">
-            <form onSubmit = {handleSendData}>
-                <div className = "form-group">
+    return (
+        <div className="form_container">
+            <form onSubmit={handleSendData}>
+                <div className="form-group">
                     <label>Enter Swimmer's Name:
-                        <input value = {values.swimmer_name} onChange = {handleInputChange} name = "swimmer_name" label = "swimmer_name"/>
+                        <input 
+                            value={swimmerName} 
+                            onChange={handleInputChange(setSwimmerName)} 
+                            name="swimmer_name"
+                        />
                     </label>
                 </div>
 
-                <div className = "form-group">
+                <div className="form-group">
                     <label>Enter Swimmer's Year:
-                        <input value = {values.year} onChange = {handleInputChange} name = "year" label = "year"/>
+                        <input 
+                            value={year} 
+                            onChange={handleInputChange(setYear)} 
+                            name="year"
+                        />
                     </label>
                 </div>
 
-                <div className = "form-group">
+                <div className="form-group">
                     <label>Is the Swimmer Active?
-                        <input type = "radio" name = "active" value = "yes" checked = {values.active === "yes"} onChange = {handleInputChange}/> Yes
-                        <input type = "radio" name = "active" value = "no" checked = {values.active === "no"} onChange = {handleInputChange} /> No 
+                        <input 
+                            type="radio" 
+                            name="active" 
+                            value="yes" 
+                            checked={active === "yes"} 
+                            onChange={handleInputChange(setActive)} 
+                        /> Yes
+                        <input 
+                            type="radio" 
+                            name="active" 
+                            value="no" 
+                            checked={active === "no"} 
+                            onChange={handleInputChange(setActive)} 
+                        /> No 
                     </label>
                 </div>
 
-                <button type = "submit">Submit</button>
+                <button type="submit">Submit</button>
             </form>
-            </div>
-        );
-    }
-
-    return <MyForm />;
+        </div>
+    );
 }
-
