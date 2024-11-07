@@ -7,13 +7,13 @@ class SwimmerSerializer(serializers.ModelSerializer):
         fields = ['swimmer_name', 'year', 'active']
 
 class StartSerializer(serializers.ModelSerializer):
-    swimmer_id = serializers.PrimaryKeyRelatedField(queryset=Swimmer.objects.all())  # Accepts swimmer_id instead of nested object
+    swimmer_name = serializers.PrimaryKeyRelatedField(queryset=Swimmer.objects.all())  # ForeignKey to Swimmer model
 
     class Meta:
         model = Start
-        fields = ['full_name', 'start_id', 'date', 'front_force', 'back_force']
+        fields = ['start_id', 'date', 'total_force', 'front_force', 'back_force', 'swimmer_name']  # include swimmer_name here
 
 class MyRioSerializer(serializers.ModelSerializer):
-    class Meta: 
-        model = MyRio 
-        fields = ['sensor_value', 'front_force', 'back_force', 'time_stamp']
+    class Meta:
+        model = MyRio
+        fields = ['total_force', 'front_force', 'back_force', 'timestamp']
