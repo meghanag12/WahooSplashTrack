@@ -3,35 +3,26 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
 export function SwimmerProgressPage() {
-  const { id } = useParams(); // Get the swimmer's ID from the URL
-  const [swimmer, setSwimmer] = useState(null);
+  const { name } = useParams(); // Get the swimmer's name from the URL
   const [starts, setStarts] = useState([]);
 
   useEffect(() => {
-    const fetchSwimmerData = async () => {
+    const fetchStartData = async () => {
       try {
-        // Fetch swimmer data using the ID
-        const swimmerResponse = await axios.get(`http://3.81.17.35:8000/api/swimmer/${id}/`);
-        setSwimmer(swimmerResponse.data);
-
-        // Fetch the start data for this swimmer
-        const startsResponse = await axios.get(`http://3.81.17.35:8000/api/start/?swimmer_id=${id}`);
+        // Fetch the start data for this swimmer using their name
+        const startsResponse = await axios.get(`http://3.81.17.35:8000/api/start/name/${name}/`);
         setStarts(startsResponse.data);
       } catch (error) {
-        console.error("Error fetching swimmer or starts:", error);
+        console.error("Error fetching starts:", error);
       }
     };
 
-    fetchSwimmerData();
-  }, [id]); // Re-run when the swimmer ID changes
-
-  if (!swimmer) {
-    return <div>Loading...</div>;
-  }
+    fetchStartData();
+  }, [name]); // Re-run when the swimmer's name changes
 
   return (
     <div className="swimmer-progress">
-      <h1>{swimmer.swimmer_name}'s Progress</h1>
+      <h1>{name}'s Progress</h1>
       <div className="starts-container">
         <h2>Starts</h2>
         {starts.length > 0 ? (

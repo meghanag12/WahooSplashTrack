@@ -25,8 +25,8 @@ export function ProgressTracker() {
         <ul className="swimmer-list">
           {swimmers.map((swimmer) => (
             <li key={swimmer.id} className="swimmer-item">
-              {/* Each swimmer item is a link to the SwimmerProgressPage */}
-              <Link to={`/swimmer/${swimmer.id}`} className="swimmer-link">
+              {/* Pass swimmer's name as a parameter in the URL */}
+              <Link to={`/swimmer/${swimmer.swimmer_name}`} className="swimmer-link">
                 {swimmer.swimmer_name}
               </Link>
             </li>

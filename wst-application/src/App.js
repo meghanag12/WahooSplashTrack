@@ -13,8 +13,8 @@ function App() {
         <Route element={<Layout />}>
           <Route path="/" element={<RegisterPage />} />
           <Route path="/progresstracker" element={<ProgressTracker />} />
-          {/* Add route for the SwimmerProgress page */}
-          <Route path="/swimmer/:id" element={<SwimmerProgressPage />} />
+          {/* Fix route for the SwimmerProgress page */}
+          <Route path="/swimmer/:name" element={<SwimmerProgressPage />} />
         </Route>
       </Routes>
     </Router>
