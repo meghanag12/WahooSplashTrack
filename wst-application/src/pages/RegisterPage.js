@@ -5,6 +5,8 @@ export function RegisterPage() {
     const [swimmerName, setSwimmerName] = useState("");
     const [year, setYear] = useState("");
     const [active, setActive] = useState("");
+    const [showBanner, setShowBanner] = useState(false); 
+    const [bannerMessage, setBannerMessage] = useState(""); 
 
     const endpoint_swimmer = 'http://3.81.17.35:8000/api/swimmer/';
 
@@ -25,7 +27,13 @@ export function RegisterPage() {
 
     const handleSendData = async (e) => {
         e.preventDefault();
-        await postDataSwimmer();
+        const newData = await postDataSwimmer();
+        if (newData) {
+            setBannerMessage(`${swimmerName} has been registered successfully!`); 
+            setShowBanner(true); 
+            setTimeout(() => setShowBanner(false), 3000); 
+        }
+        // Reset form fields
         setSwimmerName("");
         setYear("");
         setActive("");
@@ -33,6 +41,13 @@ export function RegisterPage() {
 
     return (
         <div className="form_container">
+            {/* Banner message */}
+            {showBanner && (
+                <div className="banner">
+                    {bannerMessage}
+                </div>
+            )}
+
             <form onSubmit={handleSendData}>
                 <div className="form-group">
                     <label>Enter Swimmer's Name:
