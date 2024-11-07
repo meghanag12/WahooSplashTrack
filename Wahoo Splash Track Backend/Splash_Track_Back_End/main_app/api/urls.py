@@ -1,14 +1,12 @@
-from django.urls import path 
 from rest_framework.routers import DefaultRouter
-from .views import SwimmerViewSet, StartViewSet, MyRioViewSet
+from main_app.api.views import SwimmerViewSet, StartViewSet, MyRioViewSet
+from django.urls import path, include
 
-swimmer_router = DefaultRouter()
-#rsswimmer argument specifies the URL prefix for the routes handled by this viewset
-#automatically creates API routes like /swimmer/ and /swimmer/{id}/
-swimmer_router.register(r'swimmer', SwimmerViewSet)
+router = DefaultRouter()
+router.register(r'swimmer', SwimmerViewSet, basename='swimmer')
+router.register(r'start', StartViewSet, basename='start')
+router.register(r'myrio', MyRioViewSet, basename='myrio')
 
-start_router = DefaultRouter()
-start_router.register(r'start', StartViewSet)
-
-myRio_router = DefaultRouter()
-myRio_router.register(r'myrio', MyRioViewSet)
+urlpatterns = [
+    path('', include(router.urls)),
+]
