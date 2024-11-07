@@ -19,10 +19,9 @@ class SwimmerViewSet(ModelViewSet):
 
     def update(self, request, swimmer_id):
         try:
-            swimmer = Swimmer.objects.get(swimmer_id=swimmer_id)
+            swimmer = Swimmer.objects.get(swimmer_id=swimmer_id) 
         except Swimmer.DoesNotExist:
             return Response({'error': 'Swimmer not found.'}, status=status.HTTP_404_NOT_FOUND)
-        
         serializer = SwimmerSerializer(swimmer, data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -31,14 +30,12 @@ class SwimmerViewSet(ModelViewSet):
     
     def destroy(self, request, swimmer_id, pk=None):
         try:
-            swimmer = Swimmer.objects.get(swimmer_id=swimmer_id)
+            swimmer = Swimmer.objects.get(swimmer_id=swimmer_id) 
         except Swimmer.DoesNotExist:
             return Response({'error': 'Swimmer not found.'}, status=status.HTTP_404_NOT_FOUND)
-        
         swimmer.delete()
         return Response({'message': 'Swimmer deleted successfully.'}, status=status.HTTP_204_NO_CONTENT)
 
-# ViewSet for Start
 class StartViewSet(ModelViewSet):
     queryset = Start.objects.all()
     serializer_class = StartSerializer
@@ -47,7 +44,7 @@ class StartViewSet(ModelViewSet):
     def by_swimmer_name(self, request, name=None):
         try:
             swimmer = Swimmer.objects.get(swimmer_name=name)
-            starts = Start.objects.filter(swimmer=swimmer)
+            starts = Start.objects.filter(swimmer_name=swimmer)
             serializer = StartSerializer(starts, many=True)
             return Response(serializer.data, status=status.HTTP_200_OK)
         except Swimmer.DoesNotExist:
@@ -58,7 +55,6 @@ class StartViewSet(ModelViewSet):
             start = Start.objects.get(start_id=start_id)
         except Start.DoesNotExist:
             return Response({'error': 'Start not found.'}, status=status.HTTP_404_NOT_FOUND)
-        
         serializer = StartSerializer(start, data=request.data)
         if serializer.is_valid():
             serializer.save()
