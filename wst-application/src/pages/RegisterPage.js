@@ -13,7 +13,7 @@ export function RegisterPage() {
     // const[start_id, set_start_id] = useState([''])
     // const[date, set_date] = useState([''])
     
-    const endpoint_swimmer = 'http://127.0.0.1:8000/api/swimmer/'
+    const endpoint_swimmer = 'http://3.81.17.35:8000/api/swimmer/'
 
     const handleInputChange = (e) => {
         const {name, value} = e.target;
