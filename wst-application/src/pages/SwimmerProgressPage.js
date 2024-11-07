@@ -9,7 +9,6 @@ export function SwimmerProgressPage() {
   useEffect(() => {
     const fetchStartData = async () => {
       try {
-        // Fetch the start data for this swimmer using their name
         const startsResponse = await axios.get(`http://3.81.17.35:8000/api/start/name/${name}/`);
         setStarts(startsResponse.data);
       } catch (error) {
@@ -20,22 +19,39 @@ export function SwimmerProgressPage() {
     fetchStartData();
   }, [name]); // Re-run when the swimmer's name changes
 
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return `${date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })} @ ${date.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}`;
+  };
+
   return (
     <div className="swimmer-progress">
       <h1>{name}'s Progress</h1>
       <div className="starts-container">
         <h2>Starts</h2>
         {starts.length > 0 ? (
-          <ul>
-            {starts.map((start, index) => (
-              <li key={index}>
-                <p>{start.event_name} - {start.date}</p>
-                <p>Total Force: {start.total_force}</p>
-                <p>Front Force: {start.front_force}</p>
-                <p>Back Force: {start.back_force}</p>
-              </li>
-            ))}
-          </ul>
+          <div className="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Total Force (N)</th>
+                  <th>Front Force (N)</th>
+                  <th>Back Force (N)</th>
+                </tr>
+              </thead>
+              <tbody>
+                {starts.map((start, index) => (
+                  <tr key={index}>
+                    <td>{formatDate(start.date)}</td>
+                    <td>{start.total_force} N</td>
+                    <td>{start.front_force} N</td>
+                    <td>{start.back_force} N</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         ) : (
           <p>No starts found for this swimmer.</p>
         )}
