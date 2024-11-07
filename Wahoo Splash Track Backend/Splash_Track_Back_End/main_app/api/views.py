@@ -40,6 +40,16 @@ class SwimmerViewSet(ModelViewSet):
 class StartViewSet(ModelViewSet):
     queryset = Start.objects.all()
     serializer_class = StartSerializer
+    
+ @action(detail=False, methods=['get'], url_path='name/(?P<name>[^/.]+)')
+    def by_swimmer_name(self, request, name=None):
+        try:
+            swimmer = Swimmer.objects.get(swimmer_name=name)
+            starts = Start.objects.filter(swimmer=swimmer)
+            serializer = StartSerializer(starts, many=True)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except Swimmer.DoesNotExist:
+            return Response({'error': 'Swimmer not found.'}, status=status.HTTP_404_NOT_FOUND)
 
     def update(self, request, start_id):
         try:
