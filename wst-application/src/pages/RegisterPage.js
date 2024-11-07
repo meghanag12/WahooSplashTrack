@@ -14,7 +14,7 @@ export function RegisterPage() {
     // const[date, set_date] = useState([''])
     
 
-    "new endpoint for EC2 instance connection"
+    //"new endpoint for EC2 instance connection"
     const endpoint_swimmer = 'http://3.81.17.35:8000/api/swimmer/'
 
     const handleInputChange = (e) => {
