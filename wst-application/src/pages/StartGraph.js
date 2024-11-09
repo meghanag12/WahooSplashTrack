@@ -1,22 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom'; // Ensure useNavigate is imported
 import axios from 'axios';
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
 
-// Register Chart.js components
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 export function StartGraph() {
   const { name } = useParams();
-  const [starts, setStarts] = useState([]);
+  const navigate = useNavigate(); // Define navigate here
   const [chartData, setChartData] = useState(null);
 
   useEffect(() => {
     const fetchStartData = async () => {
       try {
         const startsResponse = await axios.get(`http://3.81.17.35:8000/api/start/name/${name}/`);
-        setStarts(startsResponse.data);
 
         // Process data for the chart
         const labels = startsResponse.data.map(start => new Date(start.date).toLocaleDateString());
@@ -44,7 +42,10 @@ export function StartGraph() {
   }, [name]);
 
   return (
-    <div>
+    <div className="start-graph">
+    <div className = "NavButtons">
+      <button className="back-button" onClick={() => navigate(-1)}>Back</button>
+    </div>
       <h1>Start Graph</h1>
       {chartData ? (
         <Line
@@ -64,6 +65,7 @@ export function StartGraph() {
       ) : (
         <p>Loading chart...</p>
       )}
+      
     </div>
   );
 }

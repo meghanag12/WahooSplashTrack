@@ -29,8 +29,8 @@ export function SwimmerProgressPage() {
     <div className="swimmer-progress">
       <h1>{name}'s Progress</h1>
       <div className="button-group">
-        <button onClick={() => navigate(-1)}>Back</button>
-        <button onClick={() => navigate(`/start-graph/${name}`)}>Go to Graph</button>
+        <button className = "back-button" onClick={() => navigate(-1)}>Back</button>
+        <button  onClick={() => navigate(`/start-graph/${name}`)}>Go to Graph</button>
       </div>
       <div className="starts-container">
         <h2>Starts</h2>
