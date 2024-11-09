@@ -93,4 +93,43 @@ button, .tab, a{
     margin: 0 0.005px;
 
 }
-  
+.swimmer-progress {
+  position: relative;
+  padding-bottom: 50px; /* Ensure space at the bottom for buttons */
+}
+
+.back-button,
+.graph-button {
+  position: fixed;
+  bottom: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+}
+
+.back-button {
+  left: 20px;
+}
+
+.graph-button {
+  right: 20px;
+}
+.swimmer-progress {
+  position: relative;
+  padding-bottom: 50px; /* Ensure space at the bottom for buttons */
+}
+
+.back-button,
+.graph-button {
+  position: fixed;
+  bottom: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+}
+
+.back-button {
+  left: 20px;
+}
+
+.graph-button {
+  right: 20px;
+}

@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 export function SwimmerProgressPage() {
   const { name } = useParams(); // Get the swimmer's name from the URL
   const [starts, setStarts] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchStartData = async () => {
@@ -27,6 +28,10 @@ export function SwimmerProgressPage() {
   return (
     <div className="swimmer-progress">
       <h1>{name}'s Progress</h1>
+      <div className="button-group">
+        <button onClick={() => navigate(-1)}>Back</button>
+        <button onClick={() => navigate(`/start-graph/${name}`)}>Go to Graph</button>
+      </div>
       <div className="starts-container">
         <h2>Starts</h2>
         {starts.length > 0 ? (

@@ -4,6 +4,7 @@ import { MagRecorder } from './pages/MagRecorder';
 import { RegisterPage } from './pages/RegisterPage';
 import { ProgressTracker } from './pages/ProgressTracker';
 import { SwimmerProgressPage } from './pages/SwimmerProgressPage';  
+import { StartGraph } from './pages/StartGraph';  // Import the new StartGraph page
 import { Layout } from './Layout';
 
 function App() {
@@ -13,8 +14,9 @@ function App() {
         <Route element={<Layout />}>
           <Route path="/" element={<RegisterPage />} />
           <Route path="/progresstracker" element={<ProgressTracker />} />
-          {/* Fix route for the SwimmerProgress page */}
           <Route path="/swimmer/:name" element={<SwimmerProgressPage />} />
+          {/* Add the new route for StartGraph */}
+          <Route path="/start-graph/:name" element={<StartGraph />} />
         </Route>
       </Routes>
     </Router>
