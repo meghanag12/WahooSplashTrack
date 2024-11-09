@@ -1,27 +1,50 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom'; // Ensure useNavigate is imported
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Line } from 'react-chartjs-2';
-import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
+import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, TimeScale } from 'chart.js';
 
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
+// Register necessary chart.js components
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, TimeScale);
 
 export function StartGraph() {
   const { name } = useParams();
-  const navigate = useNavigate(); // Define navigate here
+  const [starts, setStarts] = useState([]);
   const [chartData, setChartData] = useState(null);
 
   useEffect(() => {
     const fetchStartData = async () => {
       try {
         const startsResponse = await axios.get(`http://3.81.17.35:8000/api/start/name/${name}/`);
+        setStarts(startsResponse.data);
 
         // Process data for the chart
-        const labels = startsResponse.data.map(start => new Date(start.date).toLocaleDateString());
+        const labels = startsResponse.data.map(start => {
+          // Get only the date part for major ticks (x-axis)
+          const date = new Date(start.date);
+          return date.toLocaleDateString('en-US', {
+            weekday: 'short',
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric',
+          });
+        });
+
+        // Get time and total force for each entry
+        const times = startsResponse.data.map(start => {
+          // Get the time part for minor ticks (display times between dates)
+          const date = new Date(start.date);
+          return date.toLocaleTimeString('en-US', {
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: true,
+          });
+        });
+
         const totalForceData = startsResponse.data.map(start => start.total_force);
 
         setChartData({
-          labels,
+          labels, // These will represent the dates on the x-axis
           datasets: [
             {
               label: 'Total Force (N)',
@@ -42,10 +65,7 @@ export function StartGraph() {
   }, [name]);
 
   return (
-    <div className="start-graph">
-    <div className = "NavButtons">
-      <button className="back-button" onClick={() => navigate(-1)}>Back</button>
-    </div>
+    <div>
       <h1>Start Graph</h1>
       {chartData ? (
         <Line
@@ -57,15 +77,29 @@ export function StartGraph() {
               title: { display: true, text: `${name}'s Total Force Over Time` },
             },
             scales: {
-              x: { title: { display: true, text: 'Date' } },
-              y: { title: { display: true, text: 'Total Force (N)' } },
+              x: {
+                type: 'category', // Use category scale for major ticks (dates)
+                labels: chartData.labels,
+                title: { display: true, text: 'Date' },
+                ticks: {
+                  maxRotation: 90,
+                  minRotation: 45,
+                },
+                grid: {
+                  display: true,
+                  drawOnChartArea: true,
+                  drawBorder: true,
+                },
+              },
+              y: { 
+                title: { display: true, text: 'Total Force (N)' } 
+              },
             },
           }}
         />
       ) : (
         <p>Loading chart...</p>
       )}
-      
     </div>
   );
 }
