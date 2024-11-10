@@ -8,7 +8,7 @@ from .serializers import SwimmerSerializer, StartSerializer, MyRioSerializer
 from django.http import JsonResponse
 import json
 
-
+from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework import status
 
@@ -28,7 +28,7 @@ class SwimmerViewSet(ModelViewSet):
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
-    def destory(self, request, swimmer_id, pk = None):
+    def destroy(self, request, swimmer_id, pk=None):
         try:
             swimmer = Swimmer.objects.get(swimmer_id=swimmer_id) 
         except Swimmer.DoesNotExist:
@@ -36,10 +36,19 @@ class SwimmerViewSet(ModelViewSet):
         swimmer.delete()
         return Response({'message': 'Swimmer deleted successfully.'}, status=status.HTTP_204_NO_CONTENT)
 
-
 class StartViewSet(ModelViewSet):
     queryset = Start.objects.all()
     serializer_class = StartSerializer
+
+    @action(detail=False, methods=['get'], url_path='name/(?P<name>[^/.]+)')
+    def by_swimmer_name(self, request, name=None):
+        try:
+            swimmer = Swimmer.objects.get(swimmer_name=name)
+            starts = Start.objects.filter(swimmer_name=swimmer)
+            serializer = StartSerializer(starts, many=True)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except Swimmer.DoesNotExist:
+            return Response({'error': 'Swimmer not found.'}, status=status.HTTP_404_NOT_FOUND)
 
     def update(self, request, start_id):
         try:
@@ -52,8 +61,9 @@ class StartViewSet(ModelViewSet):
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+# ViewSet for MyRio
 class MyRioViewSet(ModelViewSet):
-    queryset = Swimmer.objects.all()
+    queryset = MyRio.objects.all()
     serializer_class = MyRioSerializer
 
     # def get_myrio_data(self, request):

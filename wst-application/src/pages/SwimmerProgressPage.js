@@ -1,50 +1,62 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 export function SwimmerProgressPage() {
-  const { id } = useParams(); // Get the swimmer's ID from the URL
-  const [swimmer, setSwimmer] = useState(null);
+  const { name } = useParams(); // Get the swimmer's name from the URL
   const [starts, setStarts] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchSwimmerData = async () => {
+    const fetchStartData = async () => {
       try {
-        // Fetch swimmer data using the ID
-        const swimmerResponse = await axios.get(`http://3.81.17.35:8000/api/swimmer/${id}/`);
-        setSwimmer(swimmerResponse.data);
-
-        // Fetch the start data for this swimmer
-        const startsResponse = await axios.get(`http://3.81.17.35:8000/api/start/?swimmer_id=${id}`);
+        const startsResponse = await axios.get(`http://3.81.17.35:8000/api/start/name/${name}/`);
         setStarts(startsResponse.data);
       } catch (error) {
-        console.error("Error fetching swimmer or starts:", error);
+        console.error("Error fetching starts:", error);
       }
     };
 
-    fetchSwimmerData();
-  }, [id]); // Re-run when the swimmer ID changes
+    fetchStartData();
+  }, [name]); // Re-run when the swimmer's name changes
 
-  if (!swimmer) {
-    return <div>Loading...</div>;
-  }
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return `${date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })} @ ${date.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}`;
+  };
 
   return (
     <div className="swimmer-progress">
-      <h1>{swimmer.swimmer_name}'s Progress</h1>
+      <h1>{name}'s Progress</h1>
+      <div className="button-group">
+        <button className = "back-button" onClick={() => navigate(-1)}>Back</button>
+        <button  onClick={() => navigate(`/start-graph/${name}`)}>Go to Graph</button>
+      </div>
       <div className="starts-container">
         <h2>Starts</h2>
         {starts.length > 0 ? (
-          <ul>
-            {starts.map((start, index) => (
-              <li key={index}>
-                <p>{start.event_name} - {start.date}</p>
-                <p>Total Force: {start.total_force}</p>
-                <p>Front Force: {start.front_force}</p>
-                <p>Back Force: {start.back_force}</p>
-              </li>
-            ))}
-          </ul>
+          <div className="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Total Force (N)</th>
+                  <th>Front Force (N)</th>
+                  <th>Back Force (N)</th>
+                </tr>
+              </thead>
+              <tbody>
+                {starts.map((start, index) => (
+                  <tr key={index}>
+                    <td>{formatDate(start.date)}</td>
+                    <td>{start.total_force} N</td>
+                    <td>{start.front_force} N</td>
+                    <td>{start.back_force} N</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         ) : (
           <p>No starts found for this swimmer.</p>
         )}

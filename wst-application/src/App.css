@@ -163,3 +163,116 @@ h1::after {
   background-color: #555;
 }
 
+/*
+Styling of Swimmer Progress Page
+*/
+.swimmer-progress {
+  font-family: Arial, sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+thead {
+  background-color: #f1f1f1;
+}
+
+th, td {
+  border: 1px solid #dcdcdc;
+  padding: 8px 12px;
+  text-align: left;
+}
+
+th {
+  font-weight: bold;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #2958e4e7;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #e57200bb;
+}
+
+tbody tr {
+  transition: background-color 0.45s ease;
+}
+
+tbody tr:hover {
+  background-color: #e8f4f8; 
+  cursor: pointer; 
+}
+
+.table-container {
+  max-height: 400px; /* Set the maximum height for the table container */
+  overflow-y: auto; /* Enable vertical scrolling if the content overflows */
+  margin-top: 20px;
+  border: 1px solid #dcdcdc; /* Optional: add a border around the container */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background-color: #f1f1f1;
+}
+
+th, td {
+  border: 1px solid #dcdcdc;
+  padding: 8px 12px;
+  text-align: left;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #2958e4e7;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #e57200bb;
+}
+
+tbody tr {
+  transition: background-color 0.45s ease;
+}
+
+tbody tr:hover {
+  background-color: #e8f4f8; 
+  cursor: pointer; 
+}
+
+.table-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 10px;
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+.start-graph {
+  position: relative;
+}
+
+
+.back-button {
+  position: fixed;
+
+
+ 
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  border: none;
+}
