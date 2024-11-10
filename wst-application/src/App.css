@@ -319,3 +319,47 @@ tbody tr:hover {
 .swimmer-link:hover {
   text-decoration: underline;
 }
+.progress-tracker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.search-bar {
+  width: 100%;
+  max-width: 600px;
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.tracker-container {
+  width: 100%;
+  max-width: 600px;
+  padding: 10px;
+}
+
+.scrollable-list {
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.swimmer-item {
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+.swimmer-link {
+  text-decoration: none;
+  color: #007BFF;
+}
+
+.swimmer-link:hover {
+  text-decoration: underline;
+}
