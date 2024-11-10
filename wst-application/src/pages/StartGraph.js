@@ -18,9 +18,7 @@ export function StartGraph() {
         const startsResponse = await axios.get(`http://3.81.17.35:8000/api/start/name/${name}/`);
         setStarts(startsResponse.data);
 
-        // Process data for the chart
         const labels = startsResponse.data.map(start => {
-          // Get only the date part for major ticks (x-axis)
           const date = new Date(start.date);
           return date.toLocaleDateString('en-US', {
             weekday: 'short',
@@ -30,21 +28,10 @@ export function StartGraph() {
           });
         });
 
-        // Get time and total force for each entry
-        const times = startsResponse.data.map(start => {
-          // Get the time part for minor ticks (display times between dates)
-          const date = new Date(start.date);
-          return date.toLocaleTimeString('en-US', {
-            hour: '2-digit',
-            minute: '2-digit',
-            hour12: true,
-          });
-        });
-
         const totalForceData = startsResponse.data.map(start => start.total_force);
 
         setChartData({
-          labels, // These will represent the dates on the x-axis
+          labels,
           datasets: [
             {
               label: 'Total Force (N)',
@@ -65,38 +52,34 @@ export function StartGraph() {
   }, [name]);
 
   return (
-    <div>
+    <div className="start-graph-container">
       <h1>Start Graph</h1>
       {chartData ? (
-        <Line
-          data={chartData}
-          options={{
-            responsive: true,
-            plugins: {
-              legend: { position: 'top' },
-              title: { display: true, text: `${name}'s Total Force Over Time` },
-            },
-            scales: {
-              x: {
-                type: 'category', // Use category scale for major ticks (dates)
-                labels: chartData.labels,
-                title: { display: true, text: 'Date' },
-                ticks: {
-                  maxRotation: 90,
-                  minRotation: 45,
+        <div className="chart-container">
+          <Line
+            data={chartData}
+            options={{
+              responsive: true,
+              maintainAspectRatio: false, // Allow resizing within container
+              plugins: {
+                legend: { position: 'top' },
+                title: { display: true, text: `${name}'s Total Force Over Time` },
+              },
+              scales: {
+                x: {
+                  type: 'category',
+                  labels: chartData.labels,
+                  title: { display: true, text: 'Date' },
+                  ticks: { maxRotation: 90, minRotation: 45 },
+                  grid: { display: true, drawOnChartArea: true, drawBorder: true },
                 },
-                grid: {
-                  display: true,
-                  drawOnChartArea: true,
-                  drawBorder: true,
+                y: { 
+                  title: { display: true, text: 'Total Force (N)' },
                 },
               },
-              y: { 
-                title: { display: true, text: 'Total Force (N)' } 
-              },
-            },
-          }}
-        />
+            }}
+          />
+        </div>
       ) : (
         <p>Loading chart...</p>
       )}

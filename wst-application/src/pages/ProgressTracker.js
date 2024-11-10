@@ -22,10 +22,9 @@ export function ProgressTracker() {
     <div className="progress-tracker">
       <h1>Progress Tracker</h1>
       <div className="tracker-container">
-        <ul className="swimmer-list">
+        <ul className="swimmer-list scrollable-list">
           {swimmers.map((swimmer) => (
             <li key={swimmer.id} className="swimmer-item">
-              {/* Pass swimmer's name as a parameter in the URL */}
               <Link to={`/swimmer/${swimmer.swimmer_name}`} className="swimmer-link">
                 {swimmer.swimmer_name}
               </Link>
