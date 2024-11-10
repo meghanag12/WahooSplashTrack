@@ -22,9 +22,9 @@ export function MagRecorder() {
     const[my_rio_data, set_my_rio_data] = useState([''])
 
    // const endpoint_swimmer = 'http://127.0.0.1:8000/api/swimmer/'
-    const endpoint_start = 'http://127.0.0.1:8000/api/start/'
+    const endpoint_start = 'http://3.81.17.35:8000/api/start/'
     //endpoint for fetching data from table that holds data from myRIO
-    const endpoint_myrio = 'http://127.0.0.1:8000/api/myrio/'
+    const endpoint_myrio = 'http://3.81.17.35:8000/api/myrio/'
     const enpoint_connect_myrio = 'wahoosplashtrack-3r5qpbb67ssaeq3zmqkktku1h994guse1a-s3alias'
     
     const fetchMagnitudeData = async() =>  {
