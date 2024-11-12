@@ -15,7 +15,7 @@ export function StartGraph() {
   useEffect(() => {
     const fetchStartData = async () => {
       try {
-        const startsResponse = await axios.get(`http://3.81.17.35:8000/api/start/name/${name}/`);
+        const startsResponse = await axios.get(`http://3.81.17.35:8000/api/start/${name}/`);
         setStarts(startsResponse.data);
 
         // Process data for the chart

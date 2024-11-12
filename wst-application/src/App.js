@@ -13,6 +13,7 @@ function App() {
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<RegisterPage />} />
+          <Route path="/magnituderecorder" element={<MagRecorder />} />
           <Route path="/progresstracker" element={<ProgressTracker />} />
           <Route path="/swimmer/:name" element={<SwimmerProgressPage />} />
           {/* Add the new route for StartGraph */}
