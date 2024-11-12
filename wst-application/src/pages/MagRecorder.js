@@ -22,10 +22,12 @@ export function MagRecorder() {
     const[front_force, set_front_force] = useState([''])
     const[back_force, set_back_force] = useState([''])
     const[my_rio_data, set_my_rio_data] = useState({})
+    const[show_button, set_show_button] = useState(false)
 
    // const endpoint_swimmer = 'http://127.0.0.1:8000/api/swimmer/'
     const endpoint_start = `http://3.81.17.35:8000/api/start/`
     //endpoint for fetching data from table that holds data from myRIO
+    const endpoint_pullstarts = 'http://3.81.17.35:8000/pullstarts/'
     const endpoint_myrio = 'http://3.81.17.35:8000/api/myrio/'
     const endpoint_start_stop = 'http://3.81.17.35:5000/status'
     const enpoint_connect_myrio = 'wahoosplashtrack-3r5qpbb67ssaeq3zmqkktku1h994guse1a-s3alias'
@@ -58,7 +60,7 @@ export function MagRecorder() {
     
     const fetchMagnitudeData = async() =>  {
         try {
-            const response = await axios.get(endpoint_myrio); 
+            const response = await axios.get(endpoint_pullstarts); 
             set_my_rio_data(response.data)
         } catch (error) {
             console.error("Error fetching data:", error);
@@ -100,6 +102,14 @@ export function MagRecorder() {
         set_front_force('');
         set_back_force('');
     };
+
+    const handleShowButton = () => {
+        set_show_button(true)
+    }
+
+    const handleStopShowButton = () => {
+        set_show_button(false)
+    }
     
       return (
         <>
@@ -119,20 +129,25 @@ export function MagRecorder() {
             
             <div className = "record-container">
                 {/* need to have some kind of trigger to start the microcontroller  */}
-                <button className = "record-button" onClick = {handlePostStart}>Start Record</button>
+                <button className = "record-button" onClick = { () => {handlePostStart(); handleStopShowButton(); }}>Start Record</button>
             </div>
             
             <div className = "record-container">
-                <button className = "record-button" onClick = {handlePostStop}>Stop Record</button>
+                <button className = "record-button" onClick = { () => {handlePostStop(); handleShowButton(); }}>Stop Record</button>
             </div>
 
-            <div className = "record-container">
-                <button className = "record-button" onClick = {handleSendStartData}>Submit Data</button>
-            </div>
+            {/*only show these buttons when the coach can record the data to the database*/}
+            {show_button && (
+                <>
+                <div className = "record-container">
+                    <button className = "record-button" onClick = {handleSendStartData}>Submit Data</button>
+                </div>
 
-            <div className = "record-container">
-                <button className = "record-button" onClick = {handleDiscardData}>Delete Data</button>
-            </div>
+                <div className = "record-container">
+                    <button className = "record-button" onClick = {handleDiscardData}>Delete Data</button>
+                </div> 
+                </>
+            )}
 
         </div>
         </>
