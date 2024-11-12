@@ -11,7 +11,7 @@ class StartSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Start
-        fields = ['start_id', 'date', 'total_force', 'front_force', 'back_force', 'swimmer_name']  # include swimmer_name here
+        fields = ['swimmer_name', 'start_id', 'date', 'total_force', 'front_force', 'back_force']  # include swimmer_name here
 
 class MyRioSerializer(serializers.ModelSerializer):
     class Meta:
