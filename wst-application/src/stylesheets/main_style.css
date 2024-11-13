@@ -133,3 +133,16 @@ button, .tab, a{
 .graph-button {
   right: 20px;
 }
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* Align items to the bottom */
+  align-items: center; /* Center buttons horizontally (optional) */
+  height: 200vh; /* Full viewport height */
+  padding-bottom: 20px; /* Optional padding at the bottom */
+}
+
+/* .record-button {
+
+} */

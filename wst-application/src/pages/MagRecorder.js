@@ -73,7 +73,7 @@ export function MagRecorder() {
             
             
             await new Promise(resolve => setTimeout(resolve, delay));
-            retries += 1
+            attempts += 1
         }
         //... add logic 
     }
@@ -169,8 +169,8 @@ export function MagRecorder() {
                 </div> 
                 </>
             )}
-
         </div>
+        
         </>
     );
 };
