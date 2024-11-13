@@ -27,7 +27,7 @@ export function MagRecorder() {
    // const endpoint_swimmer = 'http://127.0.0.1:8000/api/swimmer/'
     const endpoint_start = `http://3.81.17.35:8000/api/start/`
     //endpoint for fetching data from table that holds data from myRIO
-    const endpoint_pullstarts = 'http://3.81.17.35:8000/pullstarts/'
+    const endpoint_pullstarts = 'http://3.81.17.35:5000/pullstarts'
     const endpoint_myrio = 'http://3.81.17.35:8000/api/myrio/'
     const endpoint_start_stop = 'http://3.81.17.35:5000/status'
     const enpoint_connect_myrio = 'wahoosplashtrack-3r5qpbb67ssaeq3zmqkktku1h994guse1a-s3alias'
@@ -53,8 +53,28 @@ export function MagRecorder() {
             console.error("Error posting data: ", error)
         }
         
+        let data_available = false; 
+        const retries = 100; 
+        const delay = 1000; 
+        let attempts  = 0 
+        let data; 
+        while(data_available === false && attempts < retries)   {
+            try {
+                data = await fetchMagnitudeData()
 
-        await fetchMagnitudeData()
+                if(data && Object.keys(data).length > 0){
+                    data_available = true; 
+                    break; 
+                }
+
+            } catch(error) {
+                console.error("Error Fetching Data: ", error)
+            }
+            
+            
+            await new Promise(resolve => setTimeout(resolve, delay));
+            retries += 1
+        }
         //... add logic 
     }
     
@@ -62,6 +82,7 @@ export function MagRecorder() {
         try {
             const response = await axios.get(endpoint_pullstarts); 
             set_my_rio_data(response.data)
+            return response
         } catch (error) {
             console.error("Error fetching data:", error);
         }
