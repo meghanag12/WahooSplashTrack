@@ -142,6 +142,7 @@ button, .tab, a{
   bottom: 250px;               /* Distance from the bottom of the page */
   width: 100%;                /* Make container span the full width */
   justify-content: space-evenly;    /* Center the buttons horizontally */
+  gap: 20px
 }
 
 .button-container-bottom { 

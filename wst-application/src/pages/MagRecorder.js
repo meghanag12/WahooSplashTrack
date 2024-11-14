@@ -287,8 +287,11 @@ export function MagRecorder() {
         </div>
 
         {/* Record Buttons */}
+        
         <div className = "button-container-top">
-        <div className="record-container">
+        {!show_button && (
+            <>
+            <div className="record-container">
           <button className="record-button" onClick={() => { handlePostStart(); handleStopShowButton(); }}>
             Start Record
           </button>
@@ -299,20 +302,21 @@ export function MagRecorder() {
             Stop Record
           </button>
         </div>
-        
-
+               
+            </>
+        )}
         
         {/* Show Submit/Discard Buttons */}
         {show_button && (
           <>
             <div className="record-container">
-              <button className="record-button" onClick={handleSendStartData}>
+              <button className="record-button" onClick={ () => {handleSendStartData(); handleStopShowButton();}}>
                 Submit Data
               </button>
             </div>
 
             <div className="record-container">
-              <button className="record-button" onClick={handleDiscardData}>
+              <button className="record-button" onClick={ () => {handleDiscardData();handleStopShowButton();}}>
                 Delete Data
               </button>
             </div>
