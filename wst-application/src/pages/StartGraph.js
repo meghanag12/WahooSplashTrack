@@ -4,7 +4,6 @@ import axios from 'axios';
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, TimeScale } from 'chart.js';
 
-// Register necessary chart.js components
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, TimeScale);
 
 export function StartGraph() {
@@ -15,7 +14,7 @@ export function StartGraph() {
   useEffect(() => {
     const fetchStartData = async () => {
       try {
-        const startsResponse = await axios.get(`http://3.81.17.35:8000/api/start/${name}/`);
+        const startsResponse = await axios.get(`http://3.81.17.35:8000/api/start/name/${name}/`);
         setStarts(startsResponse.data);
 
         const labels = startsResponse.data.map(start => {
@@ -36,10 +35,12 @@ export function StartGraph() {
             {
               label: 'Total Force (N)',
               data: totalForceData,
-              borderColor: 'rgba(75, 192, 192, 1)',
-              backgroundColor: 'rgba(75, 192, 192, 0.2)',
+              borderColor: 'rgba(52, 152, 219, 1)',
+              backgroundColor: 'rgba(229, 114, 0, 0.6)',
               fill: true,
-              tension: 0.3,
+              tension: 0.23,
+              pointRadius: 6, 
+              pointHoverRadius: 14, 
             },
           ],
         });
@@ -60,10 +61,30 @@ export function StartGraph() {
             data={chartData}
             options={{
               responsive: true,
-              maintainAspectRatio: false, // Allow resizing within container
+              maintainAspectRatio: false,
               plugins: {
                 legend: { position: 'top' },
                 title: { display: true, text: `${name}'s Total Force Over Time` },
+                tooltip: {
+                  callbacks: {
+                    label: function(context) {
+                      const start = starts[context.dataIndex];
+                      const date = new Date(start.date);
+                      const dateString = date.toLocaleDateString('en-US', {
+                        weekday: 'short',
+                        year: 'numeric',
+                        month: 'short',
+                        day: 'numeric',
+                      });
+                      const timeString = date.toLocaleTimeString('en-US', {
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        hour12: true,
+                      });
+                      return `Total Force: ${context.raw} N\nDate: ${dateString}\nTime: ${timeString}`;
+                    },
+                  },
+                },
               },
               scales: {
                 x: {

@@ -134,13 +134,47 @@ button, .tab, a{
   right: 20px;
 }
 
-.button-container {
+.button-container-top { 
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end; /* Align items to the bottom */
-  align-items: center; /* Center buttons horizontally (optional) */
-  height: 200vh; /* Full viewport height */
-  padding-bottom: 20px; /* Optional padding at the bottom */
+  justify-content: center;    /* Center buttons horizontally */
+  align-items: center;        /* Center buttons vertically within the container */
+  position: fixed;            /* Fix the position to the bottom */
+  bottom: 250px;               /* Distance from the bottom of the page */
+  width: 100%;                /* Make container span the full width */
+  justify-content: space-evenly;    /* Center the buttons horizontally */
+}
+
+.button-container-bottom { 
+  display: flex;
+  justify-content: center;    /* Center buttons horizontally */
+  align-items: center;        /* Center buttons vertically within the container */
+  position: fixed;            /* Fix the position to the bottom */
+  bottom: 200px;               /* Distance from the bottom of the page */
+  width: 100%;                /* Make container span the full width */
+  justify-content: space-evenly;    /* Center the buttons horizontally */
+}
+
+.input-container {
+  width: 50%;      /* Define a width */
+  margin: 0 auto;  /* Center horizontally */
+} 
+
+.magnitude-display {
+  width: 50%;      /* Define a width */
+  margin: 0 auto;  /* Center horizontally */
+  /* align-items: center; 
+  place-items: center; 
+  top: 50%; 
+  transform: translateY(-10%); */
+  display: flex;
+  flex-direction: column; /* Align items vertically */
+  gap: 50px; 
+  padding: 30px 20px;
+
+}
+
+.force-container{
+  display: flex;
 }
 
 /* .record-button {
