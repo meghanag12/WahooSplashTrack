@@ -12,9 +12,15 @@ export function MagRecorder() {
   const [my_rio_data, set_my_rio_data] = useState({});
   const [show_button, set_show_button] = useState(false);
   const [status, set_status] = useState(false);
+  
 
   const [swimmers, setSwimmers] = useState([]);
+  
+  //variables for search bar 
+  const [swimmerList, setSwimmerList ] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
   const [filteredSwimmers, setFilteredSwimmers] = useState([]);
+  const [showDrop, setShowDrop] = useState(true);
 
   // Endpoints
   const endpoint_start = 'http://3.81.17.35:8000/api/start/';
@@ -232,30 +238,65 @@ export function MagRecorder() {
     set_show_button(false);
   };
 
+  const handleShowDropDown = () => {
+      setShowDrop(true)
+  }
+
+  const handleStopShowDropDown = () => {
+      setShowDrop(false)
+  }
+
+  useEffect (() => {
+  const fetchSwimmerList = async () => {
+    try {
+      const response = await axios.get(endpoint_swimmers);
+      setSwimmerList(response.data);
+      setFilteredSwimmers(swimmerList)
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+  fetchSwimmerList(); 
+}, []);
+
+  const handleSearch = (e) => {
+      let query = e.target.value 
+      setSearchQuery(query)
+      setFilteredSwimmers(
+          query.length > 0 ? (swimmerList.filter(swimmerList => (
+              swimmerList.swimmer_name.toLowerCase().startsWith(query.toLowerCase())
+          ))) : swimmerList
+      );
+
+      
+  }; 
+  //swimmer_name.toLowerCase()
   return (
     <>
       <div className="app-container">
         <h1>Magnitude Recorder</h1>
 
         {/* Search Bar for Swimmer Name */}
-        <div className="input-container">
+        <div className="search-dropdown">
           <input
             type="text"
             placeholder="Enter Swimmer Name"
-            value={swimmer_name}
-            onChange={e => set_swimmer_name(e.target.value)}
-            className="search-bar"
+            value={searchQuery}
+            onChange={(e) => {handleSearch(e); handleShowDropDown()}}
+            className="search-input"
           />
-          {filteredSwimmers.length > 0 && (
+          
+          {showDrop && filteredSwimmers.length > 0 && (
             <ul className="dropdown-list">
-              {filteredSwimmers.map((swimmer, index) => (
-                <li
-                  key={index}
-                  onClick={() => set_swimmer_name(swimmer.swimmer_name)}
+              {filteredSwimmers.map((swimmerList) => (
+                <p
+                  key={swimmerList.id}
+                  onClick={() =>  {setSearchQuery(swimmerList.swimmer_name); handleStopShowDropDown();}}
+                  
                   className="dropdown-item"
                 >
-                  {swimmer.swimmer_name}
-                </li>
+                  {swimmerList.swimmer_name}
+                </p>
               ))}
             </ul>
           )}
