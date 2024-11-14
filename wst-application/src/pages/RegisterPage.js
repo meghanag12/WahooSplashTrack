@@ -73,10 +73,8 @@ export function RegisterPage() {
 
     return (
         <>
-            {/* Title */}
             <h1>Swimmer Registration Page</h1>
 
-            {/* Banner message */}
             {showBanner && (
                 <div className={`banner ${bannerType}`}>
                     {bannerMessage}

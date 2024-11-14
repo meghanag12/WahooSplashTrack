@@ -37,21 +37,6 @@
   }
 }
 
-button[type="submit"] {
-  background-color: #007bff; 
-  color: #98e2f7;
-  font-weight: bolder;
-  border: none;
-  padding: 10px 20px;
-  font-size: 18px;
-  cursor: pointer;
-  transition: background-color 0.4s ease; 
-}
-
-button[type="submit"]:hover {
-  background-color: #0018a3; 
-  color: #35cdf7;
-}
 
 /* Progress Tracker Styles */
 .progress-tracker {
@@ -117,8 +102,8 @@ button[type="submit"]:hover {
 
 h1 {
   text-align: center;
-  font-size: 32px;
-  margin: 30px auto;
+  font-size: 42px;
+  margin: 20px auto;
   color: #2c3e50;
   font-weight: 700;
   width: fit-content;
@@ -418,5 +403,29 @@ input:focus {
 input {
   transition: all 0.3s ease; /* smooth transition for focus styles */
 }
+button[type="submit"] {
+  background-color: #007bff; 
+  color: #98e2f7;
+  font-weight: bolder;
+  border: none;
+  padding: 10px 20px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.4s ease; 
+}
+
+button[type="submit"]:hover {
+  transition: all 0.3s ease;
+  background-color: #0018a3; 
+  transform: scale(1.03);
+  color: #35cdf7;
+}
 
 
+.form-container {
+  animation: fadeIn 4s ease-in-out;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
