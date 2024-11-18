@@ -395,10 +395,10 @@ input::placeholder {
   font-style: italic; /* placeholder text style */
 }
 input:focus {
-  outline: none; /* removes default blue outline */
-  border-color: #007bff; /* highlight border on focus */
-  color: #000; /* text color on focus */
-  background-color: #b3ebfa; /* light background on focus */
+  outline: none; 
+  border-color: #007bff; 
+  color: #000; 
+  background-color: #71daf71e; 
 }
 input {
   transition: all 0.3s ease; /* smooth transition for focus styles */
