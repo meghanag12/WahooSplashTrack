@@ -223,11 +223,11 @@ th, td {
 }
 
 tbody tr:nth-child(odd) {
-  background-color: #2958e4e7;
+  background-color: #2958e48f;
 }
 
 tbody tr:nth-child(even) {
-  background-color: #e57200bb;
+  background-color: #00b0e55e;
 }
 
 tbody tr {
