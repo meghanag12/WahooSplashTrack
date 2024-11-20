@@ -37,19 +37,6 @@
   }
 }
 
-button[type="submit"] {
-  background-color: #007bff; 
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease; 
-}
-
-button[type="submit"]:hover {
-  background-color: #0056b3; 
-}
 
 /* Progress Tracker Styles */
 .progress-tracker {
@@ -115,8 +102,8 @@ button[type="submit"]:hover {
 
 h1 {
   text-align: center;
-  font-size: 32px;
-  margin: 30px auto;
+  font-size: 42px;
+  margin: 20px auto;
   color: #2c3e50;
   font-weight: 700;
   width: fit-content;
@@ -135,15 +122,18 @@ h1::after {
 
 /* Banner Styling */
 .banner {
+  display: flex;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  background-color: #007bff;
-  color: white;
-  text-align: center;
+  height: 7%;
+  background-color: #05ade0;
+  color: #00eeff;
+  justify-content: center;
+  align-items: center;
   padding: 10px;
-  font-size: 18px;
+  font-size: 23px;
   font-weight: bold;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
   z-index: 1000;
@@ -365,6 +355,79 @@ tbody tr:hover {
 .swimmer-link:hover {
   text-decoration: underline;
 }
+/* Style for Swimmer Reg page Year buttons */
+.radio-group-swimmer-year {
+  display: flex;
+  gap: 10px; 
+}
+
+.radio-group-swimmer-year label {
+  display: flex;
+  align-items: center;
+  gap: 5px; 
+}
+/* Style for Swimmer Name Swimmer Registration Page*/
+
+.form-group label {
+  display: flex;
+  align-items: center;
+  gap: 10px; 
+  color: #282c34;
+  font-weight: bolder;
+}
+
+.swimmer-name-reg input {
+  width: 100%; 
+}
+
+input {
+  display: flex;
+  font-family: Arial, sans-serif; /* change font */
+  font-size: 13px; /* adjust text size */
+  font-weight: bold;
+  justify-content: center;
+  color: rgb(0, 0, 0); /* text color */
+  padding: 7px; /* space inside input */
+  border: 4px solid #007bff; /* border style */
+  border-radius: 8px; /* rounded corners */
+}
+
+input::placeholder {
+  color: #007bff; /* placeholder text color */
+  font-style: italic; /* placeholder text style */
+}
+input:focus {
+  outline: none; 
+  border-color: #007bff; 
+  color: #000; 
+  background-color: #71daf71e; 
+}
+input {
+  transition: all 0.3s ease; /* smooth transition for focus styles */
+}
+button[type="submit"] {
+  background-color: #007bff; 
+  color: #98e2f7;
+  font-weight: bolder;
+  border: none;
+  padding: 10px 20px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.4s ease; 
+}
+
+button[type="submit"]:hover {
+  transition: all 0.3s ease;
+  background-color: #0018a3; 
+  transform: scale(1.03);
+  color: #35cdf7;
+}
 
 
-
+.form-container {
+  animation: fadeIn 4s ease-in-out;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
