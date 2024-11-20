@@ -81,7 +81,7 @@ button, .tab, a{
     justify-content: space-evenly;    /* Center the buttons horizontally */
     align-items: center;  
     background-color: white;
-    height: 120px;
+    height: 85px;
     width:100%;
     color: white;
     text-align: center;

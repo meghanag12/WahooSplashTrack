@@ -307,16 +307,16 @@ export function MagRecorder() {
             <div className = "magnitude-display">
                 {status === true ?(
                     <>
-                        <div className = "force-container">Total Force: Recording...</div>
-                        <div className = "force-container">Front Force: Recording...</div>
-                        <div className = "force-container">Back Force: Recording...</div>
+                        <div className = "force-container">Total Force: <b>Recording...</b></div>
+                        <div className = "force-container">Front Force: <b>Recording...</b></div>
+                        <div className = "force-container">Back Force: <b>Recording...</b></div>
                     </>
                 ):
                 (
                     <>
-                        <div className = "force-container">Total Force: {total_force}</div>
-                        <div className = "force-container">Front Force: {front_force}</div>
-                        <div className = "force-container">Back Force: {back_force}</div>
+                        <div className = "force-container">Total Force: <b>{total_force}</b></div>
+                        <div className = "force-container">Front Force: <b>{front_force}</b></div>
+                        <div className = "force-container">Back Force: <b>{back_force}</b></div>
                     </>
                 )
                 }

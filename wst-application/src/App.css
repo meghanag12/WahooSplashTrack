@@ -193,13 +193,13 @@ th {
   font-weight: bold;
 }
 
-tbody tr:nth-child(odd) {
-  background-color: #2958e4e7;
+/* tbody tr:nth-child(odd) {
+  background-color: #79b3f6;
 }
 
 tbody tr:nth-child(even) {
-  background-color: #e57200bb;
-}
+  background-color: #f0a688;
+} */
 
 tbody tr {
   transition: background-color 0.45s ease;
@@ -233,11 +233,11 @@ th, td {
 }
 
 tbody tr:nth-child(odd) {
-  background-color: #2958e4e7;
+  background-color: #61ace6e7;
 }
 
 tbody tr:nth-child(even) {
-  background-color: #e57200bb;
+  background-color: #e48d37bb;
 }
 
 tbody tr {
@@ -267,7 +267,9 @@ tbody tr:hover {
 
 
 .back-button {
-  position: fixed;
+  margin-bottom: 558px; 
+  margin-left: 1130px;
+  
   cursor: pointer;
   background-color: #007bff;
   color: white;
