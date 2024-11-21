@@ -12,7 +12,7 @@ export function MagRecorder() {
   const [my_rio_data, set_my_rio_data] = useState({});
   const [show_button, set_show_button] = useState(false);
   const [status, set_status] = useState(false);
-  
+  const [showBanner, setShowBanner] = useState(false);
 
   const [swimmers, setSwimmers] = useState([]);
   
@@ -144,6 +144,7 @@ export function MagRecorder() {
 //   }, [swimmer_name, swimmers]);
 
   // Fetch magnitude data from the myRIO endpoint
+  
   const fetchMagnitudeData = async () => {
     try {
       const response = await axios.get(endpoint_pullstarts);
@@ -213,6 +214,10 @@ export function MagRecorder() {
   const handleSendStartData = async () => {
     await postDataStart();
     resetValues();
+    setShowBanner(true);
+    setTimeout(() => {
+      setShowBanner(false);
+    }, 3000);
   };
 
   const handleDiscardData = async () => {
@@ -304,7 +309,12 @@ const handleSearch = (e) => {
     <>
       <div className="app-container">
         <h1>Magnitude Recorder</h1>
-
+      {/* Banner */}
+      {showBanner && (
+          <div className="banner">
+            Data successfully submitted!
+          </div>
+        )}
         {/* Search Bar for Swimmer Name */}
         <div className="search-dropdown">
           <input
