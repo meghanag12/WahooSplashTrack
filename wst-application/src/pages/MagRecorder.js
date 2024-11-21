@@ -13,6 +13,7 @@ export function MagRecorder() {
   const [show_button, set_show_button] = useState(false);
   const [status, set_status] = useState(false);
   const [showBanner, setShowBanner] = useState(false);
+  const [bannerMessage, setBannerMessage] = useState('');
 
   const [swimmers, setSwimmers] = useState([]);
   
@@ -214,14 +215,17 @@ export function MagRecorder() {
   const handleSendStartData = async () => {
     await postDataStart();
     resetValues();
+    setBannerMessage('Data successfully submitted!');
     setShowBanner(true);
-    setTimeout(() => {
-      setShowBanner(false);
-    }, 3000);
+    setTimeout(() => setShowBanner(false), 3000);
   };
 
   const handleDiscardData = async () => {
     resetValues();
+    setShowBanner(true);
+    setBannerMessage('Data deleted successfully!');
+    setShowBanner(true);
+    setTimeout(() => setShowBanner(false), 3000);
   };
 
   const postDataStart = async () => {
@@ -309,10 +313,10 @@ const handleSearch = (e) => {
     <>
       <div className="app-container">
         <h1>Magnitude Recorder</h1>
-      {/* Banner */}
-      {showBanner && (
+        {/* Banner */}
+        {showBanner && (
           <div className="banner">
-            Data successfully submitted!
+            {bannerMessage}
           </div>
         )}
         {/* Search Bar for Swimmer Name */}
