@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import '../stylesheets/main_style.css';
 
@@ -21,7 +21,8 @@ export function MagRecorder() {
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredSwimmers, setFilteredSwimmers] = useState([]);
   const [showDrop, setShowDrop] = useState(true);
-
+  
+  const dropdownRef = useRef(null);
   // Endpoints
   const endpoint_start = 'http://3.81.17.35:8000/api/start/';
   const endpoint_pullstarts = 'http://3.81.17.35:5000/pullstarts';
@@ -259,17 +260,37 @@ export function MagRecorder() {
   fetchSwimmerList(); 
 }, []);
 
-  const handleSearch = (e) => {
-      let query = e.target.value 
-      setSearchQuery(query)
-      setFilteredSwimmers(
-          query.length > 0 ? (swimmerList.filter(swimmerList => (
-              swimmerList.swimmer_name.toLowerCase().startsWith(query.toLowerCase())
-          ))) : swimmerList
-      );
+const handleSearch = (e) => {
+  const query = e.target.value;
+  setSearchQuery(query);
+  setFilteredSwimmers(
+    query.length > 0
+      ? swimmerList.filter((swimmer) =>
+          swimmer.swimmer_name.toLowerCase().startsWith(query.toLowerCase())
+        )
+      : swimmerList
+  );
+};
 
-      
-  }; 
+
+// Close dropdown on outside click
+{showDrop && filteredSwimmers.length > 0 && (
+  <ul className="dropdown-list" ref={dropdownRef}> {/* Attach ref here */}
+    {filteredSwimmers.map((swimmerList) => (
+      <p
+        key={swimmerList.id}
+        onClick={() => {
+          setSearchQuery(swimmerList.swimmer_name);
+          handleStopShowDropDown();
+        }}
+        className="dropdown-item"
+      >
+        {swimmerList.swimmer_name}
+      </p>
+    ))}
+  </ul>
+)}
+
   //swimmer_name.toLowerCase()
   return (
     <>
@@ -333,13 +354,13 @@ export function MagRecorder() {
         {!show_button && (
             <>
             <div className="record-container">
-          <button className="record-button" onClick={() => { handlePostStart(); handleStopShowButton(); }}>
+          <button className="start-button" onClick={() => { handlePostStart(); handleStopShowButton(); }}>
             Start Record
           </button>
         </div>
 
         <div className="record-container">
-          <button className="record-button" onClick={() => { handlePostStop(); handleShowButton(); }}>
+          <button className="stop-record-button" onClick={() => { handlePostStop(); handleShowButton(); }}>
             Stop Record
           </button>
         </div>
@@ -351,13 +372,13 @@ export function MagRecorder() {
         {show_button && (
           <>
             <div className="record-container">
-              <button className="record-button" onClick={ () => {handleSendStartData(); handleStopShowButton();}}>
+              <button className="submit-data-button" onClick={ () => {handleSendStartData(); handleStopShowButton();}}>
                 Submit Data
               </button>
             </div>
 
             <div className="record-container">
-              <button className="record-button" onClick={ () => {handleDiscardData();handleStopShowButton();}}>
+              <button className="delete-data-button" onClick={ () => {handleDiscardData();handleStopShowButton();}}>
                 Delete Data
               </button>
             </div>

@@ -214,6 +214,72 @@ button, .tab, a{
     justify-content: center; /* Centers items vertically */
 }
 
-/* .record-button {
 
-} */
+.delete-data-button {
+  background-color: orange;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.delete-data-button:hover {
+  background-color: #ff8c00;
+  transform: scale(1.1);
+}
+
+.delete-data-button:active {
+  transform: scale(0.95);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.submit-data-button {
+  background-color: blue;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.submit-data-button:hover {
+  background-color: #4169e1;
+  transform: scale(1.1);
+}
+
+.submit-data-button:active {
+  transform: scale(0.95);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+/* Start Button */
+.start-button {
+  background-color: green;
+  color: white; /* Ensures visibility */
+  height: 80px;
+  width: 100px;
+  border-radius: 5px; /* Optional for rounded edges */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.start-button:hover {
+  background-color: #228b22;
+  transform: scale(1.1);
+}
+
+.start-button:active {
+  transform: scale(0.95);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Stop Button */
+.stop-record-button {
+  background-color: red;
+  color: white; /* Ensures visibility */
+  height: 80px;
+  width: 100px;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.stop-record-button:hover {
+  background-color: #b22222;
+  transform: scale(1.1);
+}
+
+.stop-record-button:active {
+  transform: scale(0.95);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
