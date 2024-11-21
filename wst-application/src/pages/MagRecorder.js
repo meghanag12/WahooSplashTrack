@@ -21,7 +21,7 @@ export function MagRecorder() {
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredSwimmers, setFilteredSwimmers] = useState([]);
   const [showDrop, setShowDrop] = useState(true);
-  
+  const [dots, setDots] = useState('');
   const dropdownRef = useRef(null);
   // Endpoints
   const endpoint_start = 'http://3.81.17.35:8000/api/start/';
@@ -153,7 +153,14 @@ export function MagRecorder() {
       console.error('Error fetching data:', error);
     }
   };
-
+  useEffect(() => {
+    if (status) {
+      const interval = setInterval(() => {
+        setDots((prevDots) => (prevDots.length < 3 ? prevDots + '.' : ''));
+      }, 500); // Update every 500ms
+      return () => clearInterval(interval);
+    }
+  }, [status]);
   useEffect(() => {
     set_total_force(my_rio_data.total_force);
     set_front_force(my_rio_data.front_force);
@@ -231,6 +238,7 @@ export function MagRecorder() {
     set_back_force('0.0');
   };
 
+  
   const handleShowButton = () => {
     set_show_button(true);
   };
@@ -325,29 +333,34 @@ const handleSearch = (e) => {
 
         {/* Magnitude Display */}
         <div className="magnitude-display">
-            <div className = "magnitude-display">
-                {status === true ?(
-                    <>
-                        <div className = "force-container">Total Force: <b>Recording...</b></div>
-                        <div className = "force-container">Front Force: <b>Recording...</b></div>
-                        <div className = "force-container">Back Force: <b>Recording...</b></div>
-                    </>
-                ):
-                (
-                    <>
-                        <div className = "force-container">Total Force: <b>{total_force}</b></div>
-                        <div className = "force-container">Front Force: <b>{front_force}</b></div>
-                        <div className = "force-container">Back Force: <b>{back_force}</b></div>
-                    </>
-                )
-                }
-            </div>
-            
-          {/* <div>Magnitude: {status === true && total_force === '0.0' ? 'Recording...' : total_force}</div>
-          <div>Front Force: {status === true && total_force === '0.0' ? 'Recording...' : front_force}</div>
-          <div>Back Force: {status === true && total_force === '0.0' ? 'Recording...' : back_force}</div> */}
+          <div className="magnitude-display">
+            {status ? (
+              <>
+                <div className="force-container">
+                  Total Force: <b>Recording{dots}</b>
+                </div>
+                <div className="force-container">
+                  Front Force: <b>Recording{dots}</b>
+                </div>
+                <div className="force-container">
+                  Back Force: <b>Recording{dots}</b>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="force-container">
+                  Total Force: <b>{total_force}</b>
+                </div>
+                <div className="force-container">
+                  Front Force: <b>{front_force}</b>
+                </div>
+                <div className="force-container">
+                  Back Force: <b>{back_force}</b>
+                </div>
+              </>
+            )}
+          </div>
         </div>
-
         {/* Record Buttons */}
         
         <div className = "button-container-top">
