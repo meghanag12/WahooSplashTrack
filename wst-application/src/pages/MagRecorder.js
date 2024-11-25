@@ -16,10 +16,17 @@ export function MagRecorder() {
   const [filteredSwimmers, setFilteredSwimmers] = useState([]);
   const [showDrop, setShowDrop] = useState(false);
 
+  
+  const [swimmer_name, set_swimmer_name] = useState('');
+  const [start_id, set_start_id] = useState('');
+  const [date, set_date] = useState('');
+ 
+
   const dropdownRef = useRef(null);
   const endpoint_pullstarts = 'http://3.81.17.35:5000/pullstarts';
   const endpoint_start_stop = 'http://3.81.17.35:5000/status';
   const endpoint_swimmers = 'http://3.81.17.35:8000/api/swimmer/';
+  const endpoint_start = 'http://3.81.17.35:8000/api/start/';
 
   const fetchMagnitudeData = async () => {
     try {
@@ -114,6 +121,7 @@ export function MagRecorder() {
     setBannerMessage('Data successfully submitted!');
     setShowBanner(true);
     setTimeout(() => setShowBanner(false), 3000);
+    await postDataStart(); 
     resetValues();
   };
 
@@ -122,6 +130,16 @@ export function MagRecorder() {
     setShowBanner(true);
     setTimeout(() => setShowBanner(false), 3000);
     resetValues();
+  };
+
+  const postDataStart = async () => {
+    const body = { swimmer_name, start_id, date, total_force, front_force, back_force };
+    try {
+      const response = await axios.post(endpoint_start, body);
+      console.log(response);
+    } catch (error) {
+      console.error('Error posting start data:', error);
+    }
   };
 
   const resetValues = () => {
@@ -167,6 +185,7 @@ export function MagRecorder() {
               <p
                 key={swimmer.id}
                 onClick={() => {
+                  set_swimmer_name(swimmer.swimmer_name);
                   setSearchQuery(swimmer.swimmer_name);
                   setShowDrop(false);
                 }}
