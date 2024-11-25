@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const initialValues = {
     swimmer_name: "",
-    year: "1st",
+    year: "",
     active: "yes"
 };
 
@@ -73,69 +73,71 @@ export function RegisterPage() {
 
     return (
         <>
-            <h1>Swimmer Registration Page</h1>
+           <h1>Swimmer Registration Page</h1>
 
-            {showBanner && (
-                <div className={`banner ${bannerType}`}>
-                    {bannerMessage}
+{showBanner && (
+    <div className={`banner ${bannerType}`}>
+        {bannerMessage}
+    </div>
+)}
+
+<div className="form_container">
+    <form onSubmit={handleSendData}>
+        <div className="form-group">
+            <label>Swimmer's Name:
+                <div className="swimmer-name-reg">
+                    <input
+                        className="input"
+                        value={values.swimmer_name}
+                        onChange={handleInputChange}
+                        name="swimmer_name"
+                        label="swimmer_name"
+                        placeholder = "e.g, 'John Doe'"
+                        required
+                    />
                 </div>
-            )}
+            </label>
+        </div>
 
-            <div className="form_container">
-                <form onSubmit={handleSendData}>
-                    <div className="form-group">
-                        <label>Enter Swimmer's Name:
-                            <div className = "swimmer-name-reg">
-                                <input className = "input"
-                                    value={values.swimmer_name}
-                                    onChange={handleInputChange}
-                                    name="swimmer_name"
-                                    label="swimmer_name"
-                                />
-                            </div>
-                        </label>
-                    </div>
-
-                    <div className="form-group">
-                        <label>Swimmer's Year:</label>
-                        <div className = "radio-group-swimmer-year">
-                            {["1st", "2nd", "3rd", "4th", "5th/Graduate"].map((yearOption) => (
-                                <label key={yearOption}>
-                                    <input
-                                        type="radio"
-                                        name="year"
-                                        value={yearOption}
-                                        checked={values.year === yearOption}
-                                        onChange={handleInputChange}
-                                    />
-                                    {yearOption}
-                                </label>
-                            ))}
-                        </div>
-                    </div>
-
-                    <div className="form-group">
-                        <label>Is the Swimmer Active?
-                            <input
-                                type="radio"
-                                name="active"
-                                value="yes"
-                                checked={values.active === "yes"}
-                                onChange={handleInputChange}
-                            /> Yes
-                            <input
-                                type="radio"
-                                name="active"
-                                value="no"
-                                checked={values.active === "no"}
-                                onChange={handleInputChange}
-                            /> No
-                        </label>
-                    </div>
-
-                    <button type="submit">Submit</button>
-                </form>
+        <div className="form-group">
+            <label>Swimmer's Graduation Year:</label>
+            <div className="year-input">
+                <input
+                    type="text"
+                    name="year"
+                    value={values.year}
+                    onChange={handleInputChange}
+                    pattern="\d{4}"
+                    title="Please enter a valid 4-digit year"
+                    placeholder="e.g. 2024"
+                    required
+                />
             </div>
+        </div>
+
+        <div className="form-group">
+            <label>Is the Swimmer currently active?
+                <input
+                    type="radio"
+                    name="active"
+                    value="yes"
+                    checked={values.active === "yes"}
+                    onChange={handleInputChange}
+                /> Yes
+                <input
+                    type="radio"
+                    name="active"
+                    value="no"
+                    checked={values.active === "no"}
+                    onChange={handleInputChange}
+                /> No
+            </label>
+        </div>
+
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
         </>
     );
 }

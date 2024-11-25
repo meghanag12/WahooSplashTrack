@@ -21,7 +21,7 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: #b6b7bd;
 }
 
 .App-link {
@@ -182,14 +182,6 @@ th, td {
 th {
   font-weight: bold;
 }
-
-/* tbody tr:nth-child(odd) {
-  background-color: #79b3f6;
-}
-
-tbody tr:nth-child(even) {
-  background-color: #f0a688;
-} */
 
 tbody tr {
   transition: background-color 0.45s ease;
@@ -371,13 +363,13 @@ tbody tr:hover {
 .form-group label {
   display: flex;
   align-items: center;
-  gap: 10px; 
+  gap: 4px; 
   color: #282c34;
   font-weight: bolder;
 }
 
 .swimmer-name-reg input {
-  width: 100%; 
+  width: 80%; 
 }
 
 input {
@@ -388,22 +380,55 @@ input {
   justify-content: center;
   color: rgb(0, 0, 0); /* text color */
   padding: 7px; /* space inside input */
-  border: 4px solid #007bff; /* border style */
+  border: 4px solid #007bff98; /* border style */
   border-radius: 8px; /* rounded corners */
 }
 
+
 input::placeholder {
-  color: #007bff; /* placeholder text color */
-  font-style: italic; /* placeholder text style */
+  color: #9ca3af;
+  font-style: italic;
 }
 input:focus {
   outline: none; 
-  border-color: #007bff; 
+  border-color: #007bff9a; 
   color: #000; 
   background-color: #71daf71e; 
 }
 input {
   transition: all 0.3s ease; /* smooth transition for focus styles */
+}
+
+
+button[type="submit"]:hover {
+  transition: all 0.5s ease;
+  background-color: #0018a3; 
+  transform: scale(1.01);
+  color: #c3effc;
+}
+
+
+
+.year-input input[type="text"] {
+  display: flex;
+  font-family: Arial, sans-serif; /* change font */
+  font-size: 13px; /* adjust text size */
+  font-weight: bold;
+  justify-content: center;
+  color: rgb(0, 0, 0); /* text color */
+  padding: 6px; /* space inside input */
+  border: 4px solid #007bff9a; /* border style */
+  border-radius: 8px; /* rounded corners */
+}
+
+.year-input:focus {
+  outline: none; 
+  border-color: #007bff; 
+  color: #000; 
+  background-color: #71daf71e; 
+}
+.year-input {
+  width: 80%;
 }
 button[type="submit"] {
   background-color: #007bff; 
@@ -414,20 +439,4 @@ button[type="submit"] {
   font-size: 18px;
   cursor: pointer;
   transition: background-color 0.4s ease; 
-}
-
-button[type="submit"]:hover {
-  transition: all 0.3s ease;
-  background-color: #0018a3; 
-  transform: scale(1.03);
-  color: #35cdf7;
-}
-
-
-.form-container {
-  animation: fadeIn 4s ease-in-out;
-}
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
 }
