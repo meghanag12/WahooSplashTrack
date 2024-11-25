@@ -169,13 +169,20 @@ button, .tab, a{
   transform: translateY(-10%); */
   display: flex;
   flex-direction: column; /* Align items vertically */
-  gap: 50px; 
+  gap: 30px; 
   padding: 30px 20px;
 
 }
 
 .force-container{
-  display: flex;
+  background-color: #00eeff5d;
+  padding: 1.4rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 100px;
+  margin: auto;
+  text-align: center;
+  width: auto;
 }
 
 .dropdown-list {

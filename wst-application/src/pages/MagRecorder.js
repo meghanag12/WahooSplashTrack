@@ -214,9 +214,9 @@ export function MagRecorder() {
           </>
         ) : (
           <>
-            <div className="force-container">Total Force: <b>{total_force}</b></div>
-            <div className="force-container">Front Force: <b>{front_force}</b></div>
-            <div className="force-container">Back Force: <b>{back_force}</b></div>
+            <div className="force-container">Total Force: <b>{total_force}</b> N</div>
+            <div className="force-container">Front Force: <b>{front_force}</b> N</div>
+            <div className="force-container">Back Force: <b>{back_force}</b> N</div>
           </>
         )}
       </div>
