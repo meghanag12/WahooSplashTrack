@@ -203,20 +203,20 @@ export function MagRecorder() {
         {status ? (
           <>
             <div className="force-container">
-              Total Force: <b>Recording<RecordingDots status={status} /></b>
+            <b>Total Force: Recording<RecordingDots status={status} /></b>
             </div>
             <div className="force-container">
-              Front Force: <b>Recording<RecordingDots status={status} /></b>
+            <b>Front Force: Recording<RecordingDots status={status} /></b>
             </div>
             <div className="force-container">
-              Back Force: <b>Recording<RecordingDots status={status} /></b>
+            <b>Back Force: Recording<RecordingDots status={status} /></b>
             </div>
           </>
         ) : (
           <>
-            <div className="force-container">Total Force: <b>{total_force}</b> N</div>
-            <div className="force-container">Front Force: <b>{front_force}</b> N</div>
-            <div className="force-container">Back Force: <b>{back_force}</b> N</div>
+            <div className="force-container"><b>Total Force: {total_force} N</b> </div>
+            <div className="force-container"><b>Front Force: {front_force} N</b></div>
+            <div className="force-container"><b>Back Force: {back_force} N</b></div>
           </>
         )}
       </div>
