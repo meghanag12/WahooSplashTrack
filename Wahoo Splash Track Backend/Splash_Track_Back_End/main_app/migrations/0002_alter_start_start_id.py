@@ -15,4 +15,5 @@ class Migration(migrations.Migration):
             name='start_id',
             field=models.AutoField(primary_key=True, serialize=False),
         ),
+
     ]

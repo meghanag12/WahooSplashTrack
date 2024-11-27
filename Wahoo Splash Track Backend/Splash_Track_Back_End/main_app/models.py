@@ -12,7 +12,7 @@ class Swimmer(models.Model):
         return f'{self.swimmer_name}'
 
 class Start(models.Model):
-    swimmer_name = models.ForeignKey(Swimmer, on_delete=models.CASCADE, null = True)
+    swimmer_name= models.ForeignKey(Swimmer, on_delete=models.CASCADE, null = True)
     start_id = models.AutoField(primary_key = True)
     date = models.DateTimeField(auto_now_add=True)
     total_force = models.JSONField()
