@@ -1,0 +1,8 @@
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+
+You have 2 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): main_app.
+Run 'python manage.py migrate' to apply them.
+Error: That port is already in use.
