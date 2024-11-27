@@ -1,105 +1,247 @@
-// import { Link } from "react-router-dom"
+import React, { useEffect, useState, useRef } from 'react';
+import axios from 'axios';
+import '../stylesheets/main_style.css';
 
-//need to use React state when a value needs to be re-rendered
-import React, { useEffect, useState } from 'react';
-import { getCsrfToken } from '../utils/csrf';
-import axios from 'axios' 
-import '../stylesheets/main_style.css'
-
-
-// function Record({onButtonClick}) {
-//     return <button className = "record" onClick = {onButtonClick}>Record Magnitude</button>;
-// }
-
-//need to interact with myrio to test this 
 export function MagRecorder() {
-    const [total_force, set_total_force] = useState([])
-    const [swimmer_name, set_swimmer_name] = useState([''])
-    const[start_id, set_start_id] = useState([''])
-    const[date, set_date] = useState([''])
-    const[front_force, set_front_force] = useState([''])
-    const[back_force, set_back_force] = useState([''])
-    const[my_rio_data, set_my_rio_data] = useState([''])
+  const [total_force, set_total_force] = useState('0.0');
+  const [front_force, set_front_force] = useState('0.0');
+  const [back_force, set_back_force] = useState('0.0');
+  const [status, set_status] = useState(false);
+  const [showSubmitDelete, setShowSubmitDelete] = useState(false);
+  const [bannerMessage, setBannerMessage] = useState('');
+  const [showBanner, setShowBanner] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [swimmers, setSwimmers] = useState([]);
+  const [swimmerList, setSwimmerList] = useState([]);
+  const [filteredSwimmers, setFilteredSwimmers] = useState([]);
+  const [showDrop, setShowDrop] = useState(false);
 
-   // const endpoint_swimmer = 'http://127.0.0.1:8000/api/swimmer/'
-    const endpoint_start = 'http://127.0.0.1:8000/api/start/'
-    //endpoint for fetching data from table that holds data from myRIO
-    const endpoint_myrio = 'http://127.0.0.1:8000/api/myrio/'
-    const enpoint_connect_myrio = 'wahoosplashtrack-3r5qpbb67ssaeq3zmqkktku1h994guse1a-s3alias'
-    
-    const fetchMagnitudeData = async() =>  {
-        try {
-            const response = axios.get(endpoint_myrio); 
-            set_my_rio_data(response.data)
-        } catch (error) {
-            console.error("Error fetching data:", error);
-        }
-    }; 
+  
+  const [swimmer_name, set_swimmer_name] = useState('');
+  const [start_id, set_start_id] = useState('');
+  const [date, set_date] = useState('');
+ 
 
-    useEffect(() => {
-        fetchMagnitudeData(); 
-    }, [])
+  const dropdownRef = useRef(null);
+  const endpoint_pullstarts = 'http://3.81.17.35:5000/pullstarts';
+  const endpoint_start_stop = 'http://3.81.17.35:5000/status';
+  const endpoint_swimmers = 'http://3.81.17.35:8000/api/swimmer/';
+  const endpoint_start = 'http://3.81.17.35:8000/api/start/';
 
-    useEffect(() => {
-        if(my_rio_data) {
-            set_total_force(my_rio_data.total_force); 
-            set_front_force(my_rio_data.front_force); 
-            set_back_force(my_rio_data.back_force); 
-            set_date(my_rio_data.time_stamp); 
-        }
-    }, [my_rio_data])
-
-    const postDataStart = async() => {
-        const body = {swimmer_name, start_id, date, front_force, back_force}
-        const response = await axios.post(endpoint_start, body)
-        console.log(response)
-        return response.data 
+  const fetchMagnitudeData = async () => {
+    try {
+      const response = await axios.get(endpoint_pullstarts);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching magnitude data:', error);
+      return {};
     }
+  };
 
-    const resetValues = () => {
-        set_swimmer_name('');
-        set_start_id('');
-        set_date('');
-        set_front_force('');
-        set_back_force('');
+  const fetchSwimmerList = async () => {
+    try {
+      const response = await axios.get(endpoint_swimmers);
+      setSwimmerList(response.data);
+      setFilteredSwimmers(response.data); // Initialize filtered list
+    } catch (error) {
+      console.error('Error fetching swimmers:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchSwimmerList();
+
+    // Close dropdown on outside click
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setShowDrop(false);
+      }
     };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
-    const handleSendData = async() => {
-        const newData = await postDataStart()
-        //... add logic 
-        resetValues(); 
-        
+  useEffect(() => {
+    if (status) {
+      const interval = setInterval(() => {}, 500); // Placeholder for dots logic
+      return () => clearInterval(interval);
     }
-    
-    
-      return (
-        <>
-        <div className = "app-container">
-            <h1>Magnitude Recorder</h1>
+  }, [status]);
 
-            <div className = "input-container">
-                <input type = "text" placeholder = "Enter Swimmer Name" value = {swimmer_name} onChange={(e) => set_swimmer_name(e.target.value)}/>
-            </div>
+  useEffect(() => {
+    if (!status) {
+      const fetchData = async () => {
+        const data = await fetchMagnitudeData();
+        set_total_force(data.total_force || '0.0');
+        set_front_force(data.front_force || '0.0');
+        set_back_force(data.back_force || '0.0');
+      };
+      fetchData();
+    }
+  }, [status]);
 
-            <div className = "magnitude-display">
-                <h1>Magnitude: {total_force !== null ? total_force : 'Loading...'}</h1>
-                <p>Front Force: {front_force !== null ? front_force : 'Loading...'}</p>
-                <p>Back Force: {back_force !== null ? back_force : 'Loading...'}</p>
-            </div>
-
-            
-            <div className = "record-container">
-                {/* need to have some kind of trigger to start the microcontroller  */}
-                <button className = "record-button">Start Record</button>
-            </div>
-            
-            <div className = "record-container">
-                <button className = "record-button" onClick = {handleSendData}>Stop Record</button>
-            </div>
-
-        </div>
-        </>
+  const handleSearch = (e) => {
+    const query = e.target.value;
+    setSearchQuery(query);
+    setFilteredSwimmers(
+      query.length > 0
+        ? swimmerList.filter((swimmer) =>
+            swimmer.swimmer_name.toLowerCase().startsWith(query.toLowerCase())
+          )
+        : swimmerList
     );
-};
+    setShowDrop(true);
+  };
 
-export default MagRecorder; 
+  const handlePostStart = async () => {
+    set_status(true);
+    setShowSubmitDelete(false);
+    const payload = { status: 'true' };
+    try {
+      await axios.post(endpoint_start_stop, payload);
+      console.log('Start recording');
+    } catch (error) {
+      console.error('Error starting recording:', error);
+    }
+  };
+
+  const handlePostStop = async () => {
+    set_status(false);
+    const payload = { status: 'false' };
+    try {
+      await axios.post(endpoint_start_stop, payload);
+      console.log('Stop recording');
+      setShowSubmitDelete(true);
+    } catch (error) {
+      console.error('Error stopping recording:', error);
+    }
+  };
+
+  const handleSendStartData = async () => {
+    setBannerMessage('Data successfully submitted!');
+    setShowBanner(true);
+    setTimeout(() => setShowBanner(false), 3000);
+    await postDataStart(); 
+    resetValues();
+  };
+
+  const handleDiscardData = () => {
+    setBannerMessage('Data discarded successfully!');
+    setShowBanner(true);
+    setTimeout(() => setShowBanner(false), 3000);
+    resetValues();
+  };
+
+  const postDataStart = async () => {
+    const body = { swimmer_name, start_id, date, total_force, front_force, back_force };
+    try {
+      const response = await axios.post(endpoint_start, body);
+      console.log(response);
+    } catch (error) {
+      console.error('Error posting start data:', error);
+    }
+  };
+
+  const resetValues = () => {
+    set_total_force('0.0');
+    set_front_force('0.0');
+    set_back_force('0.0');
+    setSearchQuery('');
+    setShowSubmitDelete(false); // Reset button visibility
+  };
+
+  const RecordingDots = ({ status }) => {
+    const [dots, setDots] = useState('');
+    useEffect(() => {
+      if (status) {
+        const interval = setInterval(() => {
+          setDots((prevDots) => (prevDots.length < 3 ? prevDots + '.' : ''));
+        }, 500);
+        return () => clearInterval(interval);
+      }
+    }, [status]);
+    return <>{dots}</>;
+  };
+
+  return (
+    <div className="app-container">
+      <h1>Magnitude Recorder</h1>
+
+      {/* Banner */}
+      {showBanner && <div className="banner">{bannerMessage}</div>}
+
+      {/* Search Bar */}
+      <div className="search-dropdown">
+        <input
+          type="text"
+          placeholder="Enter Swimmer Name"
+          value={searchQuery}
+          onChange={handleSearch}
+          className="search-input"
+        />
+        {showDrop && filteredSwimmers.length > 0 && (
+          <ul className="dropdown-list" ref={dropdownRef}>
+            {filteredSwimmers.map((swimmer) => (
+              <p
+                key={swimmer.id}
+                onClick={() => {
+                  set_swimmer_name(swimmer.swimmer_name);
+                  setSearchQuery(swimmer.swimmer_name);
+                  setShowDrop(false);
+                }}
+                className="dropdown-item"
+              >
+                {swimmer.swimmer_name}
+              </p>
+            ))}
+          </ul>
+        )}
+      </div>
+
+      {/* Magnitude Display */}
+      <div className="magnitude-display">
+        {status ? (
+          <>
+            <div className="force-container">
+            <b>Total Force: Recording<RecordingDots status={status} /></b>
+            </div>
+            <div className="force-container">
+            <b>Front Force: Recording<RecordingDots status={status} /></b>
+            </div>
+            <div className="force-container">
+            <b>Back Force: Recording<RecordingDots status={status} /></b>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="force-container"><b>Total Force: {total_force} N</b> </div>
+            <div className="force-container"><b>Front Force: {front_force} N</b></div>
+            <div className="force-container"><b>Back Force: {back_force} N</b></div>
+          </>
+        )}
+      </div>
+
+      {/* Buttons */}
+      <div className="button-container">
+        {status ? (
+          <button className="stop-record-button" onClick={handlePostStop}>
+            Stop Record
+          </button>
+        ) : showSubmitDelete ? (
+          <>
+            <button className="submit-data-button" onClick={handleSendStartData}>
+              Submit Data
+            </button>
+            <button className="delete-data-button" onClick={handleDiscardData}>
+              Delete Data
+            </button>
+          </>
+        ) : (
+          <button className="start-button" onClick={handlePostStart}>
+            Start Record
+          </button>
+        )}
+      </div>
+    </div>
+  );
+}

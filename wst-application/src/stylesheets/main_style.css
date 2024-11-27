@@ -81,7 +81,7 @@ button, .tab, a{
     justify-content: space-evenly;    /* Center the buttons horizontally */
     align-items: center;  
     background-color: white;
-    height: 120px;
+    height: 85px;
     width:100%;
     color: white;
     text-align: center;
@@ -132,4 +132,173 @@ button, .tab, a{
 
 .graph-button {
   right: 20px;
+}
+
+.button-container-top { 
+  display: flex;
+  justify-content: center;    /* Center buttons horizontally */
+  align-items: center;        /* Center buttons vertically within the container */
+  position: fixed;            /* Fix the position to the bottom */
+  bottom: 250px;               /* Distance from the bottom of the page */
+  width: 100%;                /* Make container span the full width */
+  justify-content: space-evenly;    /* Center the buttons horizontally */
+  gap: 20px
+}
+
+.button-container-bottom { 
+  display: flex;
+  justify-content: center;    /* Center buttons horizontally */
+  align-items: center;        /* Center buttons vertically within the container */
+  position: fixed;            /* Fix the position to the bottom */
+  bottom: 200px;               /* Distance from the bottom of the page */
+  width: 100%;                /* Make container span the full width */
+  justify-content: space-evenly;    /* Center the buttons horizontally */
+}
+
+.input-container {
+  width: 50%;      /* Define a width */
+  margin: 0 auto;  /* Center horizontally */
+} 
+
+.magnitude-display {
+  width: 50%;      /* Define a width */
+  margin: 0 auto;  /* Center horizontally */
+  /* align-items: center; 
+  place-items: center; 
+  top: 50%; 
+  transform: translateY(-10%); */
+  display: flex;
+  flex-direction: column; /* Align items vertically */
+  gap: 30px; 
+  padding: 30px 20px;
+
+}
+
+.force-container{
+  background-color: #00eeff5d;
+  padding: 1.4rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 100px;
+  margin: auto;
+  text-align: center;
+  width: auto;
+}
+
+.dropdown-list {
+  position: absolute; /* Position absolutely within the search-dropdown container */
+    top: 100%; /* Position it directly below the search input */
+    left: 0;
+    right: 0;
+    background: white;
+    border: 1px solid #ddd;
+    max-height: 150px;
+    overflow-y: auto;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Optional shadow for a popup effect */
+    z-index: 1000; /* Ensure it appears above other elements */
+}
+
+.search-dropdown {
+  position: relative; /*Set the container as the positioning context */
+  width: 500px; /* Adjust width as needed */
+
+}
+
+.search-input {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+.app-container {
+  display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers items horizontally */
+    justify-content: center; /* Centers items vertically */
+}
+
+
+.delete-data-button {
+  background-color: orange;
+  font-weight: bold;
+  color: white;
+  height: 80px;
+  width: 120px;
+  border-radius: 5px; 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.delete-data-button:hover {
+  background-color: #ff8c00;
+  transform: scale(1.1);
+}
+
+.delete-data-button:active {
+  transform: scale(0.95);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.submit-data-button {
+  background-color: blue;
+  font-weight: bold;
+  color: white;
+  height: 80px;
+  width: 120px;
+  border-radius: 5px; 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.submit-data-button:hover {
+  background-color: #4169e1;
+  transform: scale(1.1);
+}
+
+.submit-data-button:active {
+  transform: scale(0.95);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.start-button {
+  background-color: green;
+  font-weight: bold;
+  color: white;
+  height: 80px;
+  width: 120px;
+  border-radius: 5px; 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.start-button:hover {
+  background-color: #228b22;
+  transform: scale(1.1);
+}
+
+.start-button:active {
+  transform: scale(0.95);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+
+.stop-record-button {
+  background-color: red;
+  color: white; 
+  font-weight: bold;
+  height: 80px;
+  width: 120px;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.stop-record-button:hover {
+  background-color: red;
+  transform: scale(1.1);
+}
+
+.stop-record-button:active {
+  transform: scale(0.95);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }

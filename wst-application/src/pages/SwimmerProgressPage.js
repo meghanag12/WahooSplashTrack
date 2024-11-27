@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import "../App.css";
 
 export function SwimmerProgressPage() {
   const { name } = useParams(); // Get the swimmer's name from the URL
