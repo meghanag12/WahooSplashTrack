@@ -12,6 +12,7 @@ export function MagRecorder() {
   const [showBanner, setShowBanner] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [swimmers, setSwimmers] = useState([]);
+  const [errorMessage, setErrorMessage] = useState([""]);
   const [swimmerList, setSwimmerList] = useState([]);
   const [filteredSwimmers, setFilteredSwimmers] = useState([]);
   const [showDrop, setShowDrop] = useState(false);
@@ -93,9 +94,21 @@ export function MagRecorder() {
     setShowDrop(true);
   };
 
+  // const checkSwimmerName = () => {
+  //   if (swimmer_name === ""){
+  //     setBannerMessage('Enter Swimmer Name!')
+  //   }
+    
+  // }
+
   const handlePostStart = async () => {
+    if(swimmer_name === ""){
+      setErrorMessage("Swimmer name is required");
+      return; 
+    }
     set_status(true);
     setShowSubmitDelete(false);
+    setErrorMessage("");
     const payload = { status: 'true' };
     try {
       await axios.post(endpoint_start_stop, payload);
@@ -147,6 +160,7 @@ export function MagRecorder() {
     set_front_force('0.0');
     set_back_force('0.0');
     setSearchQuery('');
+    set_swimmer_name("");
     setShowSubmitDelete(false); // Reset button visibility
   };
 
@@ -169,7 +183,6 @@ export function MagRecorder() {
 
       {/* Banner */}
       {showBanner && <div className="banner">{bannerMessage}</div>}
-
       {/* Search Bar */}
       <div className="search-dropdown">
         <input
@@ -196,6 +209,7 @@ export function MagRecorder() {
             ))}
           </ul>
         )}
+        {<div className="error">{errorMessage}</div>}
       </div>
 
       {/* Magnitude Display */}
@@ -214,27 +228,29 @@ export function MagRecorder() {
           </>
         ) : (
           <>
-            <div className="force-container"><b>Total Force: {total_force} N</b> </div>
-            <div className="force-container"><b>Front Force: {front_force} N</b></div>
+            <div className="force-container"><b>Total Force: {back_force} N</b> </div>
+            <div className="force-container"><b>Front Force: 0.0 N</b></div>
             <div className="force-container"><b>Back Force: {back_force} N</b></div>
           </>
         )}
       </div>
 
       {/* Buttons */}
-      <div className="button-container">
+      <div className="magnitude-button-container">
         {status ? (
           <button className="stop-record-button" onClick={handlePostStop}>
             Stop Record
           </button>
         ) : showSubmitDelete ? (
           <>
+          <div className = "submit-delete-container">
             <button className="submit-data-button" onClick={handleSendStartData}>
               Submit Data
             </button>
             <button className="delete-data-button" onClick={handleDiscardData}>
               Delete Data
             </button>
+            </div>
           </>
         ) : (
           <button className="start-button" onClick={handlePostStart}>

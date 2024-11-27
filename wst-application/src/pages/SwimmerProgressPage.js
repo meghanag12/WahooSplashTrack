@@ -50,8 +50,8 @@ export function SwimmerProgressPage() {
                 {starts.map((start, index) => (
                   <tr key={index}>
                     <td>{formatDate(start.date)}</td>
-                    <td>{start.total_force} N</td>
-                    <td>{start.front_force} N</td>
+                    <td>{start.back_force} N</td>
+                    <td>0 N</td>
                     <td>{start.back_force} N</td>
                   </tr>
                 ))}

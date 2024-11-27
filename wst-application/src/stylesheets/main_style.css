@@ -134,26 +134,46 @@ button, .tab, a{
   right: 20px;
 }
 
-.button-container-top { 
+/* .button-container-top { 
   display: flex;
+  flex-direction: row;
   justify-content: center;    /* Center buttons horizontally */
-  align-items: center;        /* Center buttons vertically within the container */
-  position: fixed;            /* Fix the position to the bottom */
-  bottom: 250px;               /* Distance from the bottom of the page */
-  width: 100%;                /* Make container span the full width */
-  justify-content: space-evenly;    /* Center the buttons horizontally */
-  gap: 20px
+  /* align-items: center;        /* Center buttons vertically within the container */
+  /* position: fixed;            Fix the position to the bottom */
+  /* bottom: 250px;               Distance from the bottom of the page */
+  /* width: 100%;                Make container span the full width */
+  /* justify-content: space-evenly;    Center the buttons horizontally */
+  /* gap: 20px */
+/* } */ 
+
+/* .button-container-bottom { 
+  display: flex;
+  flex-direction: row; */
+  /* justify-content: center;    /* Center buttons horizontally */
+  /* align-items: center;        Center buttons vertically within the container */ */
+  /* position: fixed;            Fix the position to the bottom */
+  /* bottom: 200px;               Distance from the bottom of the page */
+  /* width: 100%;                Make container span the full width */
+  /* justify-content: space-evenly;    Center the buttons horizontally */
+/* } */ 
+
+.magnitude-button-container {
+  display: flex; /* Makes the container a flexbox */
+  flex-direction: row; /* Aligns items in a row (horizontal) */
+  gap: 10px; /* Adds space between the buttons */
+  justify-content: center; /* Aligns buttons horizontally in the center */
+  align-items: center; /* Aligns buttons vertically in the middle */
 }
 
-.button-container-bottom { 
+.submit-delete-container {
   display: flex;
-  justify-content: center;    /* Center buttons horizontally */
-  align-items: center;        /* Center buttons vertically within the container */
-  position: fixed;            /* Fix the position to the bottom */
-  bottom: 200px;               /* Distance from the bottom of the page */
-  width: 100%;                /* Make container span the full width */
-  justify-content: space-evenly;    /* Center the buttons horizontally */
+  flex-direction: row;
+  justify-content: center; /* Center buttons horizontally */
+  align-items: center; /* Align buttons vertically */
+  gap: 20px; /* Adds space between buttons */
 }
+
+
 
 .input-container {
   width: 50%;      /* Define a width */
@@ -168,16 +188,16 @@ button, .tab, a{
   top: 50%; 
   transform: translateY(-10%); */
   display: flex;
-  flex-direction: column; /* Align items vertically */
+  flex-direction: row; /* Align items vertically */
   gap: 30px; 
   padding: 30px 20px;
 
 }
 
 .force-container{
-  background-color: #00eeff5d;
+  /* background-color: #00eeff5d; */
   padding: 1.4rem;
-  border-radius: 12px;
+  /* border-radius: 12px; */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   max-width: 100px;
   margin: auto;
@@ -230,6 +250,7 @@ button, .tab, a{
   width: 120px;
   border-radius: 5px; 
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  flex-direction: row; 
 }
 
 .delete-data-button:hover {
@@ -250,6 +271,7 @@ button, .tab, a{
   width: 120px;
   border-radius: 5px; 
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  flex-direction: row;
 }
 
 .submit-data-button:hover {
@@ -302,3 +324,5 @@ button, .tab, a{
   transform: scale(0.95);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
+
+

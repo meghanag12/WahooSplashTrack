@@ -384,6 +384,16 @@ input {
   border-radius: 8px; /* rounded corners */
 }
 
+.update-button-container {
+  display: flex;                /* Enables flexbox */
+  justify-content: center;      /* Centers content horizontally */
+  align-items: center;          /* Centers content vertically */
+  position: fixed;              /* Fixes the container at the bottom */
+  bottom: 30%;                /* Adjusts the vertical position from the bottom */
+  margin-left: -42.5%;
+  width: 100%;                  /* Ensures the container spans the full width */
+}
+
 
 input::placeholder {
   color: #9ca3af;
@@ -440,3 +450,4 @@ button[type="submit"] {
   cursor: pointer;
   transition: background-color 0.4s ease; 
 }
+

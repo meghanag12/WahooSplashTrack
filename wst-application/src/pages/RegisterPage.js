@@ -1,5 +1,10 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+// import { useNavigate } from 'react-router-dom';
+import '../stylesheets/main_style.css';
+import { Link } from 'react-router-dom';
+
+
 
 const initialValues = {
     swimmer_name: "",
@@ -12,6 +17,7 @@ export function RegisterPage() {
     const [showBanner, setShowBanner] = useState(false);
     const [bannerMessage, setBannerMessage] = useState("");
     const [bannerType, setBannerType] = useState(""); 
+    // const navigate = useNavigate();
 
     const endpoint_swimmer = 'http://3.81.17.35:8000/api/swimmer/';
 
@@ -138,6 +144,14 @@ export function RegisterPage() {
     </form>
 </div>
 
-        </>
+    <div class="update-button-container">
+        <button class="update-swimmer-button">
+        <Link to="/update-swimmer" className="update-swimmer-button">
+            Update Swimmer Information
+        </Link>
+        </button>
+    </div>
+
+     </>
     );
 }
