@@ -16,6 +16,24 @@ from rest_framework import status
 class SwimmerViewSet(ModelViewSet):
     queryset = Swimmer.objects.all()
     serializer_class = SwimmerSerializer
+    
+    def put(self, request, swimmer_name):
+        try:
+            swimmer = Swimmer.objects.get(swimmer_name=swimmer_name)
+            new_swimmer_name = request.data.get("swimmer_name")
+            if new_swimmer_name and new_swimmer_name != swimmer_name:
+                # Check for duplicates
+                if Swimmer.objects.filter(swimmer_name=new_swimmer_name).exists():
+                    return Response({"error": "Swimmer name already exists"}, status=status.HTTP_400_BAD_REQUEST)
+                swimmer.swimmer_name = new_swimmer_name
+
+            serializer = SwimmerSerializer(swimmer, data=request.data, partial=True)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data, status=status.HTTP_200_OK)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        except Swimmer.DoesNotExist:
+            return Response({"error": "Swimmer not found"}, status=status.HTTP_404_NOT_FOUND)
 
     def update(self, request, swimmer_id):
         try:
