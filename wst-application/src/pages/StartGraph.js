@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, TimeScale } from 'chart.js';
@@ -10,6 +10,7 @@ export function StartGraph() {
   const { name } = useParams();
   const [starts, setStarts] = useState([]);
   const [chartData, setChartData] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchStartData = async () => {
@@ -55,6 +56,9 @@ export function StartGraph() {
   return (
     <div className="start-graph-container">
       <h1>Start Graph</h1>
+      <div className="button-group-start">
+        <button className = "start-back-button" onClick={() => navigate(-1)}>Back</button>
+      </div>
       {chartData ? (
         <div className="chart-container">
           <Line

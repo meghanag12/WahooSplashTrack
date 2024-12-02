@@ -37,7 +37,10 @@
   }
 }
 
-
+html, body {
+  height: 100%; /* Ensure the parent (viewport) height is defined */
+  margin: 0;
+}
 /* Progress Tracker Styles */
 .progress-tracker {
   padding: 20px;
@@ -163,6 +166,32 @@ Styling of Swimmer Progress Page
   padding: 20px;
 }
 
+.button-group {
+  display: flex; /* Makes the container a flexbox */
+  flex-direction: row; /* Aligns items in a row (horizontal) */
+  gap: 10px; /* Adds space between the buttons */
+  justify-content: flex-end; /* Aligns buttons horizontally in the center */
+  align-items: center; /* Aligns buttons vertically in the middle */
+}
+
+.button-group button {
+  margin: 0; /* Removes button margin */
+  padding: 10px 15px; /* Adjust padding to your preference */
+  border: none; /* Optional: remove button border spacing */
+}
+
+.button-group-start {
+  display: flex; /* Makes the container a flexbox */
+  justify-content: flex-end; /* Aligns the button to the right */
+  align-items: center; /* Keeps the button vertically aligned */
+  height: 100%; /* Ensures the container takes up full height if needed */
+  width: 100%; /* Ensures the container spans the full width */
+}
+
+.start-back-button {
+  margin-right: 5%;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
@@ -193,11 +222,14 @@ tbody tr:hover {
 }
 
 .table-container {
-  max-height: 400px; /* Set the maximum height for the table container */
+  max-height: 35vh; /* Set the maximum height for the table container */
   overflow-y: auto; /* Enable vertical scrolling if the content overflows */
   margin-top: 20px;
   border: 1px solid #dcdcdc; /* Optional: add a border around the container */
+  overflow-y: auto; /* Enable vertical scrolling */
+  z-index: 1;
 }
+
 
 table {
   width: 100%;

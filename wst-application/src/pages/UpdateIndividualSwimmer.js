@@ -42,10 +42,7 @@ export function UpdateIndividualSwimmer() {
         e.preventDefault(); // Prevent default form submission
         const { swimmer_name, year, active } = values;
         const body = { swimmer_name, year, active };
-        console.log(values)
         try {
-            console.log(swimmerName)
-            console.log(endpoint_swimmer)
             const response = await axios.put(endpoint_swimmer, body); // Use PUT for updating
             console.log("Update successful:", response.data);
         } catch (error) {
