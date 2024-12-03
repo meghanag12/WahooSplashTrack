@@ -8,6 +8,7 @@ import { StartGraph } from './pages/StartGraph';  // Import the new StartGraph p
 import { UpdateSwimmer } from './pages/UpdateSwimmer';
 import { UpdateIndividualSwimmer} from './pages/UpdateIndividualSwimmer';
 import { Layout } from './Layout';
+import { LoginPage } from './pages/LoginPage';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<RegisterPage />} />
+          <Route path="/login" element={<LoginPage />} /> {/* Add LoginPage route */}
           <Route path = "/update-swimmer" element={<UpdateSwimmer />} />
           <Route path = "/update/:name" element={<UpdateIndividualSwimmer />} />
           <Route path="/magnituderecorder" element={<MagRecorder />} />
