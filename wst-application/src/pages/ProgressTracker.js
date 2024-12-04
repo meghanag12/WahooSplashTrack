@@ -7,6 +7,8 @@ export function ProgressTracker() {
   const [swimmers, setSwimmers] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
+  const [bannerMessage, setBannerMessage] = useState('');
+  const [showBanner, setShowBanner] = useState(false);
   useEffect(() => {
     const fetchSwimmers = async () => {
       try {
@@ -27,7 +29,7 @@ export function ProgressTracker() {
   return (
     <div className="progress-tracker">
       <h1>Progress Tracker</h1>
-      
+      {showBanner && <div className="banner">{bannerMessage}</div>}
       {/* Search bar input */}
       <input
         type="text"

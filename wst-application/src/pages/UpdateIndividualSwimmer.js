@@ -9,13 +9,23 @@ export function UpdateIndividualSwimmer() {
     const swimmerName = decodeURIComponent(window.location.hash.split('/update/')[1]);
     console.log(swimmerName)
     const endpoint_swimmer = `http://3.81.17.35:8000/api/swimmer/${swimmerName}/`; 
-
+    const [bannerMessage, setBannerMessage] = useState('');
+    const [showBanner, setShowBanner] = useState(false);
     const [values, setValues] = useState({
         swimmer_name: "",
         year: "",
         active: "yes"
     });
-
+    const handleSubmit = async () => {
+        setBannerMessage('Changes have been submitted!');
+        setShowBanner(true);
+        setTimeout(() => setShowBanner(false), 3000);
+        resetValues();
+      };
+    
+      const resetValues = () => {
+    
+      }
     useEffect(() => {
         const fetchSwimmerData = async () => {
             try {
@@ -53,6 +63,7 @@ export function UpdateIndividualSwimmer() {
     return (
         <>
             <div className="form_container">
+            {showBanner && <div className="banner">{bannerMessage}</div>}
                 <form onSubmit={updateSwimmerInfo}>
                     <div className="form-group">
                         <label>Swimmer's Name:</label>
@@ -102,7 +113,7 @@ export function UpdateIndividualSwimmer() {
                         /> No
                     </div>
 
-                    <button type="submit">Submit</button>
+                    <button type="submit" onClick={handleSubmit}>Submit</button>
                 </form>
             </div>
         </>
