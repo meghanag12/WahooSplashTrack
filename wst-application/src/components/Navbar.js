@@ -5,7 +5,7 @@ export function Navbar() {
     return (
     <>
         <div className = "navbar">
-            <Link to= "/">
+            <Link to= "/reg">
                 <div className = "nav_button">
                     <img src= {require("../register_icon.png")} alt="Icon" style={{ width: "120px", height: "100px", verticalAlign: "middle" }} />
                 </div>

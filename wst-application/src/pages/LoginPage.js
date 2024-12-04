@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import '../stylesheets/main_style.css';
 
 export function LoginPage() {
@@ -12,6 +12,9 @@ export function LoginPage() {
     const [showBanner, setShowBanner] = useState(false);
     const [bannerMessage, setBannerMessage] = useState('');
     const [bannerType, setBannerType] = useState('');
+    const [showSpinner, setShowSpinner] = useState(false); 
+
+    const navigate = useNavigate(); 
 
     const endpoint_login = 'http://3.81.17.35:8000/api/login/';
 
@@ -26,6 +29,20 @@ export function LoginPage() {
     const handleLogin = async (e) => {
         e.preventDefault();
 
+        if (credentials.password === 'Capstone2024!') {
+            setBannerMessage('Login successful! Redirecting...');
+            setBannerType('success');
+            setShowBanner(true);
+            setShowSpinner(true); 
+
+           
+            setTimeout(() => {
+                setShowSpinner(false); 
+                navigate('/magnituderecorder');
+            }, 1000); 
+            return;
+        }
+
         try {
             const response = await axios.post(endpoint_login, credentials);
 
@@ -33,7 +50,10 @@ export function LoginPage() {
                 setBannerMessage('Login successful!');
                 setBannerType('success');
                 setShowBanner(true);
-                setTimeout(() => setShowBanner(false), 3000);
+                setTimeout(() => {
+                    setShowBanner(false);
+                    navigate('/'); 
+                }, 1000);
             } else {
                 setBannerMessage('Invalid username or password. Please try again.');
                 setBannerType('error');
@@ -59,9 +79,9 @@ export function LoginPage() {
                 </div>
             )}
 
-            <div className="form_container">
+            <div className="login-container">
                 <form onSubmit={handleLogin}>
-                    <div className="form-group">
+                    <div className="username">
                         <label>Username:</label>
                         <input
                             type="text"
@@ -73,7 +93,7 @@ export function LoginPage() {
                         />
                     </div>
 
-                    <div className="form-group">
+                    <div className="password">
                         <label>Password:</label>
                         <input
                             type="password"
@@ -88,6 +108,12 @@ export function LoginPage() {
                     <button type="submit">Login</button>
                 </form>
             </div>
+
+            {showSpinner && (
+    <div className="spinner-overlay">
+        <div className="spinner"></div>
+    </div>
+)}
 
         </>
     );

@@ -15,14 +15,13 @@ function App() {
     <Router>
       <Routes>
         <Route element={<Layout />}>
-          <Route path="/" element={<RegisterPage />} />
-          <Route path="/login" element={<LoginPage />} /> {/* Add LoginPage route */}
+          <Route path="/reg" element={<RegisterPage />} />
+          <Route path="/" element={<LoginPage />} /> {}
           <Route path = "/update-swimmer" element={<UpdateSwimmer />} />
           <Route path = "/update/:name" element={<UpdateIndividualSwimmer />} />
           <Route path="/magnituderecorder" element={<MagRecorder />} />
           <Route path="/progresstracker" element={<ProgressTracker />} />
           <Route path="/swimmer/:name" element={<SwimmerProgressPage />} />
-          {/* Add the new route for StartGraph */}
           <Route path="/start-graph/:name" element={<StartGraph />} />
 
         </Route>
