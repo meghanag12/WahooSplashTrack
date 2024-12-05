@@ -30,7 +30,9 @@ export function MagRecorder() {
   const endpoint_start = 'http://3.81.17.35:8000/api/start/';
 
   const fetchMagnitudeData = async () => {
+    const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
     try {
+      await delay(1000);
       const response = await axios.get(endpoint_pullstarts);
       return response.data;
     } catch (error) {
@@ -228,9 +230,9 @@ export function MagRecorder() {
           </>
         ) : (
           <>
-            <div className="force-container"><b>Total Force: {back_force} N</b> </div>
-            <div className="force-container"><b>Front Force: 0.0 N</b></div>
-            <div className="force-container"><b>Back Force: {back_force} N</b></div>
+            <div className="force-container"><b>Total Force: {total_force} lbs</b> </div>
+            <div className="force-container"><b>Front Force: {front_force} lbs</b></div>
+            <div className="force-container"><b>Back Force: {back_force} lbs</b></div>
           </>
         )}
       </div>
