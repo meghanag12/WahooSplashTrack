@@ -10,7 +10,8 @@ export function UpdateSwimmer() {
   const [alphabetical_order, set_alphabetical_order] = useState([]);
   const [active_swimmers, set_active_swimmers] = useState([]);
   const navigate = useNavigate();
-
+  const [bannerMessage, setBannerMessage] = useState('');
+  const [showBanner, setShowBanner] = useState(false);
   useEffect(() => {
     const fetchSwimmers = async () => {
       try {
@@ -30,7 +31,16 @@ export function UpdateSwimmer() {
 
     fetchSwimmers();
   }, [swimmers]);
+  const handleSubmit = async () => {
+    setBannerMessage('Changes have been submitted!');
+    setShowBanner(true);
+    setTimeout(() => setShowBanner(false), 3000);
+    resetValues();
+  };
 
+  const resetValues = () => {
+
+  }
   const filteredSwimmers = swimmers.filter(swimmer =>
     swimmer.swimmer_name.toLowerCase().includes(searchTerm.toLowerCase())
   );

@@ -8,19 +8,20 @@ import { StartGraph } from './pages/StartGraph';  // Import the new StartGraph p
 import { UpdateSwimmer } from './pages/UpdateSwimmer';
 import { UpdateIndividualSwimmer} from './pages/UpdateIndividualSwimmer';
 import { Layout } from './Layout';
+import { LoginPage } from './pages/LoginPage';
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route element={<Layout />}>
-          <Route path="/" element={<RegisterPage />} />
+          <Route path="/reg" element={<RegisterPage />} />
+          <Route path="/" element={<LoginPage />} /> {}
           <Route path = "/update-swimmer" element={<UpdateSwimmer />} />
           <Route path = "/update/:name" element={<UpdateIndividualSwimmer />} />
           <Route path="/magnituderecorder" element={<MagRecorder />} />
           <Route path="/progresstracker" element={<ProgressTracker />} />
           <Route path="/swimmer/:name" element={<SwimmerProgressPage />} />
-          {/* Add the new route for StartGraph */}
           <Route path="/start-graph/:name" element={<StartGraph />} />
 
         </Route>
