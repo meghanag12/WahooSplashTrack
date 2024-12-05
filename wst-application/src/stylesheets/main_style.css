@@ -357,3 +357,36 @@ button, .tab, a{
       transform: rotate(360deg);
   }
 }
+.update-button-container {
+  display: flex;
+  justify-content: space-around;
+  margin-left: auto;
+  margin-right:auto;
+}
+
+.update-swimmer-button {
+  display: inline-block;
+  background-color: #007bff; /* Primary button color */
+  color: #fff; /* White text */
+  text-decoration: none; /* Remove underline */
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 5px; /* Rounded corners */
+  transition: background-color 0.3s, transform 0.2s; /* Smooth hover effect */
+}
+
+.update-swimmer-button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+  transform: translateY(-2px); /* Slightly lifts the button */
+  text-decoration: underline; /* Optional: Add underline on hover */
+}
+
+.update-swimmer-button:active {
+  transform: translateY(0); /* Reset on click */
+  background-color: #003f7f; /* Even darker blue on click */
+}
+.Register_Page_Total {
+  display: grid;
+  justify-content: center;
+}
