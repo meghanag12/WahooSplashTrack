@@ -19,7 +19,7 @@ export function Navbar() {
 
             <Link to= "/progresstracker">
                 <div className = "nav_button">
-                    <img src= {require("../progress_icon.jpg")} alt="Icon" style={{ width: "120px", height: "100px", verticalAlign: "middle" }} />
+                    <img src= {require("../progress_icon.PNG")} alt="Icon" style={{ width: "120px", height: "100px", verticalAlign: "middle" }} />
                 </div>
             </Link>
             
