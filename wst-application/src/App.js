@@ -9,14 +9,15 @@ import { UpdateSwimmer } from './pages/UpdateSwimmer';
 import { UpdateIndividualSwimmer} from './pages/UpdateIndividualSwimmer';
 import { Layout } from './Layout';
 import { LoginPage } from './pages/LoginPage';
+import {Navbar} from './components/Navbar'
 
 function App() {
   return (
     <Router>
       <Routes>
+        <Route path="/" element={<LoginPage />} /> {}
         <Route element={<Layout />}>
           <Route path="/reg" element={<RegisterPage />} />
-          <Route path="/" element={<LoginPage />} /> {}
           <Route path = "/update-swimmer" element={<UpdateSwimmer />} />
           <Route path = "/update/:name" element={<UpdateIndividualSwimmer />} />
           <Route path="/magnituderecorder" element={<MagRecorder />} />

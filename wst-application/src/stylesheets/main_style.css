@@ -25,6 +25,7 @@ body {
 
   .form_container {
     display:flex; 
+    flex-direction: column;
     justify-content: center; 
     align-items: center; 
     min-height: 60vh;  
@@ -71,6 +72,23 @@ button, .tab, a{
     text-decoration: none; 
     color: inherit; 
 
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .form-container {
+    padding: 10px;
+  }
+
+  .update-button-container {
+    margin-bottom: 50%; /* Adds space above the button container */
+    text-align: center; /* Centers the button horizontally */
+    position: relative; 
+  }
+
+  /* button {
+    width: 100%; /* Make the button full width */
+  /* } */ 
 }
 
 .navbar {
@@ -148,7 +166,7 @@ button, .tab, a{
 .swimmer-progress {
   position: relative;
   padding-bottom: 50px; /* Ensure space at the bottom for buttons */
-}
+ }
 
 .back-button,
 .graph-button {
@@ -166,70 +184,85 @@ button, .tab, a{
   right: 20px;
 }
 
-/* .button-container-top { 
+ .button-container-top { 
   display: flex;
   flex-direction: row;
   justify-content: center;    /* Center buttons horizontally */
-  /* align-items: center;        /* Center buttons vertically within the container */
-  /* position: fixed;            Fix the position to the bottom */
-  /* bottom: 250px;               Distance from the bottom of the page */
-  /* width: 100%;                Make container span the full width */
-  /* justify-content: space-evenly;    Center the buttons horizontally */
-  /* gap: 20px */
-/* } */ 
+  align-items: center;        /* Center buttons vertically within the container */
+  position: fixed;            /*Fix the position to the bottom */
+  bottom: 250px;               /*Distance from the bottom of the page */
+  width: 100%;                /*Make container span the full width */
+  justify-content: space-evenly;    /*Center the buttons horizontally */
+  gap: 20px
+} 
 
-/* .button-container-bottom { 
+.button-container-bottom { 
   display: flex;
-  flex-direction: row; */
-  /* justify-content: center;    /* Center buttons horizontally */
-  /* align-items: center;        Center buttons vertically within the container */ */
-  /* position: fixed;            Fix the position to the bottom */
-  /* bottom: 200px;               Distance from the bottom of the page */
-  /* width: 100%;                Make container span the full width */
-  /* justify-content: space-evenly;    Center the buttons horizontally */
-/* } */ 
+  flex-direction: row; 
+  justify-content: center;    /* Center buttons horizontally */
+  align-items: center;        /*Center buttons vertically within the container */ 
+  position: fixed;            /*Fix the position to the bottom */
+  bottom: 200px;               /*Distance from the bottom of the page */
+  width: 100%;                /*Make container span the full width */
+  justify-content: space-evenly;    /*Center the buttons horizontally */
+ } 
 
-.magnitude-button-container {
-  display: flex; /* Makes the container a flexbox */
-  flex-direction: row; /* Aligns items in a row (horizontal) */
-  gap: 10px; /* Adds space between the buttons */
-  justify-content: center; /* Aligns buttons horizontally in the center */
-  align-items: center; /* Aligns buttons vertically in the middle */
+ .magnitude-button-container {
+  display: flex; 
+  flex-direction: row; 
+  gap: 10px; 
+  justify-content: center; 
+  align-items: center;
 }
 
 .submit-delete-container {
   display: flex;
   flex-direction: row;
-  justify-content: center; /* Center buttons horizontally */
-  align-items: center; /* Align buttons vertically */
-  gap: 20px; /* Adds space between buttons */
+  justify-content: center; 
+  align-items: center; 
+  gap: 20px; 
 }
 
 
 
 .input-container {
-  width: 50%;      /* Define a width */
-  margin: 0 auto;  /* Center horizontally */
+  width: 50%;      
+  margin: 0 auto;  
 } 
 
 .magnitude-display {
-  width: 50%;      /* Define a width */
-  margin: 0 auto;  /* Center horizontally */
-  /* align-items: center; 
+  width: 50%;      
+  margin: 0 auto; 
+  align-items: center; 
   place-items: center; 
   top: 50%; 
-  transform: translateY(-10%); */
+  transform: translateY(-10%); 
   display: flex;
-  flex-direction: row; /* Align items vertically */
+  flex-direction: row;
   gap: 30px; 
   padding: 30px 20px;
 
+} 
+
+@media (max-width: 800px) {
+  .magnitude-display{
+    display: flex;
+  justify-content: center; /* Centers items horizontally */
+  align-items: center; /* Centers items vertically if needed */
+  gap: 20px; /* Adds spacing between the cards */
+  margin-top: 20px; /* Optional, adds space from the input box above */
+  }
+
+  /* button {
+    width: 100%; /* Make the button full width */
+  /* } */ 
 }
 
+
+
 .force-container{
-  /* background-color: #00eeff5d; */
+  background-color: #bbc3c35d; 
   padding: 1.4rem;
-  /* border-radius: 12px; */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   max-width: 100px;
   margin: auto;
@@ -238,8 +271,8 @@ button, .tab, a{
 }
 
 .dropdown-list {
-  position: absolute; /* Position absolutely within the search-dropdown container */
-    top: 100%; /* Position it directly below the search input */
+  position: absolute; 
+    top: 100%; 
     left: 0;
     right: 0;
     background: white;
@@ -249,13 +282,13 @@ button, .tab, a{
     padding: 0;
     margin: 0;
     list-style: none;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Optional shadow for a popup effect */
-    z-index: 1000; /* Ensure it appears above other elements */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); 
+    z-index: 1000; 
 }
 
 .search-dropdown {
-  position: relative; /*Set the container as the positioning context */
-  width: 500px; /* Adjust width as needed */
+  position: relative; 
+  width: 500px; 
 
 }
 
@@ -269,8 +302,8 @@ button, .tab, a{
 .app-container {
   display: flex;
     flex-direction: column;
-    align-items: center; /* Centers items horizontally */
-    justify-content: center; /* Centers items vertically */
+    align-items: center; 
+    justify-content: center; 
 }
 
 
@@ -364,7 +397,7 @@ button, .tab, a{
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  background: rgba(0, 0, 0, 0.5); 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -397,27 +430,28 @@ button, .tab, a{
 
 .update-swimmer-button {
   display: inline-block;
-  background-color: #007bff; /* Primary button color */
-  color: #fff; /* White text */
-  text-decoration: none; /* Remove underline */
+  background-color: #007bff; 
+  color: #fff; 
+  text-decoration: none; 
   font-size: 16px;
   font-weight: bold;
   padding: 10px 20px;
-  border-radius: 5px; /* Rounded corners */
-  transition: background-color 0.3s, transform 0.2s; /* Smooth hover effect */
+  border-radius: 5px; 
+  transition: background-color 0.3s, transform 0.2s; 
 }
 
 .update-swimmer-button:hover {
-  background-color: #0056b3; /* Darker blue on hover */
-  transform: translateY(-2px); /* Slightly lifts the button */
-  text-decoration: underline; /* Optional: Add underline on hover */
+  background-color: #0056b3; 
+  transform: translateY(-2px); 
+  text-decoration: underline; 
 }
 
 .update-swimmer-button:active {
-  transform: translateY(0); /* Reset on click */
-  background-color: #003f7f; /* Even darker blue on click */
+  transform: translateY(0); 
+  background-color: #003f7f; 
 }
 .Register_Page_Total {
   display: grid;
   justify-content: center;
 }
+
