@@ -224,7 +224,7 @@ tbody tr:hover {
 }
 
 .table-container {
-  max-height: 35vh; /* Set the maximum height for the table container */
+  max-height: 33vh; /* Set the maximum height for the table container */
   overflow-y: auto; /* Enable vertical scrolling if the content overflows */
   margin-top: 20px;
   border: 1px solid #dcdcdc; /* Optional: add a border around the container */

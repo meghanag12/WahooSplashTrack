@@ -77,16 +77,16 @@ export function SwimmerProgressPage() {
               <thead>
                 <tr>
                   <th>Date</th>
-                  <th>Total Force (N)</th>
-                  <th>Front Force (N)</th>
-                  <th>Back Force (N)</th>
+                  <th>Total Force (lbs)</th>
+                  <th>Front Force (lbs)</th>
+                  <th>Back Force (lbs)</th>
                 </tr>
               </thead>
               <tbody>
                 <td>{formatDate(best_start.date)}</td>
-                <td>{best_start.back_force} N</td>
-                <td>0 N</td>
-                <td>{best_start.back_force} N</td>
+                <td>{Number(best_start.total_force).toFixed(2)} lbs</td>
+                <td>{Number(best_start.front_force).toFixed(2)} lbs</td>
+                <td>{Number(best_start.back_force).toFixed(2)} lbs</td>
               </tbody>
         </table>
         <h2>Starts</h2>
@@ -97,19 +97,22 @@ export function SwimmerProgressPage() {
               <thead>
                 <tr>
                   <th>Date</th>
-                  <th>Total Force (N)</th>
-                  <th>Front Force (N)</th>
-                  <th>Back Force (N)</th>
+                  <th>Total Force (lbs)</th>
+                  <th>Front Force (lbs)</th>
+                  <th>Back Force (lbs)</th>
                 </tr>
               </thead>
 
               <tbody>
-                {starts.map((start, index) => (
+                {starts
+                .slice()
+                .sort((a,b) => new Date(b.date)- new Date(a.date))
+                .map((start, index) => (
                   <tr key={index}>
                     <td>{formatDate(start.date)}</td>
-                    <td>{start.back_force} N</td>
-                    <td>0 N</td>
-                    <td>{start.back_force} N</td>
+                    <td>{Number(start.total_force).toFixed(2)} lbs</td>
+                    <td>{Number(start.front_force).toFixed(2)} lbs</td>
+                    <td>{Number(start.back_force).toFixed(2)} lbs</td>
                   </tr>
                 ))}
               </tbody>

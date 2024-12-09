@@ -16,6 +16,9 @@ export function MagRecorder() {
   const [swimmerList, setSwimmerList] = useState([]);
   const [filteredSwimmers, setFilteredSwimmers] = useState([]);
   const [showDrop, setShowDrop] = useState(false);
+  const [waiting, setWaiting] = useState(true);
+  const [showSpinner, setShowSpinner] = useState(false);
+  
 
   
   const [swimmer_name, set_swimmer_name] = useState('');
@@ -32,8 +35,10 @@ export function MagRecorder() {
   const fetchMagnitudeData = async () => {
     const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
     try {
+      setShowSpinner(true)
       await delay(1000);
       const response = await axios.get(endpoint_pullstarts);
+      setShowSpinner(false)
       return response.data;
     } catch (error) {
       console.error('Error fetching magnitude data:', error);
@@ -164,6 +169,8 @@ export function MagRecorder() {
     setSearchQuery('');
     set_swimmer_name("");
     setShowSubmitDelete(false); // Reset button visibility
+    setWaiting(true);
+    setShowSpinner(false);
   };
 
   const RecordingDots = ({ status }) => {
@@ -178,6 +185,10 @@ export function MagRecorder() {
     }, [status]);
     return <>{dots}</>;
   };
+
+  const Spinner = () => (
+    <div className="spinner"></div>
+  );
 
   return (
     <div className="app-container">
@@ -216,26 +227,39 @@ export function MagRecorder() {
 
       {/* Magnitude Display */}
       <div className="magnitude-display">
-        {status ? (
-          <>
-            <div className="force-container">
-            <b>Total Force: Recording<RecordingDots status={status} /></b>
-            </div>
-            <div className="force-container">
-            <b>Front Force: Recording<RecordingDots status={status} /></b>
-            </div>
-            <div className="force-container">
-            <b>Back Force: Recording<RecordingDots status={status} /></b>
-            </div>
-          </>
-        ) : (
-          <>
-            <div className="force-container"><b>Total Force: {total_force} lbs</b> </div>
-            <div className="force-container"><b>Front Force: {front_force} lbs</b></div>
-            <div className="force-container"><b>Back Force: {back_force} lbs</b></div>
-          </>
-        )}
+  {status ? (
+    <>
+      <div className="force-container">
+        <b>Total Force: Recording<RecordingDots status={status} /></b>
       </div>
+      <div className="force-container">
+        <b>Front Force: Recording<RecordingDots status={status} /></b>
+      </div>
+      <div className="force-container">
+        <b>Back Force: Recording<RecordingDots status={status} /></b>
+      </div>
+    </>
+  ) : showSpinner ? (
+    <>
+      <div className="force-container">
+        <b>Total Force:</b> <Spinner />
+      </div>
+      <div className="force-container">
+        <b>Front Force:</b> <Spinner />
+      </div>
+      <div className="force-container">
+        <b>Back Force:</b> <Spinner />
+      </div>
+    </>
+  ) : (
+    <>
+      <div className="force-container"><b>Total Force: {total_force} lbs</b></div>
+      <div className="force-container"><b>Front Force: {front_force} lbs</b></div>
+      <div className="force-container"><b>Back Force: {back_force} lbs</b></div>
+    </>
+  )}
+</div>
+
 
       {/* Buttons */}
       <div className="magnitude-button-container">
