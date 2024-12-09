@@ -115,6 +115,15 @@ export function LoginPage() {
     </div>
 )}
 
+    <div className = "login-image-container">
+        <img
+            src={require("../WahooSplashTrackLogo.jpg")}
+            alt="Icon"
+            className="login-image"/>
+        
+    </div>
+    
+
         </>
     );
 }

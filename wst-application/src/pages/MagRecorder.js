@@ -36,7 +36,7 @@ export function MagRecorder() {
     const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
     try {
       setShowSpinner(true)
-      await delay(1000);
+      await delay(5000);
       const response = await axios.get(endpoint_pullstarts);
       setShowSpinner(false)
       return response.data;
