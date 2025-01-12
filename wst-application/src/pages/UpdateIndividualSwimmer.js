@@ -8,7 +8,7 @@ export function UpdateIndividualSwimmer() {
     // const { swimmerName } = useParams(); // Destructure swimmerName from params
     const swimmerName = decodeURIComponent(window.location.hash.split('/update/')[1]);
     console.log(swimmerName)
-    const endpoint_swimmer = `http://3.81.17.35:8000/api/swimmer/${swimmerName}/`; 
+    const endpoint_swimmer = `http://34.207.224.1:8000/api/swimmer/${swimmerName}/`; 
 
     const [values, setValues] = useState({
         swimmer_name: "",

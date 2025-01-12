@@ -12,7 +12,7 @@ export function ProgressTracker() {
   useEffect(() => {
     const fetchSwimmers = async () => {
       try {
-        const response = await axios.get('http://3.81.17.35:8000/api/swimmer/');
+        const response = await axios.get('http://34.207.224.1:8000/api/swimmer/');
         setSwimmers(response.data);
       } catch (error) {
         console.error("Error fetching swimmers:", error);

@@ -14,7 +14,7 @@ export function SwimmerProgressPage() {
   useEffect(() => {
     const fetchStartData = async () => {
       try {
-        const startsResponse = await axios.get(`http://3.81.17.35:8000/api/start/name/${name}/`);
+        const startsResponse = await axios.get(`http://34.207.224.1:8000/api/start/name/${name}/`);
         setStarts(startsResponse.data);
       } catch (error) {
         console.error("Error fetching starts:", error);

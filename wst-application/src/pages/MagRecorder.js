@@ -27,10 +27,10 @@ export function MagRecorder() {
  
 
   const dropdownRef = useRef(null);
-  const endpoint_pullstarts = 'http://3.81.17.35:5000/pullstarts';
-  const endpoint_start_stop = 'http://3.81.17.35:5000/status';
-  const endpoint_swimmers = 'http://3.81.17.35:8000/api/swimmer/';
-  const endpoint_start = 'http://3.81.17.35:8000/api/start/';
+  const endpoint_pullstarts = 'http://34.207.224.1:5000/pullstarts';
+  const endpoint_start_stop = 'http://34.207.224.1:5000/status';
+  const endpoint_swimmers = 'http://34.207.224.1:8000/api/swimmer/';
+  const endpoint_start = 'http://34.207.224.1:8000/api/start/';
 
   const fetchMagnitudeData = async () => {
     const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));

@@ -19,7 +19,7 @@ export function RegisterPage() {
     const [bannerType, setBannerType] = useState(""); 
     const navigate = useNavigate();
 
-    const endpoint_swimmer = 'http://3.81.17.35:8000/api/swimmer/';
+    const endpoint_swimmer = 'http://34.207.224.1:8000/api/swimmer/';
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;

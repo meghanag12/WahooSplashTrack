@@ -15,7 +15,7 @@ export function UpdateSwimmer() {
   useEffect(() => {
     const fetchSwimmers = async () => {
       try {
-        const response = await axios.get('http://3.81.17.35:8000/api/swimmer/');
+        const response = await axios.get('http://34.207.224.1:8000/api/swimmer/');
         setSwimmers(response.data);
         const sortedSwimmers = response.data.sort((a, b) =>
           a.swimmer_name.localeCompare(b.swimmer_name)

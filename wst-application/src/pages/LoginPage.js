@@ -16,7 +16,7 @@ export function LoginPage() {
 
     const navigate = useNavigate(); 
 
-    const endpoint_login = 'http://3.81.17.35:8000/api/login/';
+    const endpoint_login = 'http://34.207.224.1:8000/api/login/';
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
