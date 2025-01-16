@@ -31,6 +31,7 @@ export function ProgressTracker() {
       <h1>Progress Tracker</h1>
       {showBanner && <div className="banner">{bannerMessage}</div>}
       {/* Search bar input */}
+      
       <input
         type="text"
         placeholder="Search swimmers..."
