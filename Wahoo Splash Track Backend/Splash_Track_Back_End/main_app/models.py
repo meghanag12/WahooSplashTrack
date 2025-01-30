@@ -20,7 +20,7 @@ class Start(models.Model):
     back_force = models.JSONField()
 
     def __str__(self):
-      return f'Start {self.start_id} for Swimmer {self.swimmer}'
+      return f'Start {self.start_id} for Swimmer {self.swimmer.swimmer_name}'
 
 class MyRio(models.Model):
     total_force = models.FloatField(default = 0.0)
