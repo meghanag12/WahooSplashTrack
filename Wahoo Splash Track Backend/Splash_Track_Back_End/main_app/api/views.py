@@ -48,7 +48,7 @@ class StartViewSet(ModelViewSet):
     queryset = Start.objects.all()
     serializer_class = StartSerializer
 
-    @action(detail=False, methods=['get'], url_path=r'(?P<name>.+)')
+    @action(detail=False, methods=['get'], url_path=r'name/(?P<name>.+)')
     def by_swimmer_name(self, request, name=None):
         try:
             swimmer = Swimmer.objects.get(swimmer_name=name)
