@@ -9,6 +9,7 @@ import { UpdateSwimmer } from './pages/UpdateSwimmer';
 import { UpdateIndividualSwimmer} from './pages/UpdateIndividualSwimmer';
 import { Layout } from './Layout';
 import { LoginPage } from './pages/LoginPage';
+import { ManualEntry } from './pages/ManualEntry';
 import {Navbar} from './components/Navbar'
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
           <Route path="/progresstracker" element={<ProgressTracker />} />
           <Route path="/swimmer/:name" element={<SwimmerProgressPage />} />
           <Route path="/start-graph/:name" element={<StartGraph />} />
+          <Route path="/manual-entry/:name" element={<ManualEntry />} />
 
         </Route>
       </Routes>

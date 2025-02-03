@@ -67,6 +67,7 @@ export function SwimmerProgressPage() {
     <div className="swimmer-progress">
       <h1>{name}'s Progress</h1>
       <div className="button-group">
+        <button onClick={() => navigate(`/manual-entry/${name}`)}>Manual Entry</button>
         <button  onClick={() => navigate(`/start-graph/${name}`)}>Go to Graph</button>
         <button onClick = {() => exportToExcel(starts, `${name}_start_data`)}>Export to Excel</button>
         <button  onClick={() => navigate(-1)}>Back</button>
