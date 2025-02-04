@@ -32,7 +32,15 @@ export function ManualEntry() {
     
     const postDataStart = async () => {
         set_swimmer_name(name);
-        const body = { swimmer_name, start_id, date, total_force, front_force, back_force };
+        const body = {
+            swimmer_name: name,
+            start_id,
+            date,
+            total_force: parseFloat(values.total_force),
+            front_force: parseFloat(values.front_force),
+            back_force: parseFloat(values.back_force),
+        };
+
         try {
           const response = await axios.post(endpoint_start, body);
           console.log(response);
@@ -45,13 +53,6 @@ export function ManualEntry() {
         
     };
 
-    const handleSendStartData = async () => {
-        setBannerMessage('Data successfully submitted!');
-        setShowBanner(true);
-        setTimeout(() => setShowBanner(false), 3000);
-        await postDataStart(); 
-        resetValues();
-    };
     
     
     const handleInputChange = (e) => {
@@ -66,7 +67,7 @@ export function ManualEntry() {
         e.preventDefault();
 
         const newData = await postDataStart();
-        setBannerMessage(`Start for "${swimmer_name}" has been added successfully`);
+        setBannerMessage(`Start for "${name}" has been added successfully`);
         setBannerType("success");
         setShowBanner(true);
 
@@ -133,7 +134,7 @@ export function ManualEntry() {
             </div>
         </div>
 
-        <button type="submit" onClick={handleSendStartData}>Submit</button>
+        <button type="submit" onClick={handleSendData}>Submit</button>
     </form>
 
 
