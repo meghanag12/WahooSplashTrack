@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
-import '../stylesheets/main_style.css';
+import '../stylesheets/manual_entry.css';
 import { Link } from 'react-router-dom';
 
 
@@ -89,7 +89,7 @@ export function ManualEntry() {
     </div>
 <div className="form_container">
     <form onSubmit={handleSendData}>
-        <div className="form-group">
+        <div className="form-group-manual-entry">
             <label>Total Force:
                 <div className="swimmer-name-reg">
                     <input
