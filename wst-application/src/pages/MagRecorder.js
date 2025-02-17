@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
-import '../stylesheets/main_style.css';
+//import '../stylesheets/main_style.css';
 
 export function MagRecorder() {
   const [total_force, set_total_force] = useState('0.0');

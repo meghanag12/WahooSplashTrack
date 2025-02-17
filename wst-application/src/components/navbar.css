@@ -1,0 +1,63 @@
+.navbar-custom {
+    background-color: #f8f9fa; 
+    padding: 10px 0;
+    bottom:0;
+    position: fixed;
+    width: 100%;
+  }
+
+  .nav-item {
+    text-align: center;
+    position: relative;
+  }
+  
+ 
+  .nav-hover {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border-radius: 8px;
+    transition: transform 0.3s ease-in-out;
+    position: relative;  
+    overflow: hidden;    
+  }
+
+  .nav-hover:hover {
+    transform: scale(1.1);
+  }
+
+  .nav-hover::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0;  
+    background-color: #007bff; 
+    transition: height 0.2s ease-in-out; 
+  }
+  
+ 
+  .nav-hover:hover::after {
+    height: 100%; /* Expand the background to fill the button */
+  }
+  
+  .nav-icon {
+    width: 40px;  /* Set a fixed width */
+    height: auto; /* Maintain aspect ratio */
+    transition: transform 0.3s ease-in-out;
+    z-index: 1;   /* Ensure the image stays above the background */
+  }
+  
+  /* Invert the image color on hover */
+  .nav-hover:hover .nav-icon {
+    transform: scale(1.17); /* Enlarge the image slightly */
+    filter: invert(1);     /* Invert the colors of the image */
+  }
+  
+  .img-fluid {
+    max-width: 100%; 
+    height: auto;     
+  }
+  

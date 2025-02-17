@@ -1,40 +1,27 @@
-import { Link } from "react-router-dom"
-
+import { Link } from "react-router-dom";
+import registerIcon from "../register_icon.png";
+import swimIcon from "../swim_icon.png";
+import progressIcon from "../progress_icon.PNG";
+import "./navbar.css";
 
 export function Navbar() {
-    return (
-        <>
-            <div className="navbar">
-                <Link to="/reg">
-                    <div className="nav_button">
-                        <img
-                            src={require("../register_icon.png")}
-                            alt="Icon"
-                            className="nav_icon"
-                        />
-                    </div>
-                </Link>
-
-                <Link to="/magnituderecorder">
-                    <div className="nav_button">
-                        <img
-                            src={require("../swim_icon.png")}
-                            alt="Icon"
-                            className="nav_icon"
-                        />
-                    </div>
-                </Link>
-
-                <Link to="/progresstracker">
-                    <div className="nav_button">
-                        <img
-                            src={require("../progress_icon.PNG")}
-                            alt="Icon"
-                            className="nav_icon"
-                        />
-                    </div>
-                </Link>
-            </div>
-        </>
-    );
+  return (
+    <ul className="nav nav-pills nav-fill navbar-custom">
+      <li className="nav-item">
+        <Link className="nav-link nav-hover" to="/reg">
+          <img src={registerIcon} alt="Register" className="nav-icon img-fluid" />
+        </Link>
+      </li>
+      <li className="nav-item">
+        <Link className="nav-link nav-hover" to="/magnituderecorder">
+          <img src={swimIcon} alt="Swim" className="nav-icon img-fluid" />
+        </Link>
+      </li>
+      <li className="nav-item">
+        <Link className="nav-link nav-hover" to="/progresstracker">
+          <img src={progressIcon} alt="Progress" className="nav-icon img-fluid" />
+        </Link>
+      </li>
+    </ul>
+  );
 }

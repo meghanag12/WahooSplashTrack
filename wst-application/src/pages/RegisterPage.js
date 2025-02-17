@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import '../stylesheets/main_style.css';
+//import '../stylesheets/main_style.css';
 import { Link } from 'react-router-dom';
 
 
@@ -86,8 +86,8 @@ export function RegisterPage() {
         {bannerMessage}
     </div>
 )}
-<div className="Register_Page_Total">
-<div className="form_container">
+<div className="card">
+<div className="card-body">
     <form onSubmit={handleSendData}>
         <div className="form-group">
             <label>Swimmer's Name:
