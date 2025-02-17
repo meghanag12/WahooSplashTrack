@@ -46,7 +46,7 @@ html, body {
 .progress-tracker {
   padding: 20px;
   text-align: center;
-  max-width: 1000px; /* Add a maximum width for larger screens */
+  width: 100%; /* Add a maximum width for larger screens */
   margin: 0 auto; /* Center align the entire tracker */
 }
 
@@ -54,7 +54,7 @@ html, body {
   padding: 10px;
   font-size: 16px;
   width: 100%; /* Ensures the search bar takes full width */
-  max-width: 400px; /* Limits the width to 400px for larger screens */
+  max-width: 300px; /* Limits the width to 400px for larger screens */
   margin: 10px auto; /* Centers it horizontally and adds vertical spacing */
   border: 1px solid #ccc;
   border-radius: 5px;

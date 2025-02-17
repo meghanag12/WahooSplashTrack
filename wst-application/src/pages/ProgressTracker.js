@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import '../stylesheets/progress_tracker_styles.css';
 
 export function ProgressTracker() {
   const [swimmers, setSwimmers] = useState([]);
@@ -39,30 +40,33 @@ export function ProgressTracker() {
         onChange={e => setSearchTerm(e.target.value)}
         className="search-bar"
       />
+    
 <div className="tracker-container">
   {filteredSwimmers.length > 0 ? (
     <div className="update-container">
-      <table>
+      <table class ="table-striped table-bordered table-hover table-responsive-sm">
+        <caption> End of List of all Swimmers </caption>
         <thead>
-          <tr>
+          <tr class = "table-primary">
             <th>Swimmer Name</th>
             <th>Graduation Year</th>
           </tr>
         </thead>
         <tbody>
           {filteredSwimmers.map(swimmer => (
-            <tr
+            <tr 
               key={swimmer.id}
               onClick={() => navigate(`/swimmer/${swimmer.swimmer_name}`)}
               style={{ cursor: "pointer" }}
             >
-              <td>{swimmer.swimmer_name}</td>
-              <td>{swimmer.year}</td>
+              <strong><td>{swimmer.swimmer_name}</td></strong>
+              <td><strong>{swimmer.year}</strong></td>
             </tr>
           ))}
         </tbody>
       </table>
     </div>
+    
   ) : (
     <p>No swimmers found</p>
   )}

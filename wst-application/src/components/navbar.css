@@ -9,6 +9,7 @@
   .nav-item {
     text-align: center;
     position: relative;
+    
   }
   
  
@@ -21,10 +22,12 @@
     transition: transform 0.3s ease-in-out;
     position: relative;  
     overflow: hidden;    
+    
   }
 
   .nav-hover:hover {
     transform: scale(1.1);
+    
   }
 
   .nav-hover::after {
@@ -50,10 +53,10 @@
     z-index: 1;   /* Ensure the image stays above the background */
   }
   
-  /* Invert the image color on hover */
   .nav-hover:hover .nav-icon {
-    transform: scale(1.17); /* Enlarge the image slightly */
-    filter: invert(1);     /* Invert the colors of the image */
+    filter: invert(100%);
+    transform: scale(1.17);     
+    z-index: 1;    
   }
   
   .img-fluid {

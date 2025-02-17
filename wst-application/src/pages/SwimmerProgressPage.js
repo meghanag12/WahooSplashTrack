@@ -4,6 +4,8 @@ import axios from 'axios';
 import "../App.css";
 import * as XLSX from "xlsx";
 import { saveAs } from "file-saver"
+import "../stylesheets/progress_tracker_styles.css";
+
 
 export function SwimmerProgressPage() {
   const { name } = useParams(); // Get the swimmer's name from the URL
@@ -66,16 +68,19 @@ export function SwimmerProgressPage() {
   return (
     <div className="swimmer-progress">
       <h1>{name}'s Progress</h1>
-      <div className="button-group">
-        <button onClick={() => navigate(`/manual-entry/${name}`)}>Manual Entry</button>
-        <button  onClick={() => navigate(`/start-graph/${name}`)}>Go to Graph</button>
-        <button onClick = {() => exportToExcel(starts, `${name}_start_data`)}>Export to Excel</button>
-        <button  onClick={() => navigate(-1)}>Back</button>
+
+      <div className = "btn-group">
+        <button class = "btn btn-secondary" onClick={() => navigate(-1)}>Back</button>
+        <button class = "btn btn-secondary"onClick={() => navigate(`/manual-entry/${name}`)}>Manual Entry</button>
+        <button class = "btn btn-secondary" onClick={() => navigate(`/start-graph/${name}`)}>Go to Graph</button>
+        <button class = "btn btn-secondary" onClick = {() => exportToExcel(starts, `${name}_start_data`)}>Export to Excel</button>
       </div>
-      <div className="starts-container">
-        <h2>Best Start</h2>
-        <table>
-              <thead>
+
+      <div className="table">
+        <div className = "card">
+        <div className = "card-header">Best Start</div>
+        <table class = "table">
+              <thead class = "thead-dark">
                 <tr>
                   <th>Date</th>
                   <th>Total Force (lbs)</th>
@@ -90,8 +95,11 @@ export function SwimmerProgressPage() {
                 <td>{Number(best_start.back_force).toFixed(2)} lbs</td>
               </tbody>
         </table>
-        <h2>Starts</h2>
-        
+        <footer class="card-footer text-muted"> {name}'s best start was on {formatDate(best_start.date)} with a total force 
+        of {best_start.back_force.toFixed(2)} pounds</footer>
+        </div>
+        <div className = "card">
+        <div className = "card-header">Starts</div>
         {starts.length > 0 ? (
           <div className="table-container">
             <table>
@@ -118,11 +126,15 @@ export function SwimmerProgressPage() {
                 ))}
               </tbody>
             </table>
+            
           </div>
         ) : (
           <p>No starts found for this swimmer.</p>
         )}
+        </div>
+        <footer className = "card-footer text-bold">Scroll through the above list to see all recorded starts for {name}. </footer>
       </div>
+      
     </div>
   );
 }
