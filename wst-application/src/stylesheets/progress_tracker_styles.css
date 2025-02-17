@@ -1,16 +1,4 @@
-.btn
+.swimmer-progress
 {
-    color:white;
-}
-.btn-group 
-{
-    float:right;
-}
-.table
-{
-    display: inline-block;
-}
-.card 
-{
-    margin-top: 10px;
+    width: 100%;
 }

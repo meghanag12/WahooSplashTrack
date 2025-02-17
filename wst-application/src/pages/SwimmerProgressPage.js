@@ -66,7 +66,7 @@ export function SwimmerProgressPage() {
 };
 
   return (
-    <div className="swimmer-progress">
+    <div className="swimmer-progress row-xl-3">
       <h1>{name}'s Progress</h1>
 
       <div className = "btn-group">
@@ -95,8 +95,8 @@ export function SwimmerProgressPage() {
                 <td>{Number(best_start.back_force).toFixed(2)} lbs</td>
               </tbody>
         </table>
-        <footer class="card-footer text-muted"> {name}'s best start was on {formatDate(best_start.date)} with a total force 
-        of {best_start.back_force.toFixed(2)} pounds</footer>
+       <i> <footer class="card-footer text-muted"> {name}'s best start was on {formatDate(best_start.date)} with a total force 
+        of {best_start.back_force} pounds</footer> </i>
         </div>
         <div className = "card">
         <div className = "card-header">Starts</div>

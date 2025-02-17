@@ -99,7 +99,7 @@ export function StartGraph() {
                   grid: { display: true, drawOnChartArea: true, drawBorder: true },
                 },
                 y: { 
-                  title: { display: true, text: 'Total Force (N)' },
+                  title: { display: true, text: 'Total Force (lbs)' },
                 },
               },
             }}
