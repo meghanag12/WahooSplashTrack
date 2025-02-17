@@ -54,10 +54,10 @@ export function StartGraph() {
   }, [name]);
 
   return (
-    <div className="start-graph-container">
-      <h1>Start Graph</h1>
+    <div className="start-graph-container row row-lg-2">
+      <h1>Start Graph for {name}</h1>
       <div className="button-group-start">
-        <button className = "start-back-button" onClick={() => navigate(-1)}>Back</button>
+        <button className = "btn btn-secondary" onClick={() => navigate(-1)}>Back</button>
       </div>
       {chartData ? (
         <div className="chart-container">

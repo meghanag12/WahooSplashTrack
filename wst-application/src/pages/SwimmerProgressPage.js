@@ -78,7 +78,7 @@ export function SwimmerProgressPage() {
 
       <div className="table">
         <div className = "card">
-        <div className = "card-header">Best Start</div>
+        <div className = "card-header">Best Start for {name}</div>
         <table class = "table">
               <thead class = "thead-dark">
                 <tr>
@@ -99,7 +99,7 @@ export function SwimmerProgressPage() {
         of {best_start.back_force} pounds</footer> </i>
         </div>
         <div className = "card">
-        <div className = "card-header">Starts</div>
+        <div className = "card-header">All starts for {name}</div>
         {starts.length > 0 ? (
           <div className="table-container">
             <table>
