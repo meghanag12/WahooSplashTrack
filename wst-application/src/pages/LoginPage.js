@@ -3,6 +3,8 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../stylesheets/login.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faKey } from '@fortawesome/free-solid-svg-icons';
 
 export function LoginPage() {
     const [credentials, setCredentials] = useState({
@@ -112,8 +114,10 @@ export function LoginPage() {
                             </div>
 
                             <button type="submit" className="btn btn-primary w-100">
-                                Sign In
+                             Sign In    
+                            <FontAwesomeIcon icon={faKey} className="ms-2" />
                             </button>
+
 
                             <div className="text-center mt-3">
                            
