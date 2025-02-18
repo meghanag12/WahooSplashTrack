@@ -3,7 +3,7 @@
     width: 100%;
     max-width: 400px;
     padding: 30px;
-    background: white;
+    background: rgb(255, 254, 254);
     border-radius: 10px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     text-align: center; /* Centering form elements */
@@ -36,5 +36,6 @@
     align-items: center;
 }
 .login-image{
-    width:90%;
+    width:80%;
+    margin: 10px;
 }
