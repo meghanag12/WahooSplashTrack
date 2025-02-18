@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import '../stylesheets/main_style.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '../stylesheets/login.css';
 
 export function LoginPage() {
     const [credentials, setCredentials] = useState({
@@ -12,10 +13,9 @@ export function LoginPage() {
     const [showBanner, setShowBanner] = useState(false);
     const [bannerMessage, setBannerMessage] = useState('');
     const [bannerType, setBannerType] = useState('');
-    const [showSpinner, setShowSpinner] = useState(false); 
+    const [showSpinner, setShowSpinner] = useState(false);
 
-    const navigate = useNavigate(); 
-
+    const navigate = useNavigate();
     const endpoint_login = 'http://34.207.224.1:8000/api/login/';
 
     const handleInputChange = (e) => {
@@ -31,15 +31,14 @@ export function LoginPage() {
 
         if (credentials.password === 'Capstone2024!') {
             setBannerMessage('Login successful! Redirecting...');
-            setBannerType('success');
+            setBannerType('alert-success');
             setShowBanner(true);
-            setShowSpinner(true); 
+            setShowSpinner(true);
 
-           
             setTimeout(() => {
-                setShowSpinner(false); 
+                setShowSpinner(false);
                 navigate('/magnituderecorder');
-            }, 1000); 
+            }, 1000);
             return;
         }
 
@@ -48,82 +47,93 @@ export function LoginPage() {
 
             if (response.status === 200) {
                 setBannerMessage('Login successful!');
-                setBannerType('success');
+                setBannerType('alert-success');
                 setShowBanner(true);
                 setTimeout(() => {
                     setShowBanner(false);
-                    navigate('/'); 
+                    navigate('/');
                 }, 1000);
             } else {
                 setBannerMessage('Invalid username or password. Please try again.');
-                setBannerType('error');
+                setBannerType('alert-danger');
                 setShowBanner(true);
                 setTimeout(() => setShowBanner(false), 3000);
             }
         } catch (error) {
             console.error('Error during login:', error);
             setBannerMessage('An error occurred. Please try again later.');
-            setBannerType('error');
+            setBannerType('alert-danger');
             setShowBanner(true);
             setTimeout(() => setShowBanner(false), 3000);
         }
     };
 
     return (
-        <>
-            <h1>Login Page</h1>
+        <div className="container-fluid vh-100">
+            <div className="row h-100">
+                <div className="col-md-6 d-flex flex-column align-items-center justify-content-center px-5">
+                    
+  
+                    <div className="login-image">
+                        <img src={require('../WahooSplashTrackLogo.jpg')} alt="Login Banner" className="img-fluid" />
+                    </div>
+                    <div className="login-form mt-3">
+                        <h2 className="text-center mb-4">Sign In</h2>
 
-            {showBanner && (
-                <div className={`banner ${bannerType}`}>
-                    {bannerMessage}
+                        {showBanner && (
+                            <div className={`alert ${bannerType} text-center`} role="alert">
+                                {bannerMessage}
+                            </div>
+                        )}
+
+                        <form onSubmit={handleLogin}>
+                            <div className="mb-3">
+                                <label className="form-label">E-mail:</label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    name="username"
+                                    value={credentials.username}
+                                    onChange={handleInputChange}
+                                    placeholder="CavMan@virginia.edu"
+                                    required
+                                />
+                            </div>
+
+                            <div className="mb-3">
+                                <label className="form-label">Password:</label>
+                                <input
+                                    type="password"
+                                    className="form-control"
+                                    name="password"
+                                    value={credentials.password}
+                                    onChange={handleInputChange}
+                                    placeholder="**********"
+                                    required
+                                />
+                            </div>
+
+                            <button type="submit" className="btn btn-primary w-100">
+                                Sign In
+                            </button>
+
+                            <div className="text-center mt-3">
+                                <p>Don't have an account? Please contact an administrator.</p>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-            )}
 
-            <div className="login-container">
-                <form onSubmit={handleLogin}>
-                    <div className="username">
-                        <label>Username:</label>
-                        <input
-                            type="text"
-                            name="username"
-                            value={credentials.username}
-                            onChange={handleInputChange}
-                            placeholder="Enter your username"
-                            required
-                        />
-                    </div>
-
-                    <div className="password">
-                        <label>Password:</label>
-                        <input
-                            type="password"
-                            name="password"
-                            value={credentials.password}
-                            onChange={handleInputChange}
-                            placeholder="Enter your password"
-                            required
-                        />
-                    </div>
-
-                    <button type="submit">Login</button>
-                </form>
+                <div className="col-md-6 d-none d-md-block banner-side"></div>
             </div>
 
             {showSpinner && (
-    <div className="spinner-overlay">
-        <div className="spinner"></div>
-    </div>
-)}
-
-    <div className = "login-image-container">
-        <img
-            src={require("../WahooSplashTrackLogo.jpg")}
-            alt="Icon"
-            className="login-image"/>
-        
-    </div>
-    
-
-        </>
+                <div className="spinner-overlay">
+                    <div className="spinner-border text-primary" role="status">
+                        <span className="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            )}
+        </div>
     );
 }
