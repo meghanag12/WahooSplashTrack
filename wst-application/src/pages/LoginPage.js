@@ -72,11 +72,11 @@ export function LoginPage() {
         <div className="container-fluid vh-100 banner-side">
             <div className="row h-100">
                 <div className="col-md-6 d-flex flex-column align-items-center justify-content-center px-5">
-                    
-  
-                    
+                         
                     <div className="login-form mt-3">
-                        <h2 className="text-center mb-4">Sign In</h2>
+                    <div className="login-image">
+                        <img src={require('../WahooSplashTrackLogo.jpg')} alt="Login Banner" className="img-fluid" />
+                        </div>
 
                         {showBanner && (
                             <div className={`alert ${bannerType} text-center`} role="alert">
@@ -116,9 +116,7 @@ export function LoginPage() {
                             </button>
 
                             <div className="text-center mt-3">
-                            <div className="login-image">
-                        <img src={require('../WahooSplashTrackLogo.jpg')} alt="Login Banner" className="img-fluid" />
-                        </div>
+                           
                             </div>
                         </form>
                         
