@@ -74,9 +74,7 @@ export function LoginPage() {
                 <div className="col-md-6 d-flex flex-column align-items-center justify-content-center px-5">
                     
   
-                    <div className="login-image">
-                        <img src={require('../WahooSplashTrackLogo.jpg')} alt="Login Banner" className="img-fluid" />
-                    </div>
+                    
                     <div className="login-form mt-3">
                         <h2 className="text-center mb-4">Sign In</h2>
 
@@ -121,6 +119,10 @@ export function LoginPage() {
                                 
                             </div>
                         </form>
+                        
+                    </div>
+                    <div className="login-image">
+                        <img src={require('../WahooSplashTrackLogo.jpg')} alt="Login Banner" className="img-fluid" />
                     </div>
                 </div>
 

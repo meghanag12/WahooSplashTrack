@@ -1,26 +1,22 @@
 /* 🔹 Main Login Form Styling */
+/* 🔹 Main Login Form */
 .login-form {
     width: 100%;
     max-width: 400px;
     padding: 30px;
-    background: rgb(255, 254, 254);
+    background: white;
     border-radius: 10px;
-    text-align: center; /* Centering form elements */
-}
-
-/* 🔹 Logo Above the Form */
-.login-logo {
-    width: 120px; /* Adjust as needed */
-    margin-bottom: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 /* 🔹 Background Side */
 .banner-side {
-    background: url('../AVA_0419.jpg') no-repeat center center;
+    background: linear-gradient(to left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.6) 50%, white 100%),
+                url('../AVA_0419.jpg') no-repeat center center;
     background-size: cover;
     height: 100vh;
-    opacity: 0.4; /* Makes the right-side background faded */
 }
+
 
 /* 🔹 Spinner Overlay */
 .spinner-overlay {
@@ -37,4 +33,9 @@
 .login-image{
     width:50%;
     margin: 10px;
+}
+/* 🔹 Logo Above the Form */
+.login-logo {
+    width: 120px; /* Adjust as needed */
+    margin-bottom: 15px;
 }
