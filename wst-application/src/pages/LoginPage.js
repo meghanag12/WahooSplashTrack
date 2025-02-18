@@ -69,7 +69,7 @@ export function LoginPage() {
     };
 
     return (
-        <div className="container-fluid vh-100">
+        <div className="container-fluid vh-100 banner-side">
             <div className="row h-100">
                 <div className="col-md-6 d-flex flex-column align-items-center justify-content-center px-5">
                     
@@ -116,17 +116,17 @@ export function LoginPage() {
                             </button>
 
                             <div className="text-center mt-3">
-                                
+                            <div className="login-image">
+                        <img src={require('../WahooSplashTrackLogo.jpg')} alt="Login Banner" className="img-fluid" />
+                        </div>
                             </div>
                         </form>
                         
                     </div>
-                    <div className="login-image">
-                        <img src={require('../WahooSplashTrackLogo.jpg')} alt="Login Banner" className="img-fluid" />
-                    </div>
+                    
                 </div>
 
-                <div className="col-md-6 d-none d-md-block banner-side"></div>
+               
             </div>
 
             {showSpinner && (
