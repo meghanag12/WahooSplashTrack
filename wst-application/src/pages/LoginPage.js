@@ -118,7 +118,7 @@ export function LoginPage() {
                             </button>
 
                             <div className="text-center mt-3">
-                                <p>Don't have an account? Please contact an administrator.</p>
+                                
                             </div>
                         </form>
                     </div>
