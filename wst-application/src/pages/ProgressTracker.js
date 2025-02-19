@@ -28,6 +28,7 @@ export function ProgressTracker() {
   );
 
   return (
+    <div className = "container-fluid progress-background">
     <div className="progress-tracker">
       <h1>Progress Tracker</h1>
       {showBanner && <div className="banner">{bannerMessage}</div>}
@@ -72,6 +73,7 @@ export function ProgressTracker() {
   )}
 </div>
 
+    </div>
     </div>
   );
 }
