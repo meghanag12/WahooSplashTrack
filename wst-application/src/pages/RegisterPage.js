@@ -84,7 +84,7 @@ export function RegisterPage() {
         <form className = "form" onSubmit={handleSendData}>
             
         <div className="login-image mb-10">
-                        <img src={require('../WahooSplashTrackLogo.jpg')} alt="Login Banner" className="img-fluid" />
+                        <img src={require('../WahooSplashTrackLogoNoSignatures-removebg-preview.png')} alt="Login Banner" className="img-fluid" />
                         </div>
        
           <div className="mb-3">
