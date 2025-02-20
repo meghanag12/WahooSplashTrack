@@ -1,0 +1,10 @@
+.background-register-page 
+{
+  outline-color: blue;
+}
+.col
+{
+    background-color: lightblue;
+    border: 10px;
+    border-color: black;
+}
