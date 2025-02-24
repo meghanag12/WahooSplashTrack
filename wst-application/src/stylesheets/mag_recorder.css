@@ -1,0 +1,154 @@
+/* General App Container */
+.app-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: linear-gradient(to bottom, #1e3a8a, #3b82f6);
+    color: white;
+    font-family: Arial, sans-serif;
+    position: relative;
+  }
+  
+  /* Submit & Delete Buttons */
+  .submit-delete-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+  }
+  
+  .submit-button, .delete-button {
+    background-color: white;
+    color: #1e3a8a;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .delete-button {
+    background-color: red;
+    color: white;
+  }
+  
+  .submit-button:hover, .delete-button:hover {
+    opacity: 0.8;
+  }
+  
+  /* Circular Display */
+  .force-circle {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 8px solid white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    font-weight: bold;
+    position: relative;
+    margin-top: 50px;
+  }
+  
+  .force-value {
+    font-size: 32px;
+  }
+  
+  /* Force Label */
+  .force-label {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  /* Ranking Breakdown */
+  .force-ranking {
+    width: 80%;
+    margin-top: 20px;
+  }
+  
+  .ranking-item {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 10px;
+    border-radius: 5px;
+    margin: 5px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .ranking-number {
+    background: white;
+    color: #1e3a8a;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+  }
+  
+  /* Start/Pause Button */
+  .start-pause-button {
+    margin-top: 30px;
+    width: 120px;
+    padding: 15px;
+    border-radius: 50px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .start-pause-button.start {
+    background: white;
+    color: #1e3a8a;
+  }
+  
+  .start-pause-button.pause {
+    background: red;
+    color: white;
+  }
+
+.search-container {
+    width: 80%;
+    margin-bottom: 20px;
+    position: relative;
+  }
+  
+  .search-input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .search-suggestions {
+    position: absolute;
+    width: 100%;
+    background: white;
+    border-radius: 5px;
+    max-height: 150px;
+    overflow-y: auto;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .search-suggestions li {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .search-suggestions li:hover {
+    background: #ddd;
+  }
+  
