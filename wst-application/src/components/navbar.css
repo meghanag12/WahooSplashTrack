@@ -1,5 +1,5 @@
 .navbar-custom {
-    background-color: #f8f9fa; 
+    background-color: #175da365; 
     padding: 10px 0;
     bottom:0;
     position: fixed;
@@ -31,27 +31,18 @@
     
   }
 
-  .nav-hover::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 0;  
-    background-color: #007bff; 
-    transition: height 0.2s ease-in-out; 
-  }
-  
+ 
  
   .nav-hover:hover::after {
     height: 100%; /* Expand the background to fill the button */
+    z-index: -1000;  
   }
   
   .nav-icon {
-    width: 40px;  /* Set a fixed width */
-    height: auto; /* Maintain aspect ratio */
+    width: 6vh;  /* Set a fixed width */
+    height: 6vw; /* Maintain aspect ratio */
     transition: transform 0.3s ease-in-out;
-    z-index: 1;   /* Ensure the image stays above the background */
+    z-index: 1000;   /* Ensure the image stays above the background */
   }
   
   .nav-hover:hover .nav-icon {

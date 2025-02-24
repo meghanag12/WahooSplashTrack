@@ -1,10 +1,18 @@
-.background-register-page 
-{
-  outline-color: blue;
-}
-.col
-{
-    background-color: lightblue;
-    border: 10px;
-    border-color: black;
-}
+
+button[type="submit"] {
+    background-color: #007bff; 
+    color: #ffffff;
+    font-weight: bold;
+    border-radius: 30px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.4s ease; 
+  }
+  button[type="submit"]:hover {
+    background-color: #0359b4; 
+    color: #ffffff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.1s ease; 
+  }

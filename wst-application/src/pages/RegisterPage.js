@@ -139,13 +139,14 @@ export function RegisterPage() {
               <label className="form-check-label">No</label>
             </div>
           </div>
-
-          <button type="submit" className="btn btn-primary w-100">
+          <div className = "col text-center">
+          <button type="submit" className="register-swimmer-button btn btn-primary w-50 ">
             Register Swimmer
           </button>
+          </div>
           <div className="mt-3 text-center">
-          <Link to="/update-swimmer" className="btn btn-outline-secondary">
-            Update Swimmer Information
+          <Link to="/update-swimmer" className ="link-secondary">
+           Need to update a Swimmer's Info?
           </Link>
         </div>
         </form>
