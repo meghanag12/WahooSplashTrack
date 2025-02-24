@@ -73,8 +73,9 @@ export function RegisterPage() {
   };
 
   return (
+    
     <div className="container d-flex justify-content-center align-items-center vh-100">
-
+    
         {showBanner && (
           <div className={`alert alert-${bannerType} text-center`} role="alert">
             {bannerMessage}
@@ -82,12 +83,15 @@ export function RegisterPage() {
         )}
 
         <form className = "form" onSubmit={handleSendData}>
-            
+       
         <div className="login-image mb-10">
                         <img src={require('../WahooSplashTrackLogoNoSignatures-removebg-preview.png')} alt="Login Banner" className="img-fluid" />
-                        </div>
-       
+          </div>
+          <h4> </h4>
+        <div className = "text-center"><i> Welcome to Wahoo SplashTrack! </i></div>
+
           <div className="mb-3">
+          
             <label className="form-label">Swimmer's Name</label>
             <input
               className="form-control"
