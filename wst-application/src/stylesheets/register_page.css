@@ -16,3 +16,12 @@ button[type="submit"] {
     cursor: pointer;
     transition: background-color 0.1s ease; 
   }
+  .app-container
+  {
+    background: linear-gradient(to bottom, #1e3a8a, #659efa);
+  }
+  .form
+  {
+      background-color:#ffffff ;
+      color: black;
+  }

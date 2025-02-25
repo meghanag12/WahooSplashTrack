@@ -74,7 +74,7 @@ export function RegisterPage() {
 
   return (
     
-    <div className="container d-flex justify-content-center align-items-center vh-100">
+    <div className="app-container d-flex justify-content-center align-items-center vh-100">
     
         {showBanner && (
           <div className={`alert alert-${bannerType} text-center`} role="alert">
