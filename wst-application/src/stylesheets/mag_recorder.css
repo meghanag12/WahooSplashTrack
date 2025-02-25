@@ -5,7 +5,7 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background: linear-gradient(to bottom, #1e3a8a, #3b82f6);
+    background: linear-gradient(to bottom, #232D4B, #3b82f6);
     color: white;
     font-family: Arial, sans-serif;
     position: relative;
@@ -52,8 +52,12 @@
     font-weight: bold;
     position: relative;
     margin-top: 50px;
+    background: conic-gradient(blue 0deg, lightgray 0deg);
+    transition: all 0.3s ease;
   }
-  
+  .force-circle.filling {
+    animation: fillBorder 3s linear forwards; /* Animates border fill over 3 seconds */
+}
   .force-value {
     font-size: 32px;
   }

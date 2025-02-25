@@ -1,7 +1,7 @@
 
 button[type="submit"] {
-    background-color: #007bff; 
-    color: #ffffff;
+    background-color: #232D4B; 
+    color: #B6B1A8;
     font-weight: bold;
     border-radius: 30px;
     padding: 10px 20px;
@@ -10,7 +10,7 @@ button[type="submit"] {
     transition: background-color 0.4s ease; 
   }
   button[type="submit"]:hover {
-    background-color: #0359b4; 
+    background-color: #54637C; 
     color: #ffffff;
     font-weight: bold;
     cursor: pointer;
@@ -18,10 +18,12 @@ button[type="submit"] {
   }
   .app-container
   {
-    background: linear-gradient(to bottom, #1e3a8a, #659efa);
+    background: linear-gradient(to bottom, #232D4B, #659efa);
   }
   .form
   {
-      background-color:#ffffff ;
+      background-color:#E57200 ;
       color: black;
+      border: #54637C;
+      border-radius: 15px;
   }

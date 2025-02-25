@@ -244,5 +244,7 @@ export function MagRecorder() {
         {status ? "Pause" : "Start"}
       </button>
     </div>
+    
   );
+
 }
