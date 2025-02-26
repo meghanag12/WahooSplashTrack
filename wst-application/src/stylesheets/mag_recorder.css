@@ -5,7 +5,7 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background: linear-gradient(to bottom, #232D4B, #3b82f6);
+    background: linear-gradient(to bottom, #EFEFE9, #B6B1A8);
     color: white;
     font-family: Arial, sans-serif;
     position: relative;
@@ -32,72 +32,57 @@
   
   .delete-button {
     background-color: red;
-    color: white;
+    color: #EFEFE9;
   }
   
   .submit-button:hover, .delete-button:hover {
     opacity: 0.8;
   }
-  
-  /* Circular Display */
+ 
   .force-circle {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    border: 8px solid white;
+    width: 170px;
+    height: 170px;
+    border-radius: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 32px;
+    font-size: 30px;
     font-weight: bold;
     position: relative;
-    margin-top: 50px;
-    background: conic-gradient(blue 0deg, lightgray 0deg);
+    margin-top: 0px;
+    margin-bottom: 0px;
+    background: #B6B1A8;
     transition: all 0.3s ease;
+    overflow: hidden;
   }
-  .force-circle.filling {
-    animation: fillBorder 3s linear forwards; /* Animates border fill over 3 seconds */
-}
+  .force-circle::before {
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    border-radius: 100%;
+    border: 20px solid transparent; 
+    border-top-color: #232D4B; 
+    border-bottom-color: #232D4B;
+    border-right-color: #E57200;
+    border-left-color: #E57200;
+    box-sizing: border-box;
+    z-index: 1; 
+  }
+  .force-circle.spinning::before {
+    animation: spin-border 1s linear infinite;
+  }
   .force-value {
-    font-size: 32px;
-  }
-  
-  /* Force Label */
-  .force-label {
-    margin-top: 10px;
-    font-size: 18px;
+    font-size: 80%;
     font-weight: bold;
-  }
+    color:#232D4B;
   
-  /* Ranking Breakdown */
-  .force-ranking {
-    width: 80%;
-    margin-top: 20px;
   }
-  
-  .ranking-item {
-    background: rgba(255, 255, 255, 0.2);
-    padding: 10px;
-    border-radius: 5px;
-    margin: 5px 0;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  
-  .ranking-number {
-    background: white;
-    color: #1e3a8a;
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-  }
-  
-  /* Start/Pause Button */
+
+
+
   .start-pause-button {
     margin-top: 30px;
     width: 120px;
@@ -155,4 +140,63 @@
   .search-suggestions li:hover {
     background: #ddd;
   }
-  
+  .force-ball-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+}
+.force-circle-total{
+  align-self: center;
+
+}
+.lower-forces
+{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+}
+.force-circle-front{
+  margin-left: 10%;
+
+}
+.force-circle-back{
+  align-self: center;
+}
+ 
+.force-label
+{
+  font-size: 170%;
+  color: #232D4B;
+  font-weight: bold;
+}
+.force-front{
+  align-self: flex-start;
+  margin-right: 10%;
+
+}
+.force-back{
+  align-self:flex-end;
+}
+
+.force-label-container{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+}
+@keyframes spin-border {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+

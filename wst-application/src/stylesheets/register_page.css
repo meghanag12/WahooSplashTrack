@@ -18,12 +18,12 @@ button[type="submit"] {
   }
   .app-container
   {
-    background: linear-gradient(to bottom, #232D4B, #659efa);
+    background: linear-gradient(to bottom, #EFEFE9, #B6B1A8);
   }
   .form
   {
-      background-color:#E57200 ;
+      background-color:white ;
       color: black;
-      border: #54637C;
+      border: #232D4B;
       border-radius: 15px;
   }

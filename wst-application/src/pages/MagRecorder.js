@@ -174,7 +174,8 @@ export function MagRecorder() {
   
 
   return (
-    <div className="app-container col vh-100">
+    <div className="app-container vh-100">
+
       {showSubmitDelete && (
         <div className="submit-delete-container">
           <button className="submit-button" onClick={handleSendStartData}>
@@ -196,7 +197,7 @@ export function MagRecorder() {
     className="search-input"
     onFocus={() => setShowDrop(true)}
   />
-  {showDrop && filteredSwimmers.length > 0 && (
+    {showDrop && filteredSwimmers.length > 0 && (
     <div className="dropdown-container" ref={dropdownRef}>
       <ul className="dropdown-list">
         {filteredSwimmers.map((swimmer) => (
@@ -214,29 +215,35 @@ export function MagRecorder() {
         ))}
       </ul>
     </div>
-  )}
-  {errorMessage && <div className="error-message">{errorMessage}</div>}
-</div>
+    )}
+    {errorMessage && <div className="error-message">{errorMessage}</div>}
+  </div>
 
 
+    <div className = "force-ball-container">      
 
-      <div className="force-circle">
-        <div className="force-value">{total_force} lbs</div>
+    <div className={`force-circle force-circle-total ${status ? "spinning" : ""}`}>
+        <div className="force-value">{(total_force == 0)? "None!" : (total_force) + " lbs"}</div>
       </div>
       <p className="force-label">Total Force</p>
+  
+      <div className ="lower-forces">   
+        <div className={`force-circle force-circle-back ${status ? "spinning" : ""}`}>
+       
+          <div className="force-value">{(back_force == 0)? "None!" : (back_force) + " lbs"} </div>
+        </div>
+      
+        <div className={`force-circle force-circle-front ${status ? "spinning" : ""}`}>
+          <div className="force-value">{(front_force == 0)? "None!" : (front_force) + " lbs"}</div>
+        </div>
+  
 
-      <div className="force-ranking">
-        <div className="ranking-item">
-          <span className="ranking-number">1</span> Front Force: {front_force} lbs
-        </div>
-        <div className="ranking-item">
-          <span className="ranking-number">1</span> Back Force: {back_force} lbs
-        </div>
-        <div className="ranking-item">
-          <span className="ranking-number">2</span> Total Force: {total_force} lbs
-        </div>
       </div>
-
+      <div className = "force-label-container">
+     
+       
+      </div>
+   
       <button
         className={`start-pause-button ${status ? "pause" : "start"}`}
         onClick={status ? handlePostStop : handlePostStart}
@@ -244,6 +251,11 @@ export function MagRecorder() {
         {status ? "Pause" : "Start"}
       </button>
     </div>
+      
+
+     
+      
+  </div>
     
   );
 
