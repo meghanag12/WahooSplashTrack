@@ -174,20 +174,9 @@ export function MagRecorder() {
   
 
   return (
+    
     <div className="app-container vh-100">
-
-      {showSubmitDelete && (
-        <div className="submit-delete-container">
-          <button className="submit-button" onClick={handleSendStartData}>
-            Submit
-          </button>
-          <button className="delete-button" onClick={handleDiscardData}>
-            Delete
-          </button>
-        </div>
-      )}
-
-
+      <div className = "title">Magnitude Recorder</div>
 <div className="search-container">
   <input
     type="text"
@@ -218,23 +207,36 @@ export function MagRecorder() {
     )}
     {errorMessage && <div className="error-message">{errorMessage}</div>}
   </div>
+      {showSubmitDelete && (
+        <div className="submit-delete-container">
+          <button className="submit-button" onClick={handleSendStartData}>
+            Submit
+          </button>
+          <button className="delete-button" onClick={handleDiscardData}>
+            Delete
+          </button>
+        </div>
+      )}
+
+
+
 
 
     <div className = "force-ball-container">      
 
     <div className={`force-circle force-circle-total ${status ? "spinning" : ""}`}>
-        <div className="force-value">{(total_force == 0)? "None!" : (total_force) + " lbs"}</div>
+        <div className="force-value">{(total_force == 0 & !status)? "None!" : (status? "Recording":(total_force) + " lbs")}</div>
       </div>
       <p className="force-label">Total Force</p>
   
       <div className ="lower-forces">   
         <div className={`force-circle force-circle-back ${status ? "spinning" : ""}`}>
        
-          <div className="force-value">{(back_force == 0)? "None!" : (back_force) + " lbs"} </div>
+          <div className="force-value">{(back_force == 0 &!status)? "None!" : (status? "Recording":(back_force) + " lbs")} </div>
         </div>
       
         <div className={`force-circle force-circle-front ${status ? "spinning" : ""}`}>
-          <div className="force-value">{(front_force == 0)? "None!" : (front_force) + " lbs"}</div>
+          <div className="force-value">{(front_force == 0& !status)? "None!" : (status ? "Recording":(front_force) + " lbs")}</div>
         </div>
   
 

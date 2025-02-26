@@ -26,4 +26,21 @@ button[type="submit"] {
       color: black;
       border: #232D4B;
       border-radius: 15px;
+      align-self: center;
+  }
+
+  .title {
+    font-size: 36px; /* Large, bold text */
+    font-weight: bold;
+    text-align: center;
+    color: #232D4B; /* Dark blue for contrast */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 2px;
+  
+    color:#232D4B;
+  
+  
+    display: inline-block;
+    animation: fadeIn 1s ease-in-out;
   }
