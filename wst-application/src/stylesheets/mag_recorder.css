@@ -40,8 +40,8 @@
   }
  
   .force-circle {
-    width: 180px;
-    height: 180px;
+    width: 170px;
+    height: 170px;
     border-radius: 100%;
     display: flex;
     align-items: center;
@@ -121,7 +121,7 @@
   .search-suggestions {
     position: absolute;
     width: 100%;
-    background: white;
+    background: black;
     border-radius: 5px;
     max-height: 150px;
     overflow-y: auto;
@@ -135,10 +135,11 @@
     padding: 10px;
     cursor: pointer;
     border-bottom: 1px solid #ccc;
+
   }
   
   .search-suggestions li:hover {
-    background: #ddd;
+    background: black;
   }
   .force-ball-container{
     display: flex;
@@ -149,6 +150,11 @@
     width: 100%;
     margin-top:5%;
     margin-bottom: 10%;
+    padding:10px;
+ 
+
+    
+
 }
 .force-circle-total{
   align-self: center;
