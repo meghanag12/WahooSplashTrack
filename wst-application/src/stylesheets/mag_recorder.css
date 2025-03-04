@@ -33,6 +33,8 @@
   .delete-button {
     background-color: red;
     color: #EFEFE9;
+    margin-left: 20px;
+    align-self: center; 
   }
   
   .submit-button:hover, .delete-button:hover {
@@ -40,8 +42,8 @@
   }
  
   .force-circle {
-    width: 180px;
-    height: 180px;
+    width: 140px;
+    height: 140px;
     border-radius: 100%;
     display: flex;
     align-items: center;
@@ -92,6 +94,7 @@
     font-weight: bold;
     border: none;
     cursor: pointer;
+    display: flex;
   }
   
   .start-pause-button.start {
@@ -147,7 +150,7 @@
     justify-content: center;
     position: relative;
     width: 100%;
-    margin-top:5%;
+    margin-top:2%;
     margin-bottom: 10%;
 }
 .force-circle-total{
@@ -157,26 +160,29 @@
 .lower-forces
 {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   position: relative;
   width: 100%;
 }
 .force-circle-front{
-  margin-left: 10%;
+  margin-top: 1%; 
+  align-self: center;
+  margin-bottom: 2%; 
 
 }
 .force-circle-back{
+  margin-top: 1%; 
   align-self: center;
 }
  
-.force-label
+/* .force-label
 {
   font-size: 170%;
   color: #232D4B;
   font-weight: bold;
-}
+} */
 .force-front{
   align-self: flex-start;
   margin-right: 10%;

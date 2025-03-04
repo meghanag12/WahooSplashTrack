@@ -207,36 +207,26 @@ export function MagRecorder() {
     )}
     {errorMessage && <div className="error-message">{errorMessage}</div>}
   </div>
-      {showSubmitDelete && (
-        <div className="submit-delete-container">
-          <button className="submit-button" onClick={handleSendStartData}>
-            Submit
-          </button>
-          <button className="delete-button" onClick={handleDiscardData}>
-            Delete
-          </button>
-        </div>
-      )}
 
 
 
 
 
     <div className = "force-ball-container">      
-
-    <div className={`force-circle force-circle-total ${status ? "spinning" : ""}`}>
-        <div className="force-value">{(total_force == 0 & !status)? "None!" : (status? "Recording":(total_force) + " lbs")}</div>
-      </div>
-      <p className="force-label">Total Force</p>
   
-      <div className ="lower-forces">   
+      <div className ="lower-forces">  
+        <div className={`force-circle force-circle-total ${status ? "spinning" : ""}`}>
+          <div className="force-value">{(total_force == 0 & !status)? "0.0 lbs" : (status? "Recording":(total_force) + " lbs")}</div>
+        </div>
+        {/* <p className="force-label">Total Force</p>  */}
         <div className={`force-circle force-circle-back ${status ? "spinning" : ""}`}>
        
-          <div className="force-value">{(back_force == 0 &!status)? "None!" : (status? "Recording":(back_force) + " lbs")} </div>
+          <div className="force-value">{(back_force == 0 &!status)? "0.0 lbs" : (status? "Recording":(back_force) + " lbs")} </div>
         </div>
       
+      
         <div className={`force-circle force-circle-front ${status ? "spinning" : ""}`}>
-          <div className="force-value">{(front_force == 0& !status)? "None!" : (status ? "Recording":(front_force) + " lbs")}</div>
+          <div className="force-value">{(front_force == 0& !status)? "0.0 lbs" : (status ? "Recording":(front_force) + " lbs")}</div>
         </div>
   
 
@@ -245,13 +235,52 @@ export function MagRecorder() {
      
        
       </div>
-   
-      <button
+    
+      
+      {/* Buttons */}
+      <div className="magnitude-button-container row align-items-center">
+        {status ? (
+          <button className={`start-pause-button ${status ? "pause" : "start"}`} onClick={handlePostStop}>
+            Stop Record
+          </button>
+        ) : showSubmitDelete ? (
+          <>
+          <div className = "start-pause-button">
+            <button className="submit-button col" onClick={handleSendStartData}>
+              Submit Data
+            </button>
+            <button className="delete-button col" onClick={handleDiscardData}>
+              Delete Data
+            </button>
+            </div>
+          </>
+        ) : (
+          <button className={`start-pause-button ${status ? "pause" : "start"}`} onClick={handlePostStart}>
+            Start Record
+          </button>
+        )}
+      </div>
+
+
+ 
+      {/* <button
         className={`start-pause-button ${status ? "pause" : "start"}`}
         onClick={status ? handlePostStop : handlePostStart}
       >
         {status ? "Pause" : "Start"}
       </button>
+
+      {showSubmitDelete && (
+        <div className="submit-delete-container">
+          <button className="submit-button" onClick={handleSendStartData}>
+            Submit
+          </button>
+          <button className="delete-button" onClick={handleDiscardData}>
+            Delete
+          </button>
+        </div>  */}
+
+      {/* )} */}
     </div>
       
 
