@@ -30,7 +30,7 @@ export function ProgressTracker() {
   return (
     <div className = "container-fluid progress-background">
     <div className="progress-tracker">
-      <h1>Progress Tracker</h1>
+      <h1 className="progress_title">Progress Tracker</h1>
       {showBanner && <div className="banner">{bannerMessage}</div>}
       {/* Search bar input */}
       

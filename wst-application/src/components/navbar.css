@@ -5,27 +5,42 @@
     position: fixed;
     width: 100%;
     z-index: 1000; 
+    height: 40px; 
   }
 
   .nav-item {
-    text-align: center;
-    position: relative;
-    background-color: #E57200;
-    border-radius: 90px;
-    margin-left: 1% ;
+    
+      text-align: center;
+      position: relative;
+      background-color: #E57200;
+      border-radius: 20px; /* Reduce border radius */
+      margin-left: 0.5%; /* Adjust spacing */
+      font-size: 14px; /* Ensure text fits */
+      padding: 8px 15px; /* Adjust padding */
+      height: 40px; /* Set fixed height */
+      display: flex;
+      align-items: center;
+      justify-content: center;
     
   }
   
  
   .nav-hover {
-    display: flex;
+    /* display: flex;
     justify-content: center;
     align-items: center;
     padding: 10px;
     border-radius: 8px;
     transition: transform 0.3s ease-in-out;
     position: relative;  
-    overflow: hidden;    
+    overflow: hidden;     */
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px; /* Reduce padding */
+    border-radius: 6px; /* Slightly reduce border radius */
+    transition: transform 0.2s ease-in-out;
     
   }
 
@@ -46,6 +61,7 @@
     height: 6vw; /* Maintain aspect ratio */
     transition: transform 0.3s ease-in-out;
     z-index: 1000;   /* Ensure the image stays above the background */
+    font-size: 16px; 
   }
   
   .nav-hover:hover .nav-icon {
