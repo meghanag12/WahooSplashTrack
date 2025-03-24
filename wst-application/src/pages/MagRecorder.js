@@ -314,6 +314,9 @@ export function MagRecorder() {
   const [swimmer_name, set_swimmer_name] = useState('');
   const [start_id, set_start_id] = useState('');
   const [date, set_date] = useState('');
+  const [bannerMessage, setBannerMessage] = useState('');
+  const [showBanner, setShowBanner] = useState(false);
+  const [waiting, setWaiting] = useState(true);
 
   const dropdownRef = useRef(null);
   const endpoint_pullstarts = 'http://34.207.224.1:5000/pullstarts';
@@ -395,6 +398,42 @@ export function MagRecorder() {
     }
   };
 
+  const handleSendStartData = async () => {
+    setBannerMessage('Data successfully submitted!');
+    setShowBanner(true);
+    setTimeout(() => setShowBanner(false), 3000);
+    await postDataStart(); 
+    resetValues();
+  };
+
+  const handleDiscardData = () => {
+    setBannerMessage('Data discarded successfully!');
+    setShowBanner(true);
+    setTimeout(() => setShowBanner(false), 3000);
+    resetValues();
+  };
+
+  const postDataStart = async () => {
+    const body = { swimmer_name, start_id, date, total_force, front_force, back_force };
+    try {
+      const response = await axios.post(endpoint_start, body);
+      console.log(response);
+    } catch (error) {
+      console.error('Error posting start data:', error);
+    }
+  };
+
+  const resetValues = () => {
+    set_total_force('0.0');
+    set_front_force('0.0');
+    set_back_force('0.0');
+    setSearchQuery('');
+    set_swimmer_name("");
+    setShowSubmitDelete(false); 
+    setWaiting(true);
+    setShowSpinner(false);
+  };
+
   return (
     <div className="app-container vh-100">
       <div className="mag-title">Magnitude Recorder</div>
@@ -414,6 +453,7 @@ export function MagRecorder() {
               {filteredSwimmers.map((swimmer) => (
                 <li
                   key={swimmer.id}
+                  style={{ color: 'black', backgroundColor: 'white', padding: '10px' }}
                   onClick={() => {
                     set_swimmer_name(swimmer.swimmer_name);
                     setSearchQuery(swimmer.swimmer_name);
@@ -447,19 +487,42 @@ export function MagRecorder() {
         <p className="force-label">Back Force</p>
       </div>
 
-      <div className="magnitude-button-container">
+      {/* <div className="magnitude-button-container">
         {status ? (
           <button className="stop-record-button" onClick={handlePostStop}>
             Stop Record
           </button>
         ) : showSubmitDelete ? (
           <div className="submit-delete-container">
-            <button className="submit-data-button">Submit Data</button>
-            <button className="delete-data-button">Delete Data</button>
+            <button className="submit-data-button" onClick = {handleSendStartData}>Submit Data</button>
+            <button className="delete-data-button" onClick = {handleDiscardData}>Delete Data</button>
           </div>
         ) : (
           <button className="start-button" onClick={handlePostStart}>
             Start Record
+          </button>
+        )}
+      </div> */}
+
+      <div className="magnitude-button-container row align-items-center">
+          {status ? (
+          <button className={`start-pause-button ${status ? "pause" : "start"}`} onClick={handlePostStop}>
+            Stop
+          </button>
+        ) : showSubmitDelete ? (
+          <>
+          <div className = "start-pause-button col align-iterms-center">
+            <button className="submit-button" onClick={handleSendStartData}>
+              Submit Data
+            </button>
+            <button className="delete-button" onClick={handleDiscardData}>
+              Delete Data
+            </button>
+            </div>
+          </>
+        ) : (
+          <button className={`start-pause-button ${status ? "pause" : "start"}`} onClick={handlePostStart}>
+            Start
           </button>
         )}
       </div>

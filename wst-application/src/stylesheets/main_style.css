@@ -215,7 +215,16 @@ input[type="text"] {
     list-style: none;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); 
     z-index: 1000; 
+    
 }
+
+.dropdown-item {
+  color: black;
+  padding: 8px;
+  cursor: pointer;
+}
+
+
 
 .search-dropdown {
   position: relative; 
