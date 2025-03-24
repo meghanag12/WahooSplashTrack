@@ -72,3 +72,20 @@
   animation: fadeIn 1s ease-in-out;
 
 }
+
+.card_color:nth-child(odd) {
+    background-color: #61ace6e7;
+  }
+  
+.card_color tr:nth-child(even) {
+    background-color: #e48d37bb;
+  }
+  
+.card_color tr {
+    transition: background-color 0.45s ease;
+  }
+  
+.card_color tr:hover {
+    background-color: #e8f4f8; 
+    cursor: pointer; 
+  }
