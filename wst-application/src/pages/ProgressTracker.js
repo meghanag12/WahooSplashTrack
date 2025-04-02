@@ -80,8 +80,8 @@ export function ProgressTracker() {
             >
               <div className="card h-100 w-100" style = {{backgroundColor: index%2 === 0 ? "#3B4A88" : "#E57200", width: "300px" }}>
                 <div className="card-body">
-                  <h5 className="card-title">{swimmer.swimmer_name}</h5>
-                  <p className="card-text">{swimmer.year}</p>
+                  <h5 className="card-title text-light">{swimmer.swimmer_name}</h5>
+                  <p className="card-text text-light">{swimmer.year}</p>
                 </div>
               </div>
             </div>

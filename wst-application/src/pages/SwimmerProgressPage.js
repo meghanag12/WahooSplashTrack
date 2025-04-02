@@ -96,7 +96,7 @@ export function SwimmerProgressPage() {
               </tbody>
         </table>
        <i> <footer class="card-footer text-muted"> {name}'s best start was on {formatDate(best_start.date)} with a total force 
-        of {best_start.back_force} pounds</footer> </i>
+        of {best_start.total_force} pounds</footer> </i>
         </div>
         <div className = "card">
         <div className = "card-header">All starts for {name}</div>
