@@ -13,6 +13,7 @@
 .card 
 {
     margin-top: 10px;
+    height: 100 vh; 
 }
 
 .progress-background {
@@ -29,12 +30,12 @@
         font-family: Arial, sans-serif;
         position: relative;
       
-    /* background: url('../vivid-blurred-colorful-wallpaper-background_58702-3773.avif') no-repeat center center; */
-    /* opacity: 0.7; */
-    /* background-size: cover; */
-    /* height: 100vh; */
-    /* z-index: -1;  */
-    /* linear-gradient(to left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.6) 60%, white 100%), */
+    /* background: url('../vivid-blurred-colorful-wallpaper-background_58702-3773.avif') no-repeat center center; 
+    opacity: 0.7;
+    background-size: cover; 
+    height: 100vh;
+    z-index: -1;  */
+    /* linear-gradient: to left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.6) 60%, white 100%; */
 
 }
 
@@ -57,7 +58,7 @@
 }
 
 .progress_title {
-    font-size: 30px; /* Large, bold text */
+  font-size: 40px; /* Large, bold text */
   font-weight: bold;
   text-align: center;
   color: #232D4B; /* Dark blue for contrast */

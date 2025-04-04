@@ -6,6 +6,8 @@ import '../stylesheets/progress_tracker_styles.css';
 
 export function ProgressTracker() {
   const [swimmers, setSwimmers] = useState([]);
+  const [swimmer_start, set_swimmer_start] = useState([]);
+  const [best_start, set_best_start] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
   const [bannerMessage, setBannerMessage] = useState('');
@@ -15,6 +17,9 @@ export function ProgressTracker() {
       try {
         const response = await axios.get('http://34.207.224.1:8000/api/swimmer/');
         setSwimmers(response.data);
+        // const startResponse = await axios.get(`http://34.207.224.1:8000/api/start/name`);
+        // set_swimmer_start(startResponse)
+        // console.log(swimmer_start)
       } catch (error) {
         console.error("Error fetching swimmers:", error);
       }
@@ -26,6 +31,70 @@ export function ProgressTracker() {
   const filteredSwimmers = swimmers.filter(swimmer =>
     swimmer.swimmer_name.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  // const find_best_dive =  async (name) => {
+  //   console.log(name)
+  //   const encodedName = encodeURIComponent(name.trim());
+  //   console.log(encodedName)
+  //   // http://34.207.224.1:8000/api/start/name/${encodedName}/
+  //   const start_response = await axios.get(`http://34.207.224.1:8000/api/start/name/Preston%20Borden/`)
+  //   const data = start_response.data
+  //   if (data.length > 0) {
+  //     const totalForces = data.map(start => start.total_force); // Convert to numbers if necessary
+  //     const max_total_force = Math.max(...totalForces); // Use spread operator
+  //     const bestStartEntry = data.find(start => Math.abs(parseFloat(start.total_force)) === max_total_force);
+
+  //     // Save this swimmer's best dive under their name
+  //     set_best_starts(prev => ({
+  //       ...prev,
+  //       [name]: bestStartEntry,
+  //     }));
+  //   } else {
+  //     console.error(`No dive data found for ${name}`);
+  //   }
+  // }
+  
+  // };
+
+  const find_best_dive = async (name) => {
+    const encodedName = encodeURIComponent(name.trim());
+    try {
+      const start_response = await axios.get(`http://34.207.224.1:8000/api/start/name/${encodedName}/`);
+      const data = start_response.data;
+  
+      if (data.length > 0) {
+        const totalForces = data.map(start => parseFloat(start.total_force));
+        const max_total_force = Math.max(...totalForces);
+        const bestStartEntry = data.find(
+          start => Math.abs(parseFloat(start.total_force)) === max_total_force
+        );
+  
+        // Save this swimmer's best dive under their name
+        set_best_start(prev => ({
+          ...prev,
+          [name]: bestStartEntry,
+        }));
+      } else {
+        set_best_start(prev => ({
+          ...prev,
+          [name]: "No Dives Found",
+        }));
+      }
+    } catch (error) {
+      console.error(`Error fetching dive for ${name}:`, error);
+    }
+  };
+  
+
+  useEffect(() => {
+    if (swimmers && swimmers.length > 0) {
+      swimmers.forEach(swimmer => {
+        if (swimmer.swimmer_name) {
+          find_best_dive(swimmer.swimmer_name);
+        }
+      });
+    }
+  }, [swimmers]);
 
   return (
     <div className = "container-fluid progress-background">
@@ -78,10 +147,13 @@ export function ProgressTracker() {
               onClick={() => navigate(`/swimmer/${swimmer.swimmer_name}`)}
               style={{ cursor: "pointer" }}
             >
-              <div className="card h-100 w-100" style = {{backgroundColor: index%2 === 0 ? "#3B4A88" : "#E57200", width: "300px" }}>
+              <div className="card w-100" style = {{backgroundColor: index%2 === 0 ? "#3B4A88" : "#E57200", width: "300px", height: "110px" }}>
                 <div className="card-body">
-                  <h5 className="card-title text-light">{swimmer.swimmer_name}</h5>
-                  <p className="card-text text-light">{swimmer.year}</p>
+                  <h3 className="card-title text-light text-start "><strong>{swimmer.swimmer_name}</strong></h3>
+                  <div className="d-flex justify-content-between">
+                    <p className="card-text text-light mb-0 text-start ps-3">Class of {swimmer.year}</p>
+                    <p className="card-text text-light mb-0 text-end pe-4">Best Start: {best_start[swimmer.swimmer_name]?.total_force}</p>
+                  </div>
                 </div>
               </div>
             </div>

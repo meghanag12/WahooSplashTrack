@@ -55,7 +55,7 @@ html, body {
   font-size: 16px;
   width: 100%; /* Ensures the search bar takes full width */
   max-width: 300px; /* Limits the width to 400px for larger screens */
-  margin: 10px auto; /* Centers it horizontally and adds vertical spacing */
+  margin: 5px auto; /* Centers it horizontally and adds vertical spacing */
   border: 1px solid #ccc;
   border-radius: 5px;
   box-sizing: border-box; /* Ensures padding is included in the width */
@@ -104,7 +104,7 @@ html, body {
   background-color: #f0f0f0; /* Light background change when hovering over the link */
 }
 
-h1 {
+/* h1 {
   text-align: center;
   font-size: 42px;
   margin: 20px auto;
@@ -122,7 +122,7 @@ h1::after {
   background-color: #3498db;
   margin: 10px auto 0;
   border-radius: 2px;
-}
+} */
 
 /* Banner Styling */
 .banner {
