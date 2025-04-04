@@ -89,3 +89,12 @@
     background-color: #e8f4f8; 
     cursor: pointer; 
   }
+  .sortable th {
+    cursor: pointer;
+    text-decoration: underline;
+    user-select: none;
+  }
+  
+  .sortable th:hover {
+    color: #007bff; /* Blue on hover */
+  }
