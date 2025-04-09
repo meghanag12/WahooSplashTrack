@@ -12,7 +12,7 @@ export function SwimmerProgressPage() {
   const [starts, setStarts] = useState([]);
   const [best_start, set_best_start] = useState([]);
   const navigate = useNavigate();
-
+  const [sortConfig, setSortConfig] = useState({ key: 'date', direction: 'descending' });
   useEffect(() => {
     const fetchStartData = async () => {
       try {
@@ -25,7 +25,25 @@ export function SwimmerProgressPage() {
 
     fetchStartData();
   }, [name]); // Re-run when the swimmer's name changes
-
+  const handleSort = (key) => {
+    let direction = 'ascending';
+    if (sortConfig.key === key && sortConfig.direction === 'ascending') {
+      direction = 'descending';
+    }
+    setSortConfig({ key, direction });
+  };
+  
+  const sortedStarts = React.useMemo(() => {
+    const sortable = [...starts];
+    sortable.sort((a, b) => {
+      const aVal = sortConfig.key === 'date' ? new Date(a[sortConfig.key]) : parseFloat(a[sortConfig.key]);
+      const bVal = sortConfig.key === 'date' ? new Date(b[sortConfig.key]) : parseFloat(b[sortConfig.key]);
+      if (aVal < bVal) return sortConfig.direction === 'ascending' ? -1 : 1;
+      if (aVal > bVal) return sortConfig.direction === 'ascending' ? 1 : -1;
+      return 0;
+    });
+    return sortable;
+  }, [starts, sortConfig]);
   const find_best_start = () => {
     if (starts.length > 0) {
       const totalForces = starts.map(start => start.total_force); // Convert to numbers if necessary
@@ -96,35 +114,42 @@ export function SwimmerProgressPage() {
               </tbody>
         </table>
        <i> <footer class="card-footer text-muted"> {name}'s best start was on {formatDate(best_start.date)} with a total force 
-        of {best_start.back_force} pounds</footer> </i>
+        of {best_start.total_force} pounds</footer> </i>
         </div>
         <div className = "card">
         <div className = "card-header">All starts for {name}</div>
         {starts.length > 0 ? (
           <div className="table-container">
-            <table>
+            
+            <table class="sortable">
+
               <thead>
                 <tr>
-                  <th>Date</th>
-                  <th>Total Force (lbs)</th>
-                  <th>Front Force (lbs)</th>
-                  <th>Back Force (lbs)</th>
+                <th onClick={() => handleSort('date')}>
+                 Date {sortConfig.key === 'date' ? (sortConfig.direction === 'ascending' ? '' : '') : ''}
+                </th>
+                <th onClick={() => handleSort('total_force')}>
+                  Total Force (lbs) {sortConfig.key === 'total_force' ? (sortConfig.direction === 'ascending' ? '' : '') : ''}
+                </th>
+                <th onClick={() => handleSort('front_force')}>
+                  Front Force (lbs) {sortConfig.key === 'front_force' ? (sortConfig.direction === 'ascending' ? '' : '') : ''}
+                </th>
+                <th onClick={() => handleSort('back_force')}>
+                  Back Force (lbs) {sortConfig.key === 'back_force' ? (sortConfig.direction === 'ascending' ? '' : '') : ''}
+                </th>
                 </tr>
               </thead>
 
-              <tbody>
-                {starts
-                .slice()
-                .sort((a,b) => new Date(b.date)- new Date(a.date))
-                .map((start, index) => (
+                <tbody>
+                  {sortedStarts.map((start, index) => (
                   <tr key={index}>
                     <td>{formatDate(start.date)}</td>
                     <td>{Number(start.total_force).toFixed(2)} lbs</td>
                     <td>{Number(start.front_force).toFixed(2)} lbs</td>
                     <td>{Number(start.back_force).toFixed(2)} lbs</td>
                   </tr>
-                ))}
-              </tbody>
+                  ))}
+                </tbody>
             </table>
             
           </div>
