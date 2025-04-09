@@ -1,0 +1,48 @@
+.connection-status {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+}
+
+.status-indicator {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  border-radius: 4px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.status-indicator.disconnected {
+  border: 1px solid #ff4444;
+}
+
+.status-indicator.disconnected .status-dot {
+  background-color: #ff4444;
+}
+
+.status-indicator.disconnected .status-text {
+  color: #ff4444;
+}
+
+.status-indicator.connected {
+  border: 1px solid #00C851;
+}
+
+.status-indicator.connected .status-dot {
+  background-color: #00C851;
+}
+
+.status-indicator.connected .status-text {
+  color: #00C851;
+} 
