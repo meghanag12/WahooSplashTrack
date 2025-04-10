@@ -4,17 +4,17 @@ import '../stylesheets/connection_status.css';
 
 export function ConnectionStatus() {
   const [isConnected, setIsConnected] = useState(false);
-  const endpoint_pullstarts = 'http://34.207.224.1:5000/pullstarts';
+  const connection = 'http://34.207.224.1:5000/connectionStatus';
 
   const checkConnection = async () => {
     try {
-      const response = await axios.get(endpoint_pullstarts);
-      const currentTime = new Date().getTime();
-      const lastDataTime = new Date(response.data.timestamp).getTime();
-      const timeDifference = currentTime - lastDataTime;
+      const response = await axios.get(connection);
+      const statusStr = response.data.status;
+      const status = statusStr === 'true';
       
-      // Consider connected if data is less than 30 seconds old
-      setIsConnected(timeDifference < 30000);
+      setIsConnected(status);
+      await axios.post(connection, { status: 'false' });
+
     } catch (error) {
       console.error('Error checking connection:', error);
       setIsConnected(false);
