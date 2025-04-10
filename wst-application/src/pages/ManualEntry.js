@@ -26,8 +26,8 @@ export function ManualEntry() {
     const [bannerType, setBannerType] = useState(""); 
     const navigate = useNavigate();
 
-    const endpoint_swimmer = 'http://34.207.224.1:8000/api/swimmer/';
-    const endpoint_start = 'http://34.207.224.1:8000/api/start/';
+    const endpoint_swimmer = 'https://wahooserver.com/api/swimmer/';
+    const endpoint_start = 'https://wahooserver.com/api/start/';
 
     
     const postDataStart = async () => {

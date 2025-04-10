@@ -319,10 +319,10 @@ export function MagRecorder() {
   const [waiting, setWaiting] = useState(true);
 
   const dropdownRef = useRef(null);
-  const endpoint_pullstarts = 'http://34.207.224.1:5000/pullstarts';
-  const endpoint_start_stop = 'http://34.207.224.1:5000/status';
-  const endpoint_swimmers = 'http://34.207.224.1:8000/api/swimmer/';
-  const endpoint_start = 'http://34.207.224.1:8000/api/start/';
+  const endpoint_pullstarts = 'https://wahooserver.com/pullstarts';
+  const endpoint_start_stop = 'https://wahooserver.com/status';
+  const endpoint_swimmers = 'https://wahooserver.com/api/swimmer/';
+  const endpoint_start = 'https://wahooserver.com/api/start/';
 
   useEffect(() => {
     const fetchSwimmerList = async () => {

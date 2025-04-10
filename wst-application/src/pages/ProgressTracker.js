@@ -15,7 +15,7 @@ export function ProgressTracker() {
   useEffect(() => {
     const fetchSwimmers = async () => {
       try {
-        const response = await axios.get('http://34.207.224.1:8000/api/swimmer/');
+        const response = await axios.get('https://wahooserver.com/api/swimmer/');
         setSwimmers(response.data);
         // const startResponse = await axios.get(`http://34.207.224.1:8000/api/start/name`);
         // set_swimmer_start(startResponse)
@@ -59,7 +59,7 @@ export function ProgressTracker() {
   const find_best_dive = async (name) => {
     const encodedName = encodeURIComponent(name.trim());
     try {
-      const start_response = await axios.get(`http://34.207.224.1:8000/api/start/name/${encodedName}/`);
+      const start_response = await axios.get(`https://wahooserver.com/api/start/name/${encodedName}/`);
       const data = start_response.data;
   
       if (data.length > 0) {
@@ -97,6 +97,8 @@ export function ProgressTracker() {
   }, [swimmers]);
 
   return (
+
+      
     <div className = "container-fluid progress-background">
     <div className="progress-tracker">
       <h1 className="progress_title">Progress Tracker</h1>
@@ -138,8 +140,10 @@ export function ProgressTracker() {
       </table> */}
 
       {/* Bootstrap Cards Version */}
+      
       <div className="container mt-4">
         <div className="row row-cols-1 row-cols-md-1 g-4 d-flex justify-content-center">
+          
           {filteredSwimmers.map((swimmer, index) => (
             <div
               className="col"
@@ -169,5 +173,6 @@ export function ProgressTracker() {
 
     </div>
     </div>
+
   );
 }

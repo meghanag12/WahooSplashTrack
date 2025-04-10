@@ -18,7 +18,7 @@ export function LoginPage() {
     const [showSpinner, setShowSpinner] = useState(false);
 
     const navigate = useNavigate();
-    const endpoint_login = 'http://34.207.224.1:8000/api/login/';
+    const endpoint_login = 'https://wahooserver.com/api/login/';
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
