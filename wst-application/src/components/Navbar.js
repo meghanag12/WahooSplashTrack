@@ -13,7 +13,7 @@ export function Navbar() {
         </Link>
       </li>
       <li className="nav-item">
-        <Link className="nav-link nav-hover" to="/magnituderecorder">
+        <Link className="nav-link nav-hover" to="/">
           <img src={swimIcon} alt="Swim" className="nav-icon img-fluid" />
         </Link>
       </li>

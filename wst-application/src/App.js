@@ -16,12 +16,12 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<LoginPage />} /> {}
         <Route element={<Layout />}>
+          <Route path="/" element={<MagRecorder />} /> {}
           <Route path="/reg" element={<RegisterPage />} />
           <Route path = "/update-swimmer" element={<UpdateSwimmer />} />
           <Route path = "/update/:name" element={<UpdateIndividualSwimmer />} />
-          <Route path="/magnituderecorder" element={<MagRecorder />} />
+          {/* <Route path="/magnituderecorder" element={<MagRecorder />} /> */}
           <Route path="/progresstracker" element={<ProgressTracker />} />
           <Route path="/swimmer/:name" element={<SwimmerProgressPage />} />
           <Route path="/start-graph/:name" element={<StartGraph />} />
