@@ -21,23 +21,29 @@ function App() {
     const token = localStorage.getItem("access_token");
     const code = getCodeFromUrl();
 
-    // If no access token and no code, send user to login
+    console.log("Token in localStorage:", localStorage.getItem("access_token"));
+    console.log("Code in URL:", getCodeFromUrl());
+
     if (!token && !code) {
       redirectToLogin();
     }
-
-    // If we have a code but no token yet, send to backend (lambda) to exchange it
+  
     if (code && !token) {
-      fetch(`https://oqoe7orlk2.execute-api.us-east-1.amazonaws.com/default/login_routine`)
+      fetch("https://oqoe7orlk2.execute-api.us-east-1.amazonaws.com/default/login_routine", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ code })
+      })
         .then((res) => res.json())
         .then((data) => {
           if (data.access_token) {
             localStorage.setItem("access_token", data.access_token);
-            // You might want to store id_token or refresh_token too
-            window.history.replaceState({}, document.title, "/"); // remove code from URL
+            window.history.replaceState({}, document.title, "/");
           } else {
-            console.error("Failed to get token:", data);
-            redirectToLogin(); // fallback
+            console.error("Token not received:", data);
+            redirectToLogin();
           }
         })
         .catch((err) => {
