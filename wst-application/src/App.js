@@ -17,16 +17,12 @@ import { redirectToLogin, getCodeFromUrl } from "./utils/auth";
 
 function App() {
 
-  useEffect(() => {
+  /*useEffect(() => {
     const token = localStorage.getItem("access_token");
     const code = getCodeFromUrl();
-
-    console.log("Token in localStorage:", localStorage.getItem("access_token"));
-    console.log("Code in URL:", getCodeFromUrl());
-
-    if (!token && !code) {
-      redirectToLogin();
-    }
+  
+    console.log("Token in localStorage:", token);
+    console.log("Code in URL:", code);
   
     if (code && !token) {
       fetch("https://oqoe7orlk2.execute-api.us-east-1.amazonaws.com/default/login_routine", {
@@ -40,6 +36,8 @@ function App() {
         .then((data) => {
           if (data.access_token) {
             localStorage.setItem("access_token", data.access_token);
+            console.log("Access token set.");
+            // remove ?code=... from the URL
             window.history.replaceState({}, document.title, "/");
           } else {
             console.error("Token not received:", data);
@@ -50,8 +48,11 @@ function App() {
           console.error("Login error:", err);
           redirectToLogin();
         });
+    } else if (!token && !code) {
+      redirectToLogin(); // Only redirect if there's *no token* and *no code*
     }
   }, []);
+  */
 
 
   return (

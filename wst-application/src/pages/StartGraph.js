@@ -36,8 +36,8 @@ export function StartGraph() {
             {
               label: 'Total Force (N)',
               data: totalForceData,
-              borderColor: 'rgba(52, 152, 219, 1)',
-              backgroundColor: 'rgba(229, 114, 0, 0.6)',
+              borderColor: '#3B4A88',
+              backgroundColor: '#E57200',
               fill: true,
               tension: 0.23,
               pointRadius: 6, 

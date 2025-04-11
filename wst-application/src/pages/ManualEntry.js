@@ -77,7 +77,7 @@ export function ManualEntry() {
 
     return (
         <>
-           <h1>Swimmer Registration Page</h1>
+
 
 {showBanner && (
     <div className={`banner ${bannerType}`}>

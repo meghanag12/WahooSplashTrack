@@ -156,7 +156,7 @@ export function ProgressTracker() {
                   <h3 className="card-title text-light text-start "><strong>{swimmer.swimmer_name}</strong></h3>
                   <div className="d-flex justify-content-between">
                     <p className="card-text text-light mb-0 text-start ps-3">Class of {swimmer.year}</p>
-                    <p className="card-text text-light mb-0 text-end pe-4">Best Start: {best_start[swimmer.swimmer_name]?.total_force}</p>
+                    <p className="card-text text-light mb-0 text-end pe-4">Best Start: {best_start[swimmer.swimmer_name]?.total_force} lbs</p>
                   </div>
                 </div>
               </div>

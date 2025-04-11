@@ -249,11 +249,13 @@ th, td {
 }
 
 tbody tr:nth-child(odd) {
-  background-color: #61ace6e7;
+  background-color: #3B4A88;
+  color:#FFFFFF ;
 }
 
 tbody tr:nth-child(even) {
-  background-color: #e48d37bb;
+  background-color: #E57200;
+  color:#FFFFFF ;
 }
 
 tbody tr {
@@ -262,6 +264,7 @@ tbody tr {
 
 tbody tr:hover {
   background-color: #e8f4f8; 
+  color:#000000 ;
   cursor: pointer; 
 }
 

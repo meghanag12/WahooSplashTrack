@@ -4,7 +4,7 @@ import '../stylesheets/connection_status.css';
 
 export function ConnectionStatus() {
   const [isConnected, setIsConnected] = useState(false);
-  const connection = 'http://34.207.224.1:5000/connectionStatus';
+  const connection = 'https://wahooserver.com/connectionStatus';
 
   const checkConnection = async () => {
     try {
