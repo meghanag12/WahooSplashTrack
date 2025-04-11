@@ -17,7 +17,7 @@ import { redirectToLogin, getCodeFromUrl } from "./utils/auth";
 
 function App() {
 
-  /*useEffect(() => {
+  useEffect(() => {
     const token = localStorage.getItem("access_token");
     const code = getCodeFromUrl();
   
@@ -48,11 +48,11 @@ function App() {
           console.error("Login error:", err);
           redirectToLogin();
         });
-    } else if (!token && !code) {
+    } else if (!token && code) {
       redirectToLogin(); // Only redirect if there's *no token* and *no code*
     }
   }, []);
-  */
+  
 
 
   return (
