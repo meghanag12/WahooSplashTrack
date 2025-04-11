@@ -4,7 +4,7 @@ import '../stylesheets/connection_status.css';
 
 export function ConnectionStatus() {
   const [isConnected, setIsConnected] = useState(false);
-  const connection = 'https://wahooserver.com/connectionStatus';
+  const connection = 'https://wahooserver.com/apiflask/connectionStatus';
 
   const checkConnection = async () => {
     try {

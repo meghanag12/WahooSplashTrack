@@ -319,8 +319,8 @@ export function MagRecorder() {
   const [waiting, setWaiting] = useState(true);
 
   const dropdownRef = useRef(null);
-  const endpoint_pullstarts = 'https://wahooserver.com/pullstarts';
-  const endpoint_start_stop = 'https://wahooserver.com/status';
+  const endpoint_pullstarts = 'https://wahooserver.com/apiflask/pullstarts';
+  const endpoint_start_stop = 'https://wahooserver.com/apiflask/status';
   const endpoint_swimmers = 'https://wahooserver.com/api/swimmer/';
   const endpoint_start = 'https://wahooserver.com/api/start/';
 
