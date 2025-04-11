@@ -77,7 +77,7 @@ export function ManualEntry() {
 
     return (
         <>
-
+            <h1 className = "text-center">Manual Entry</h1>
 
 {showBanner && (
     <div className={`banner ${bannerType}`}>
@@ -85,9 +85,10 @@ export function ManualEntry() {
     </div>
 )}
 <div className="Register_Page_Total">
-    <div className="button-group">
-        <button  onClick={() => navigate(-1)}>Back</button>
+    <div className="position-absolute top-0 end-0 p-2">
+        <button class="btn btn-secondary rounded-pill" onClick={() => navigate(-1)}>Back</button>
     </div>
+   
 <div className="form_container">
     <form onSubmit={handleSendData}>
         <div className="form-group-manual-entry">
@@ -134,7 +135,7 @@ export function ManualEntry() {
             </div>
         </div>
 
-        <button type="submit" onClick={handleSendData}>Submit</button>
+        <button className = ""type="submit" onClick={handleSendData}>Submit</button>
     </form>
 
 
