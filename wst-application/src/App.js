@@ -16,7 +16,7 @@ import { useEffect } from "react";
 import { redirectToLogin, getCodeFromUrl } from "./utils/auth";
 
 function App() {
-  useEffect(() => {
+ /* useEffect(() => {
     const token = localStorage.getItem("access_token");
     const code = getCodeFromUrl();
 
@@ -63,7 +63,7 @@ function App() {
   }, []);
   
 
-
+*/
   return (
     <Router>
       <Routes>
