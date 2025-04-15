@@ -16,14 +16,18 @@ import { useEffect } from "react";
 import { redirectToLogin, getCodeFromUrl } from "./utils/auth";
 
 function App() {
-
   useEffect(() => {
     const token = localStorage.getItem("access_token");
     const code = getCodeFromUrl();
-  
+
     console.log("Token in localStorage:", token);
     console.log("Code in URL:", code);
-  
+
+    // FIXED: Only redirect if there's NO token AND NO code
+    if (!token && !code) {
+      redirectToLogin();
+    }
+
     if (code && !token) {
       fetch("https://oqoe7orlk2.execute-api.us-east-1.amazonaws.com/default/login_routine", {
         method: "POST",
@@ -32,25 +36,30 @@ function App() {
         },
         body: JSON.stringify({ code })
       })
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.access_token) {
-            localStorage.setItem("access_token", data.access_token);
-            console.log("Access token set.");
-            // remove ?code=... from the URL
-            window.history.replaceState({}, document.title, "/");
-          } else {
-            console.error("Token not received:", data);
-            redirectToLogin();
-          }
-        })
-        .catch((err) => {
-          console.error("Login error:", err);
-          redirectToLogin();
-        });
-    } else if (!token && code) {
-      redirectToLogin(); // Only redirect if there's *no token* and *no code*
+      .then(async (res) => {
+        const data = await res.json();
+        console.log("Lambda response data:", data);
+      
+        if (!res.ok) {
+          console.error("Lambda returned error status:", res.status);
+          throw new Error(data?.error || "Unknown error from Lambda");
+        }
+      
+        if (data.access_token) {
+          localStorage.setItem("access_token", data.access_token);
+          console.log("Access token set.");
+          window.history.replaceState({}, document.title, "/");
+        } else {
+          throw new Error("access_token not found in response");
+        }
+      })
+      .catch((err) => {
+        console.error("Login error:", err);
+        redirectToLogin();
+      });
     }
+    console.log(token);
+    console.log("Code in URL:", code);
   }, []);
   
 
