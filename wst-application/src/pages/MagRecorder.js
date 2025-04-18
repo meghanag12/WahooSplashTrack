@@ -471,20 +471,26 @@ export function MagRecorder() {
       </div>
 
       <div className="force-ball-container">
-        <div className={`force-circle ${status ? "spinning" : ""}`}>
-          <div className="force-value">{total_force ? total_force + " lbs" : "0.0 lbs"}</div>
-        </div>
+        <div className = "force-block">
+          <div className={`force-circle ${status ? "spinning" : ""}`}>
+            <div className="force-value">{total_force ? total_force + " lbs" : "0.0 lbs"}</div>
+          </div>
         <p className="force-label">Total Force</p>
+        </div>
 
+        <div className = "force-block">
         <div className={`force-circle ${status ? "spinning" : ""}`}>
           <div className="force-value">{front_force ? front_force + " lbs" : "0.0 lbs"}</div>
         </div>
         <p className="force-label">Front Force</p>
-
-        <div className={`force-circle ${status ? "spinning" : ""}`}>
-          <div className="force-value">{back_force ? back_force + " lbs" : "0.0 lbs"}</div>
         </div>
-        <p className="force-label">Back Force</p>
+        
+        <div className = "force-block">
+          <div className={`force-circle ${status ? "spinning" : ""}`}>
+            <div className="force-value">{back_force ? back_force + " lbs" : "0.0 lbs"}</div>
+          </div>
+          <p className="force-label">Back Force</p>
+        </div>
       </div>
 
       {/* <div className="magnitude-button-container">
