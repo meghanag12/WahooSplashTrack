@@ -11,63 +11,27 @@ import { Layout } from './Layout';
 import { LoginPage } from './pages/LoginPage';
 import { ManualEntry } from './pages/ManualEntry';
 import {Navbar} from './components/Navbar'
-
+import  CognitoLogin  from './pages/CognitoLogin';
 import { useEffect } from "react";
 import { redirectToLogin, getCodeFromUrl } from "./utils/auth";
-
+import { RequireAuth } from './components/RequireAuth';
 function App() {
-
-  useEffect(() => {
-    const token = localStorage.getItem("access_token");
-    const code = getCodeFromUrl();
-  
-    console.log("Token in localStorage:", token);
-    console.log("Code in URL:", code);
-  
-    if (code && !token) {
-      fetch("https://oqoe7orlk2.execute-api.us-east-1.amazonaws.com/default/login_routine", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ code })
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.access_token) {
-            localStorage.setItem("access_token", data.access_token);
-            console.log("Access token set.");
-            // remove ?code=... from the URL
-            window.history.replaceState({}, document.title, "/");
-          } else {
-            console.error("Token not received:", data);
-            redirectToLogin();
-          }
-        })
-        .catch((err) => {
-          console.error("Login error:", err);
-          redirectToLogin();
-        });
-    } else if (!token && code) {
-      redirectToLogin(); // Only redirect if there's *no token* and *no code*
-    }
-  }, []);
-  
-
 
   return (
     <Router>
+      <></>
       <Routes>
         <Route element={<Layout />}>
-          <Route path="/" element={<MagRecorder />} /> {}
-          <Route path="/reg" element={<RegisterPage />} />
-          <Route path = "/update-swimmer" element={<UpdateSwimmer />} />
-          <Route path = "/update/:name" element={<UpdateIndividualSwimmer />} />
+          <Route path="/" element={<CognitoLogin />} /> {}
+          <Route path="/reg" element={<RequireAuth><RegisterPage /> </RequireAuth>} />
+          <Route path="/mag" element={<RequireAuth><MagRecorder /> </RequireAuth>} />
+          <Route path = "/update-swimmer" element={<RequireAuth><UpdateSwimmer /> </RequireAuth>} />
+          <Route path = "/update/:name" element={<RequireAuth> <UpdateIndividualSwimmer /> </RequireAuth>} />
           {/* <Route path="/magnituderecorder" element={<MagRecorder />} /> */}
-          <Route path="/progresstracker" element={<ProgressTracker />} />
-          <Route path="/swimmer/:name" element={<SwimmerProgressPage />} />
-          <Route path="/start-graph/:name" element={<StartGraph />} />
-          <Route path="/manual-entry/:name" element={<ManualEntry />} />
+          <Route path="/progresstracker" element={<RequireAuth><ProgressTracker /></RequireAuth>} />
+          <Route path="/swimmer/:name" element={<RequireAuth><SwimmerProgressPage /> </RequireAuth>} />
+          <Route path="/start-graph/:name" element={<RequireAuth><StartGraph /></RequireAuth>} />
+          <Route path="/manual-entry/:name" element={<RequireAuth><ManualEntry /></RequireAuth>} />
 
         </Route>
       </Routes>

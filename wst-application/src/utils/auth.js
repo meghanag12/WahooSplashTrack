@@ -14,3 +14,6 @@ export const redirectToLogin = () => {
   export const getCodeFromUrl = () => {
     return new URLSearchParams(window.location.search).get("code");
   };
+  export function isLoggedIn() {
+    return !!localStorage.getItem('id_token');
+  }
