@@ -76,71 +76,80 @@ export function ManualEntry() {
     };
 
     return (
-        <>
-            <h1 className = "text-center">Manual Entry</h1>
-
-{showBanner && (
-    <div className={`banner ${bannerType}`}>
-        {bannerMessage}
-    </div>
-)}
-<div className="Register_Page_Total">
-    <div className="position-absolute top-0 end-0 p-2">
-        <button class="btn btn-secondary rounded-pill" onClick={() => navigate(-1)}>Back</button>
-    </div>
-   
-<div className="form_container">
-    <form onSubmit={handleSendData}>
-        <div className="form-group-manual-entry">
-            <label>Total Force:
-                <div className="swimmer-name-reg">
-                    <input
-                        className="input"
-                        value={values.total_force}
-                        onChange={handleInputChange}
-                        name="total_force"
-                        label="total_force"
-                        placeholder = "0.0"
-                        required
-                    />
+            <>
+              <div className="app-container">
+                <h1 className="text-center" style={{ color: "#001f3f" }}>Manual Entry</h1>
+          
+                {showBanner && (
+                  <div className={`banner ${bannerType}`}>
+                    {bannerMessage}
+                  </div>
+                )}
+          
+                <div className="Register_Page_Total">
+                  <div className="position-absolute top-0 end-0 p-2">
+                    <button className="btn btn-secondary rounded-pill" onClick={() => navigate(-1)}>
+                      Back
+                    </button>
+                  </div>
+          
+                  <div className="form_container">
+                    <form onSubmit={handleSendData}>
+                      <div className="form-group-manual-entry">
+                        <label>
+                          Total Force:
+                          <div className="year-input">
+                            <input
+                              type = "text"
+                              value={values.total_force}
+                              onChange={handleInputChange}
+                              name="total_force"
+                              label="total_force"
+                              placeholder="0.0"
+                              required
+                            />
+                          </div>
+                        </label>
+                      </div>
+          
+                      <div className="form-group">
+                        <label>Front Force:</label>
+                        <div className="year-input">
+                          <input
+                            type="text"
+                            name="front_force"
+                            value={values.front_force}
+                            onChange={handleInputChange}
+                            placeholder="0.0"
+                            required
+                          />
+                        </div>
+                      </div>
+          
+                      <div className="form-group">
+                        <label>Back Force:</label>
+                        <div className="year-input">
+                          <input
+                            type="text"
+                            name="back_force"
+                            value={values.back_force}
+                            onChange={handleInputChange}
+                            placeholder="0.0"
+                            required
+                          />
+                        </div>
+                      </div>
+                      <div className = "text-center mt-4">
+                        <button className="" type="submit" onClick={handleSendData}>
+                            Submit
+                        </button>
+                      </div>
+                    </form>
+                  </div>
                 </div>
-            </label>
-        </div>
-
-        <div className="form-group">
-            <label>Front Force:</label>
-            <div className="year-input">
-                <input
-                    type="text"
-                    name="front_force"
-                    value={values.front_force}
-                    onChange={handleInputChange}
-                    placeholder = "0.0"
-                    required
-                />
-            </div>
-        </div>
-
-        <div className="form-group">
-            <label>Back Force:</label>
-            <div className="year-input">
-                <input
-                    type="text"
-                    name="back_force"
-                    value={values.back_force}
-                    onChange={handleInputChange}
-                    placeholder = "0.0"
-                    required
-                />
-            </div>
-        </div>
-
-        <button className = ""type="submit" onClick={handleSendData}>Submit</button>
-    </form>
-
-
-    </div>
-</div>
-     </>
-    );
+              </div>
+            </>
+          );
+          
+    
 }
