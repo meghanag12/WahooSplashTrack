@@ -11,6 +11,8 @@ export function SwimmerProgressPage() {
   const { name } = useParams(); // Get the swimmer's name from the URL
   const [starts, setStarts] = useState([]);
   const [best_start, set_best_start] = useState([]);
+  const [selectedStart, setSelectedStart] = useState(null);
+  const [editingNote, setEditingNote] = useState('');
   const navigate = useNavigate();
   const [sortConfig, setSortConfig] = useState({ key: 'date', direction: 'descending' });
   useEffect(() => {
@@ -83,6 +85,32 @@ export function SwimmerProgressPage() {
     saveAs(file, `${fileName}.xlsx`);
 };
 
+  const handleStartClick = (start) => {
+    setSelectedStart(start);
+    setEditingNote(start.notes || '');
+  };
+
+  const handleNoteSave = async () => {
+    if (!selectedStart) return;
+    
+    try {
+      const response = await axios.patch(`https://wahooserver.com/api/start/${selectedStart.start_id}/`, {
+        notes: editingNote
+      });
+      
+      // Update the local state with the new note
+      setStarts(starts.map(start => 
+        start.start_id === selectedStart.start_id 
+          ? { ...start, notes: editingNote }
+          : start
+      ));
+      
+      setSelectedStart(null);
+    } catch (error) {
+      console.error("Error saving note:", error);
+    }
+  };
+
   return (
     <div className="swimmer-progress row-xl-3">
       <h1>{name}'s Progress</h1>
@@ -142,7 +170,7 @@ export function SwimmerProgressPage() {
 
                 <tbody>
                   {sortedStarts.map((start, index) => (
-                  <tr key={index}>
+                  <tr key={index} onClick={() => handleStartClick(start)} style={{ cursor: 'pointer' }}>
                     <td>{formatDate(start.date)}</td>
                     <td>{Number(start.total_force).toFixed(2)} lbs</td>
                     <td>{Number(start.front_force).toFixed(2)} lbs</td>
@@ -160,6 +188,32 @@ export function SwimmerProgressPage() {
         <footer className = "card-footer text-bold">Scroll through the above list to see all recorded starts for {name}. </footer>
       </div>
       
+      {/* Note Editing Modal */}
+      {selectedStart && (
+        <div className="modal" style={{ display: 'block', backgroundColor: 'rgba(0,0,0,0.5)' }}>
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title">Notes for Start on {formatDate(selectedStart.date)}</h5>
+                <button type="button" className="btn-close" onClick={() => setSelectedStart(null)}></button>
+              </div>
+              <div className="modal-body">
+                <textarea
+                  className="form-control"
+                  rows="4"
+                  value={editingNote}
+                  onChange={(e) => setEditingNote(e.target.value)}
+                  placeholder="Add notes about this start..."
+                />
+              </div>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-secondary" onClick={() => setSelectedStart(null)}>Cancel</button>
+                <button type="button" className="btn btn-primary" onClick={handleNoteSave}>Save Notes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

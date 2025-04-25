@@ -317,6 +317,7 @@ export function MagRecorder() {
   const [bannerMessage, setBannerMessage] = useState('');
   const [showBanner, setShowBanner] = useState(false);
   const [waiting, setWaiting] = useState(true);
+  const [note, setNote] = useState('');
 
   const dropdownRef = useRef(null);
   const endpoint_pullstarts = 'https://wahooserver.com/apiflask/pullstarts';
@@ -414,7 +415,15 @@ export function MagRecorder() {
   };
 
   const postDataStart = async () => {
-    const body = { swimmer_name, start_id, date, total_force, front_force, back_force };
+    const body = { 
+      swimmer_name, 
+      start_id, 
+      date, 
+      total_force, 
+      front_force, 
+      back_force,
+      notes: note
+    };
     try {
       const response = await axios.post(endpoint_start, body);
       console.log(response);
@@ -432,6 +441,7 @@ export function MagRecorder() {
     setShowSubmitDelete(false); 
     setWaiting(true);
     setShowSpinner(false);
+    setNote('');
   };
 
   return (
@@ -505,19 +515,28 @@ export function MagRecorder() {
       </div> */}
 
       <div className="magnitude-button-container row align-items-center">
-          {status ? (
+        {status ? (
           <button className={`start-pause-button ${status ? "pause" : "start"}`} onClick={handlePostStop}>
             Stop
           </button>
         ) : showSubmitDelete ? (
           <>
-          <div className = "start-pause-button col align-iterms-center">
-            <button className="submit-button" onClick={handleSendStartData}>
-              Submit Data
-            </button>
-            <button className="delete-button" onClick={handleDiscardData}>
-              Delete Data
-            </button>
+            <div className="start-pause-button col align-items-center">
+              <div className="note-input-container mb-3">
+                <textarea
+                  className="form-control"
+                  rows="3"
+                  placeholder="Add notes about this start..."
+                  value={note}
+                  onChange={(e) => setNote(e.target.value)}
+                />
+              </div>
+              <button className="submit-button" onClick={handleSendStartData}>
+                Submit Data
+              </button>
+              <button className="delete-button" onClick={handleDiscardData}>
+                Delete Data
+              </button>
             </div>
           </>
         ) : (
