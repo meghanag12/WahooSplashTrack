@@ -318,6 +318,7 @@ export function MagRecorder() {
   const [showBanner, setShowBanner] = useState(false);
   const [waiting, setWaiting] = useState(true);
   const [note, setNote] = useState('');
+  const [showModal, setShowModal] = useState(false);
 
   const dropdownRef = useRef(null);
   const endpoint_pullstarts = 'https://wahooserver.com/apiflask/pullstarts';
@@ -393,7 +394,7 @@ export function MagRecorder() {
     try {
       await axios.post(endpoint_start_stop, { status: 'false' });
       console.log('Stop recording');
-      setShowSubmitDelete(true);
+      setShowModal(true);
     } catch (error) {
       console.error('Error stopping recording:', error);
     }
@@ -404,6 +405,7 @@ export function MagRecorder() {
     setShowBanner(true);
     setTimeout(() => setShowBanner(false), 3000);
     await postDataStart(); 
+    setShowModal(false);
     resetValues();
   };
 
@@ -411,6 +413,7 @@ export function MagRecorder() {
     setBannerMessage('Data discarded successfully!');
     setShowBanner(true);
     setTimeout(() => setShowBanner(false), 3000);
+    setShowModal(false);
     resetValues();
   };
 
@@ -503,54 +506,69 @@ export function MagRecorder() {
         </div>
       </div>
 
-      {/* <div className="magnitude-button-container">
-        {status ? (
-          <button className="stop-record-button" onClick={handlePostStop}>
-            Stop Record
-          </button>
-        ) : showSubmitDelete ? (
-          <div className="submit-delete-container">
-            <button className="submit-data-button" onClick = {handleSendStartData}>Submit Data</button>
-            <button className="delete-data-button" onClick = {handleDiscardData}>Delete Data</button>
-          </div>
-        ) : (
-          <button className="start-button" onClick={handlePostStart}>
-            Start Record
-          </button>
-        )}
-      </div> */}
-
-      <div className="magnitude-button-container row align-items-center">
+      <div className="magnitude-button-container">
         {status ? (
           <button className={`start-pause-button ${status ? "pause" : "start"}`} onClick={handlePostStop}>
             Stop
           </button>
-        ) : showSubmitDelete ? (
-          <>
-            <div className="start-pause-button col align-items-center">
-              <div className="note-input-container mb-3">
-                <textarea
-                  className="form-control"
-                  rows="3"
-                  placeholder="Add notes about this start..."
-                  value={note}
-                  onChange={(e) => setNote(e.target.value)}
-                />
-              </div>
-              <button className="submit-button" onClick={handleSendStartData}>
-                Submit Data
-              </button>
-              <button className="delete-button" onClick={handleDiscardData}>
-                Delete Data
-              </button>
-            </div>
-          </>
         ) : (
           <button className={`start-pause-button ${status ? "pause" : "start"}`} onClick={handlePostStart}>
             Start
           </button>
         )}
       </div>
+
+      {/* Modal for submit/delete recording */}
+      {showModal && (
+        <div className="modal" style={{ display: 'block', backgroundColor: 'rgba(0,0,0,0.5)' }}>
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title">Record Force Measurement</h5>
+                <button type="button" className="btn-close" onClick={() => setShowModal(false)}></button>
+              </div>
+              <div className="modal-body">
+                <div className="force-readings mb-3">
+                  <div className="row mb-2">
+                    <div className="col-4 fw-bold">Total Force:</div>
+                    <div className="col-8">{total_force ? total_force + " lbs" : "0.0 lbs"}</div>
+                  </div>
+                  <div className="row mb-2">
+                    <div className="col-4 fw-bold">Front Force:</div>
+                    <div className="col-8">{front_force ? front_force + " lbs" : "0.0 lbs"}</div>
+                  </div>
+                  <div className="row mb-2">
+                    <div className="col-4 fw-bold">Back Force:</div>
+                    <div className="col-8">{back_force ? back_force + " lbs" : "0.0 lbs"}</div>
+                  </div>
+                </div>
+                <div className="form-group">
+                  <label htmlFor="notes" className="form-label">Notes:</label>
+                  <textarea
+                    className="form-control"
+                    id="notes"
+                    rows="3"
+                    placeholder="Add notes about this measurement..."
+                    value={note}
+                    onChange={(e) => setNote(e.target.value)}
+                  />
+                </div>
+              </div>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-danger" onClick={handleDiscardData}>Discard</button>
+                <button type="button" className="btn btn-primary" onClick={handleSendStartData}>Submit</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Banner message */}
+      {showBanner && (
+        <div className="alert alert-success position-fixed top-0 start-50 translate-middle-x" style={{ zIndex: 1050 }}>
+          {bannerMessage}
+        </div>
+      )}
     </div>
   );
 }
