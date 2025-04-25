@@ -14,24 +14,23 @@ import {Navbar} from './components/Navbar'
 import  CognitoLogin  from './pages/CognitoLogin';
 import { useEffect } from "react";
 import { redirectToLogin, getCodeFromUrl } from "./utils/auth";
-import { RequireAuth } from './components/RequireAuth';
+
 function App() {
 
   return (
     <Router>
-      <></>
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<CognitoLogin />} /> {}
-          <Route path="/reg" element={<RequireAuth><RegisterPage /> </RequireAuth>} />
-          <Route path="/mag" element={<RequireAuth><MagRecorder /> </RequireAuth>} />
-          <Route path = "/update-swimmer" element={<RequireAuth><UpdateSwimmer /> </RequireAuth>} />
-          <Route path = "/update/:name" element={<RequireAuth> <UpdateIndividualSwimmer /> </RequireAuth>} />
+          <Route path="/reg" element={<RegisterPage />} />
+          <Route path="/mag" element={<MagRecorder />} />
+          <Route path = "/update-swimmer" element={<UpdateSwimmer />} />
+          <Route path = "/update/:name" element={<UpdateIndividualSwimmer />} />
           {/* <Route path="/magnituderecorder" element={<MagRecorder />} /> */}
-          <Route path="/progresstracker" element={<RequireAuth><ProgressTracker /></RequireAuth>} />
-          <Route path="/swimmer/:name" element={<RequireAuth><SwimmerProgressPage /> </RequireAuth>} />
-          <Route path="/start-graph/:name" element={<RequireAuth><StartGraph /></RequireAuth>} />
-          <Route path="/manual-entry/:name" element={<RequireAuth><ManualEntry /></RequireAuth>} />
+          <Route path="/progresstracker" element={<ProgressTracker />} />
+          <Route path="/swimmer/:name" element={<SwimmerProgressPage />} />
+          <Route path="/start-graph/:name" element={<StartGraph />} />
+          <Route path="/manual-entry/:name" element={<ManualEntry />} />
 
         </Route>
       </Routes>
