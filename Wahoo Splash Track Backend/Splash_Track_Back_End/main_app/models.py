@@ -18,6 +18,7 @@ class Start(models.Model):
     total_force = models.JSONField()
     front_force = models.JSONField()
     back_force = models.JSONField()
+    notes = models.TextField(blank=True, null=True)
 
     def __str__(self):
         return f'Start {self.start_id} for Swimmer {self.swimmer_name}'
