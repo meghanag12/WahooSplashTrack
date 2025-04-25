@@ -26,7 +26,7 @@
     font-family: Arial, sans-serif;
     position: relative;
     width: 100vw;
-    padding: 10px;
+    padding: 1vh;
     overflow-x: hidden;
     overflow-y: auto; 
 
@@ -36,10 +36,10 @@
   /* Submit & Delete Buttons */
   .submit-delete-container {
     position: absolute;
-    top: 20px;
-    right: 20px;
+    top: 2vh;
+    right: 2vw;
     display: flex;
-    gap: 10px;
+    gap: 1vw;
 
     /* display: flex;
     flex-wrap: wrap;
@@ -53,8 +53,8 @@
     background-color: white;
     color: #1e3a8a;
     border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
+    padding: 1.2vh 1.5vw;
+    border-radius: 0.5vw;
     font-weight: bold;
     cursor: pointer;
   }
@@ -72,18 +72,18 @@
  
   .force-circle {
 
-    width: 135px; 
-    height: 135px;
+    width: 30vw; 
+    height: 30vw;
 
     border-radius: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 30px;
+    font-size: 4.5vw;
     font-weight: bold;
     position: relative;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin-top: 0.5vh;
+    margin-bottom:1.8vh;
     background: #B6B1A8;
     transition: all 0.3s ease;
     overflow: hidden;
@@ -114,19 +114,18 @@
   
   }
 
-
-
   .start-pause-button {
-    margin-top: 30px;
+    margin-top: 10px;
+    
     width: 120px;
-    padding: 15px;
+    padding: 10px;
     border-radius: 50px;
     font-size: 18px;
     font-weight: bold;
     border: none;
     cursor: pointer;
     display: block;
-    margin: 20px auto; 
+    margin: 50px auto; 
 
   }
   
@@ -195,12 +194,13 @@
     width: 100%;
     max-width: 50%; */
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    max-width: 80%; 
+    
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5vh; /* space between each force block */
+      padding-bottom: 4vh;
+    
 
 }
 .force-circle-total{
@@ -217,20 +217,26 @@
   width: 100%;
 }
 .force-circle-front{
-  margin-top: 0.1%; 
+  margin-top: 0.3vh; 
   align-self: center;
-  margin-bottom: 0.1%; 
+  margin-bottom: 0.3vh; 
 
 }
 .force-circle-back{
+  margin-top: 0.3vh; 
   align-self: center;
+  margin-bottom: 0.3vh;
 }
  
 .force-label
 {
+  
+  margin: 0.3vh 0 0.1vh 0;
   font-size: 80%;
   color: #232D4B;
   font-weight: bold;
+  line-height: 0;  
+  padding: 0;    
 }
 .force-front{
   align-self: flex-start;
@@ -277,4 +283,21 @@
   animation: fadeIn 1s ease-in-out;
 }
 
+/* .force-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5vh; /* space between circle and label */
+  /* margin: 0;
+  padding: 0;
+} */ 
+
+.force-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0vh; /* space between circle and label */
+  margin: 0;
+  padding: 0;
+}
 
